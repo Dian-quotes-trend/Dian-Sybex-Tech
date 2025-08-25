@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dian AI - Intelligent Assistant </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+        }
+
+        :root {
+            --telegram-bg: #0e1621;
+            --telegram-header: #17212b;
+            --telegram-input: #17212b;
+            --telegram-bubble-user: #2b5278;
+            --telegram-bubble-bot: #182533;
+            --telegram-text: #e1e1e1;
+            --telegram-text-muted: #6b7b8d;
+            --telegram-accent: #3e8ed0;
+            --telegram-green: #3e8ed0;
+            --telegram-hover: #1f2a32;
+            --telegram-border: #1d2c3a;
+            --telegram-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0a, #0e1621, #17212b);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--telegram-text);
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 420px;
+            height: 90vh;
+            max-height: 800px;
+            background: var(--telegram-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 10;
+            border: 1px solid var(--telegram-border);
+        }
+
+        /* Social Media Modal */
+        .social-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .social-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .social-content {
+            background: var(--telegram-header);
+            width: 90%;
+            max-width: 350px;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+            border: 1px solid var(--telegram-border);
+        }
+
+        .social-modal.active .social-content {
+            transform: translateY(0);
+        }
+
+        .social-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--telegram-border);
+        }
+
+        .social-header h2 {
+            color: var(--telegram-green);
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .close-modal {
+            background: transparent;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--telegram-text-muted);
+        }
+
+        .close-modal:hover {
+            background: var(--telegram-hover);
+            color: var(--telegram-text);
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .social-card {
+            background: var(--telegram-bubble-bot);
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--telegram-border);
+        }
+
+        .social-card:hover {
+            transform: translateY(-3px);
+            background: var(--telegram-hover);
+            box-shadow: var(--telegram-shadow);
+        }
+
+        .social-card.whatsapp { border-top: 3px solid #25D366; }
+        .social-card.tiktok { border-top: 3px solid #000000; }
+        .social-card.website { border-top: 3px solid var(--telegram-green); }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: white;
+            margin: 0 auto 12px;
+        }
+
+        .social-icon.whatsapp { background: #25D366; }
+        .social-icon.tiktok { background: #000; }
+        .social-icon.website { background: var(--telegram-green); }
+
+        .social-card h3 {
+            font-size: 15px;
+            margin-bottom: 4px;
+            color: var(--telegram-text);
+            font-weight: 500;
+        }
+
+        .social-card p {
+            font-size: 12px;
+            color: var(--telegram-text-muted);
+        }
+
+        /* Command shortcuts menu */
+        .command-menu {
+            position: absolute;
+            bottom: 75px;
+            left: 20px;
+            width: 280px;
+            background: var(--telegram-header);
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            z-index: 20;
+            display: none;
+            flex-wrap: wrap;
+            gap: 8px;
+            transform-origin: bottom left;
+            animation: scaleIn 0.2s ease forwards;
+            border: 1px solid var(--telegram-border);
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .command-menu.active {
+            display: flex;
+        }
+
+        .command-btn {
+            background: var(--telegram-bubble-bot);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            color: var(--telegram-text);
+            border: 1px solid var(--telegram-border);
+        }
+
+        .command-btn:hover {
+            background: var(--telegram-hover);
+            transform: translateY(-2px);
+        }
+
+        .command-btn i {
+            font-size: 16px;
+            color: var(--telegram-green);
+        }
+
+        /* Header styling */
+        .chat-header {
+            background: var(--telegram-header);
+            color: var(--telegram-text);
+            padding: 15px 18px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 10;
+            border-bottom: 1px solid var(--telegram-border);
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--telegram-green), #2b5278);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .header-info {
+            flex: 1;
+        }
+
+        .header-info h1 {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+        }
+
+        .header-info p {
+            font-size: 13px;
+            margin-top: 3px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--telegram-text-muted);
+        }
+
+        .online-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--telegram-green);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 18px;
+            font-size: 18px;
+            color: var(--telegram-text-muted);
+        }
+
+        .header-icons i {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .header-icons i:hover {
+            color: var(--telegram-text);
+            transform: scale(1.1);
+        }
+
+        /* Messages area */
+        .messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%2317212b" opacity="0.03"/></svg>');
+            background-size: 180px;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+            line-height: 1.5;
+            font-size: 15px;
+            box-shadow: var(--telegram-shadow);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bot-message {
+            background: var(--telegram-bubble-bot);
+            align-self: flex-start;
+            border-radius: 0 8px 8px 8px;
+            color: var(--telegram-text);
+        }
+
+        .user-message {
+            background: var(--telegram-bubble-user);
+            align-self: flex-end;
+            border-radius: 8px 0 8px 8px;
+            color: var(--telegram-text);
+        }
+
+        .typing-indicator {
+            background: var(--telegram-bubble-bot);
+            padding: 12px 16px;
+            border-radius: 8px;
+            align-self: flex-start;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: var(--telegram-shadow);
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--telegram-text-muted);
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: 0s; }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
+            30% { transform: translateY(-5px); opacity: 1; }
+        }
+
+        /* Input area */
+        .input-area {
+            background: var(--telegram-input);
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-top: 1px solid var(--telegram-border);
+            position: relative;
+        }
+
+        .input-area i {
+            color: var(--telegram-text-muted);
+            font-size: 22px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .input-area i:hover {
+            transform: scale(1.05);
+            color: var(--telegram-text);
+        }
+
+        .input-area input {
+            flex: 1;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 20px;
+            font-size: 15px;
+            background: var(--telegram-bubble-bot);
+            outline: none;
+            color: var(--telegram-text);
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .input-area input::placeholder {
+            color: var(--telegram-text-muted);
+        }
+
+        .input-area input:focus {
+            box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(62, 142, 208, 0.3);
+            background: var(--telegram-hover);
+        }
+
+        .send-btn {
+            background: var(--telegram-green);
+            color: white;
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 18px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .send-btn:hover {
+            background: #2b7fc1;
+            transform: scale(1.05);
+        }
+
+        /* Footer styling */
+        .chat-footer {
+            background: var(--telegram-input);
+            padding: 12px 0;
+            text-align: center;
+            font-size: 12px;
+            color: var(--telegram-text-muted);
+            border-top: 1px solid var(--telegram-border);
+            font-weight: 500;
+        }
+
+        .chat-footer a {
+            color: var(--telegram-green);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .chat-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Scrollbar styling */
+        .messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .messages::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 4px;
+        }
+
+        .messages::-webkit-scrollbar-thumb {
+            background: var(--telegram-green);
+            border-radius: 4px;
+        }
+
+        .messages::-webkit-scrollbar-thumb:hover {
+            background: #2b7fc1;
+        }
+
+        /* Message timestamp */
+        .message-time {
+            display: block;
+            text-align: right;
+            font-size: 11px;
+            color: var(--telegram-text-muted);
+            margin-top: 5px;
+            margin-left: 30px;
+        }
+
+        /* Status indicators */
+        .status-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            transition: all 0.3s;
+        }
+        
+        .status-connected {
+            color: #4caf50;
+        }
+        
+        .status-error {
+            color: #f44336;
+        }
+        
+        .status-loading {
+            color: #ffc107;
+        }
+
+        /* Responsive design */
+        @media (max-width: 480px) {
+            .chat-container {
+                height: 100vh;
+                max-height: none;
+                border-radius: 0;
+            }
+            
+            .message {
+                max-width: 90%;
+            }
+            
+            .input-area {
+                padding: 10px 12px;
+            }
+            
+            .input-area input {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+            
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-content {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Status Indicator -->
+    <div class="status-indicator" id="status-indicator">Status: Ready</div>
+
+    <!-- Social Media Modal -->
+    <div class="social-modal" id="social-modal">
+        <div class="social-content">
+            <div class="social-header">
+                <h2>Connect With Me</h2>
+                <button class="close-modal" id="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="social-grid">
+                <div class="social-card whatsapp" id="whatsapp-btn">
+                    <div class="social-icon whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp</h3>
+                    <p>Chat with me directly</p>
+                </div>
+                
+                <div class="social-card tiktok" id="tiktok-btn">
+                    <div class="social-icon tiktok">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <h3>TikTok</h3>
+                    <p>Watch my latest videos</p>
+                </div>
+                
+                <div class="social-card website" id="website-btn">
+                    <div class="social-icon website">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Website</h3>
+                    <p>Visit my quotes website</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Container -->
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="avatar">D</div>
+            <div class="header-info">
+                <h1>Dian AI</h1>
+                <p><span class="online-dot"></span> Online • Responds instantly</p>
+            </div>
+            <div class="header-icons">
+                <i class="fas fa-ellipsis-v" id="menu-icon"></i>
+            </div>
+        </div>
+        
+        <div class="messages" id="chat-messages">
+            <div class="message bot-message">
+                Hello there! 👋 I'm Dian AI, your intelligent assistant. You can ask me anything naturally or use commands like /help to get started. 😊
+                <span class="message-time">12:45</span>
+            </div>
+            <div class="message bot-message">
+                <strong>Tip:</strong> Tap the <i class="fas fa-ellipsis-v"></i> icon to connect with me on social media!
+                <span class="message-time">12:45</span>
+            </div>
+        </div>
+        
+        <!-- Command Shortcuts Menu -->
+        <div class="command-menu" id="command-menu">
+            <button class="command-btn" data-command="/joke">
+                <i class="fas fa-laugh"></i> Joke
+            </button>
+            <button class="command-btn" data-command="/calculate 2+2">
+                <i class="fas fa-calculator"></i> Calculate
+            </button>
+            <button class="command-btn" data-command="/help">
+                <i class="fas fa-question-circle"></i> Help
+            </button>
+            <button class="command-btn" data-command="/clear">
+                <i class="fas fa-trash"></i> Clear
+            </button>
+            <button class="command-btn" data-command="/about">
+                <i class="fas fa-info-circle"></i> About
+            </button>
+            <button class="command-btn" data-command="/dev">
+                <i class="fas fa-code"></i> Developers
+            </button>
+            <button class="command-btn" data-command="/socials">
+                <i class="fas fa-share-alt"></i> Socials
+            </button>
+        </div>
+        
+        <div class="input-area">
+            <i class="fas fa-plus-circle" id="plus-btn"></i>
+            <input type="text" id="user-input" placeholder="Type a message...">
+            <button class="send-btn" id="send-btn">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+        
+        <div class="chat-footer">
+            Crafted with ❤️ by Dian • AI Assistant v1.3
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatMessages = document.getElementById('chat-messages');
+            const userInput = document.getElementById('user-input');
+            const sendBtn = document.getElementById('send-btn');
+            const plusBtn = document.getElementById('plus-btn');
+            const commandMenu = document.getElementById('command-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const socialModal = document.getElementById('social-modal');
+            const closeModal = document.getElementById('close-modal');
+            const statusIndicator = document.getElementById('status-indicator');
+            
+            // API configuration - FIXED: Correct API endpoints
+            const PRIVATE_API_ENDPOINT = "https://api.giftedtech.web.id/api/ai/gpt4?apikey=gifted&q=Whats+Your+Model?";
+            const JOKE_API_ENDPOINT = "https://api.giftedtech.web.id/api/fun/flirt";
+            const YOUR_API_KEY = "gifted";
+
+            // Update status indicator
+            function updateStatus(message, type) {
+                statusIndicator.textContent = `Status: ${message}`;
+                statusIndicator.className = "status-indicator";
+                
+                if (type === "connected") {
+                    statusIndicator.classList.add("status-connected");
+                } else if (type === "error") {
+                    statusIndicator.classList.add("status-error");
+                } else if (type === "loading") {
+                    statusIndicator.classList.add("status-loading");
+                }
+            }
+
+            // Get current time for messages
+            function getCurrentTime() {
+                const now = new Date();
+                return now.getHours().toString().padStart(2, '0') + ':' + 
+                       now.getMinutes().toString().padStart(2, '0');
+            }
+
+            // Toggle command menu
+            plusBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                commandMenu.classList.toggle('active');
+            });
+
+            // Close command menu when clicking elsewhere
+            document.addEventListener('click', (e) => {
+                if (!commandMenu.contains(e.target) && e.target !== plusBtn) {
+                    commandMenu.classList.remove('active');
+                }
+            });
+
+            // Toggle social modal
+            menuIcon.addEventListener('click', () => {
+                socialModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            closeModal.addEventListener('click', () => {
+                socialModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+
+            // Close modal when clicking outside the content
+            socialModal.addEventListener('click', (e) => {
+                if (e.target === socialModal) {
+                    socialModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Handle social button clicks
+            document.getElementById('whatsapp-btn').addEventListener('click', () => {
+                window.open('https://wa.me/256779008997', '_blank');
+                socialModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+
+            document.getElementById('tiktok-btn').addEventListener('click', () => {
+                window.open('https://www.tiktok.com/@dian_quotes_trend', '_blank');
+                socialModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+
+            document.getElementById('website-btn').addEventListener('click', () => {
+                window.open('https://dian-quotes-trend.github.io/Motivation-quotes-/', '_blank');
+                socialModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+
+            // Handle command button clicks
+            document.querySelectorAll('.command-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const command = button.getAttribute('data-command');
+                    userInput.value = command;
+                    handleSendMessage();
+                    commandMenu.classList.remove('active');
+                });
+            });
+
+            // Display bot messages with proper styling
+            function displayBotMessage(message, isHTML = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message', 'bot-message');
+                
+                if (isHTML) {
+                    messageDiv.innerHTML = message;
+                } else {
+                    messageDiv.textContent = message;
+                }
+                
+                // Add timestamp
+                const timeSpan = document.createElement('span');
+                timeSpan.classList.add('message-time');
+                timeSpan.textContent = getCurrentTime();
+                messageDiv.appendChild(timeSpan);
+                
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            // Display user messages
+            function displayUserMessage(message) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message', 'user-message');
+                messageDiv.textContent = message;
+                
+                // Add timestamp
+                const timeSpan = document.createElement('span');
+                timeSpan.classList.add('message-time');
+                timeSpan.textContent = getCurrentTime();
+                messageDiv.appendChild(timeSpan);
+                
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            // Show typing indicator
+            function showTypingIndicator() {
+                const typingDiv = document.createElement('div');
+                typingDiv.classList.add('typing-indicator');
+                typingDiv.id = 'typing-indicator';
+                typingDiv.innerHTML = `
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                `;
+                chatMessages.appendChild(typingDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            // Hide typing indicator
+            function hideTypingIndicator() {
+                const typingIndicator = document.getElementById('typing-indicator');
+                if (typingIndicator) {
+                    typingIndicator.remove();
+                }
+            }
+
+            // Safe calculation function
+            function safeCalculate(expression) {
+                if (!/^[0-9+\-*/.\s()]+$/.test(expression)) {
+                    throw new Error('Invalid characters. Only numbers and basic operators allowed.');
+                }
+
+                try {
+                    return new Function('return ' + expression)();
+                } catch (e) {
+                    throw new Error('Could not evaluate expression. Please check syntax.');
+                }
+            }
+
+            // Fetch joke from API
+            async function fetchJoke() {
+                showTypingIndicator();
+                updateStatus("Fetching joke...", "loading");
+                
+                try {
+                    // Fixed URL construction
+                    const url = `${JOKE_API_ENDPOINT}?apikey=${YOUR_API_KEY}`;
+                    const response = await fetch(url);
+
+                    if (!response.ok) {
+                        throw new Error(`Error: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    hideTypingIndicator();
+                    updateStatus("Joke fetched successfully", "connected");
+
+                    let jokeText;
+                    if (typeof data.result === 'string') {
+                        jokeText = data.result;
+                    } else if (typeof data.result === 'object' && data.result !== null) {
+                        if (data.result.joke) {
+                            jokeText = data.result.joke;
+                        } else if (data.result.setup && data.result.punchline) {
+                            jokeText = `${data.result.setup} — ${data.result.punchline}`;
+                        } else {
+                            jokeText = "Why don't scientists trust atoms? Because they make up everything! 😄";
+                        }
+                    } else {
+                        jokeText = "Why did the scarecrow win an award? Because he was outstanding in his field! 🌾";
+                    }
+
+                    displayBotMessage(jokeText + " 😂");
+                } catch (error) {
+                    hideTypingIndicator();
+                    updateStatus("Error fetching joke", "error");
+                    displayBotMessage("Why don't skeletons fight each other? They don't have the guts! 😅 (I couldn't fetch a joke right now)");
+                    console.error("Error fetching joke:", error);
+                }
+            }
+
+            // Commands with improved English and emojis
+            const commands = [
+                { command: "help", response: "Available commands: /about, /dev, /joke, /calculate, /clear, /socials, /info, /update, /ping, /uptime, /evaluate 📚" },
+                { command: "about", response: "Dian AI 1.0 is a versatile chatbot with built-in commands and integrated APIs, designed to assist you efficiently. 🤖✨" },
+                { command: "hi", response: "Hello there! 😊 How are you doing today?" },
+                { command: "what's up", response: "Just here, ready to assist you! 👌 What can I do for you?" },
+                { command: "dev", response: "Created by Dian 🤝 and the talented H.A.P.E class team 🎓💻. We're passionate about building innovative solutions! 🚀" },
+                { command: "info", response: "I provide information and entertainment through various commands. Feel free to explore! 📺" },
+                { command: "socials", response: "Connect with me on WhatsApp, TikTok, and Website! 📱" },
+                { command: "update", response: "We're constantly improving Dian AI with new features and enhancements! 🚀" },
+                { command: "theme", response: "Our focus is delivering a seamless, user-friendly experience. 🌈" },
+                { command: "reset", response: "Chat reset complete! 🔄 How can I assist you now?" },
+                { command: "ping", response: "Pong! 🏓" },
+                { command: "uptime", response: "I'm available 24/7 to help you! ⏰" },
+                { command: "api", response: "Our API powers various services and functionalities. 📈" },
+                {
+                    command: "evaluate",
+                    response: () => {
+                        const score = Math.floor(Math.random() * 100) + 1;
+                        const encouragingWords = [
+                            "Keep pushing forward!",
+                            "You're making great progress!",
+                            "Excellent effort!",
+                            "Stay focused and keep going!",
+                            "You're on the right track!",
+                        ];
+                        const word = encouragingWords[Math.floor(Math.random() * encouragingWords.length)];
+                        return `Evaluation Score: ${score}/100\n${word} 💪`;
+                    },
+                },
+            ];
+
+            // Send message handler
+            sendBtn.addEventListener('click', handleSendMessage);
+            userInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') handleSendMessage();
+            });
+
+            async function handleSendMessage() {
+                const userInputValue = userInput.value.trim();
+                if (!userInputValue) return;
+
+                // Display user message
+                displayUserMessage(userInputValue);
+
+                // Clear input
+                userInput.value = '';
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                const lowerCaseInput = userInputValue.toLowerCase();
+
+                // Handle commands
+                if (lowerCaseInput === '/joke') {
+                    await fetchJoke();
+                    return;
+                } else if (lowerCaseInput.startsWith('/calculate')) {
+                    try {
+                        const calculation = userInputValue.replace('/calculate', '').trim();
+                        const result = safeCalculate(calculation);
+                        displayBotMessage(`Result: ${result} 📊`);
+                    } catch (error) {
+                        displayBotMessage(`Error: ${error.message} 🤔`);
+                    }
+                } else if (lowerCaseInput === '/clear') {
+                    chatMessages.innerHTML = '';
+                    displayBotMessage('Chat history cleared! 🗑️ How the fuck 😕😁can I assist you now?');
+                } else if (lowerCaseInput.startsWith('/ai')) {
+                    const aiQuery = userInputValue.substring(3).trim();
+                    if (!aiQuery) {
+                        displayBotMessage('Please ask a question after /ai. For example: /ai What is artificial intelligence?');
+                        return;
+                    }
+                    
+                    await queryAI(aiQuery);
+                } else {
+                    // Check for matching commands
+                    let commandFound = false;
+                    for (const cmd of commands) {
+                        if (lowerCaseInput === `/${cmd.command}` || lowerCaseInput === cmd.command) {
+                            commandFound = true;
+                            if (typeof cmd.response === 'function') {
+                                displayBotMessage(cmd.response());
+                            } else {
+                                displayBotMessage(cmd.response);
+                            }
+                            break;
+                        }
+                    }
+                    
+                    if (!commandFound) {
+                        // If not a command, treat as AI question
+                        await queryAI(userInputValue);
+                    }
+                }
+            }
+
+            // Query AI function - FIXED: Proper URL construction
+            async function queryAI(question) {
+                showTypingIndicator();
+                updateStatus("Processing request...", "loading");
+                
+                try {
+                    const encodedQuery = encodeURIComponent(question);
+                    // FIXED: Correct URL construction
+                    const url = `${PRIVATE_API_ENDPOINT}?apikey=${YOUR_API_KEY}&q=${encodedQuery}`;
+                    console.log("Fetching from URL:", url); // For debugging
+                    
+                    const response = await fetch(url, {
+                        method: 'GET',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API Error: ${response.status} ${response.statusText}`);
+                    }
+
+                    const contentType = response.headers.get('content-type');
+                    if (!contentType || !contentType.includes('application/json')) {
+                        throw new Error('API did not return JSON');
+                    }
+
+                    const data = await response.json();
+                    hideTypingIndicator();
+                    updateStatus("Response received", "connected");
+
+                    let botAnswer;
+                    if (data && data.result) {
+                        botAnswer = data.result;
+                    } else if (data && data.error) {
+                        botAnswer = `API Error: ${data.error}`;
+                    } else {
+                        botAnswer = "I couldn't process your request. Please try a different question.";
+                    }
+
+                    displayBotMessage(botAnswer);
+                } catch (error) {
+                    hideTypingIndicator();
+                    updateStatus("API request failed", "error");
+                    console.error("AI query error:", error);
+                    displayBotMessage("I'm having trouble connecting right now. Please try again later. 😔");
+                    displayBotMessage(`Error details: ${error.message}`);
+                }
+            }
+
+            // Initial welcome message after a short delay
+            setTimeout(() => {
+                displayBotMessage("Tap the + button for quick access to commands like /joke and /calculate! 🚀");
+            }, 4000);
+            
+            // Initial status update
+            updateStatus("Ready to chat", "connected");
+        });
+    </script>
+</body>
+</html>

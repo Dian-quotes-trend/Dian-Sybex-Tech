@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Be My Girlfriend?</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #121212;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin: 20px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      max-width: 150px;
+    }
+
+    #yesBtn {
+      background-color: #4CAF50;
+      color: white;
+      box-shadow: 0 0 10px #4CAF50;
+    }
+
+    #yesBtn:hover {
+      transform: scale(1.1);
+    }
+
+    #noBtn {
+      background-color: #e53935;
+      color: white;
+      box-shadow: 0 0 10px #e53935;
+    }
+
+    .message {
+      margin-top: 30px;
+      font-size: 1.4rem;
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(2px, -2px); }
+      60% { transform: translate(-1px, 1px); }
+      80% { transform: translate(1px, -1px); }
+      100% { transform: translate(0); }
+    }
+
+    .heart {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: fall 3s linear infinite;
+      z-index: 9999;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: rotate(45deg) translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: rotate(45deg) translateY(100vh);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.6rem;
+        padding: 0 20px;
+      }
+
+      button {
+        font-size: 1rem;
+        padding: 10px 18px;
+      }
+
+      .message {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="question">Will you be my girlfriend?</h1>
+
+  <div class="buttons">
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn">No</button>
+  </div>
+
+  <div class="message" id="message"></div>
+
+  <script>
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const question = document.getElementById('question');
+    const message = document.getElementById('message');
+    let noClicks = 0;
+
+    yesBtn.addEventListener('click', () => {
+      yesBtn.remove();
+      noBtn.remove();
+      question.textContent = "";
+      message.textContent = "Awww 😍 See you Friday!";
+      heartEffect();
+    });
+
+    noBtn.addEventListener('click', () => {
+      noClicks++;
+
+      if (noClicks === 1) {
+        question.textContent = "Please...? 😥";
+      } else if (noClicks === 2 || noClicks === 3) {
+        question.textContent = noClicks === 3 ? "Please... 🥺" : question.textContent;
+        moveButtonRandomly(noBtn);
+      } else if (noClicks === 4) {
+        document.body.style.animation = 'glitch 0.3s infinite';
+        question.textContent = "System Error... Accepting is mandatory 😵";
+      } else {
+        noBtn.remove();
+        question.textContent = "Only one choice remains 😈";
+      }
+    });
+
+    function moveButtonRandomly(button) {
+      const btnWidth = button.offsetWidth;
+      const btnHeight = button.offsetHeight;
+      const x = Math.random() * (window.innerWidth - btnWidth - 20);
+      const y = Math.random() * (window.innerHeight - btnHeight - 20);
+      button.style.position = 'absolute';
+      button.style.left = `${x}px`;
+      button.style.top = `${y}px`;
+    }
+
+    function heartEffect() {
+      setInterval(() => {   
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }, 100);
+    }
+  </script>
+</body>
+</html>
