@@ -663,8 +663,8 @@
             const closeModal = document.getElementById('close-modal');
             const statusIndicator = document.getElementById('status-indicator');
             
-            // API configuration - FIXED: Correct API endpoints
-            const PRIVATE_API_ENDPOINT = "https://apis.davidcyriltech.my.id/ai/chatbot?query=?";
+            // API configuration - FIXED: Correct API endpoint
+            const PRIVATE_API_ENDPOINT = "https://apis.davidcyriltech.my.id/ai/chatbot";
             const JOKE_API_ENDPOINT = "https://api.giftedtech.web.id/api/fun/flirt";
             const YOUR_API_KEY = "gifted";
 
@@ -929,7 +929,7 @@
                     }
                 } else if (lowerCaseInput === '/clear') {
                     chatMessages.innerHTML = '';
-                    displayBotMessage('Chat history cleared! 🗑️ How the fuck 😕😁can I assist you now?');
+                    displayBotMessage('Chat history cleared! 🗑️ How can I assist you now?');
                 } else if (lowerCaseInput.startsWith('/ai')) {
                     const aiQuery = userInputValue.substring(3).trim();
                     if (!aiQuery) {
@@ -960,15 +960,15 @@
                 }
             }
 
-            // Query AI function - FIXED: Proper URL construction
+            // Query AI function - FIXED: Proper URL construction for the API
             async function queryAI(question) {
                 showTypingIndicator();
                 updateStatus("Processing request...", "loading");
                 
                 try {
                     const encodedQuery = encodeURIComponent(question);
-                    // FIXED: Correct URL construction
-                    const url = `${PRIVATE_API_ENDPOINT}?apikey=${YOUR_API_KEY}&q=${encodedQuery}`;
+                    // FIXED: Correct URL construction for the API
+                    const url = `${PRIVATE_API_ENDPOINT}?query=${encodedQuery}`;
                     console.log("Fetching from URL:", url); // For debugging
                     
                     const response = await fetch(url, {
@@ -995,6 +995,8 @@
                     let botAnswer;
                     if (data && data.result) {
                         botAnswer = data.result;
+                    } else if (data && data.answer) {
+                        botAnswer = data.answer;
                     } else if (data && data.error) {
                         botAnswer = `API Error: ${data.error}`;
                     } else {
@@ -1007,7 +1009,6 @@
                     updateStatus("API request failed", "error");
                     console.error("AI query error:", error);
                     displayBotMessage("I'm having trouble connecting right now. Please try again later. 😔");
-                    displayBotMessage(`Error details: ${error.message}`);
                 }
             }
 
