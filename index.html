@@ -6,6 +6,7 @@
     <title>Dian Sybex Tech - Professional Technology Solutions</title>
     <meta name="description" content="Professional technology services for your business needs including web development, AI chatbots, social media boosting, and more">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         /* ===== Global Styles - Dark Theme ===== */
         :root {
@@ -25,6 +26,16 @@
             --danger: #ff4d4d;
             --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             --transition: all 0.3s ease;
+        }
+
+        [data-theme="light"] {
+            --dark: #f5f5f5;
+            --dark-light: #e0e0e0;
+            --darker: #d0d0d0;
+            --gray: #666;
+            --light-gray: #ccc;
+            --white: #333;
+            --text: #444;
         }
 
         * {
@@ -135,6 +146,232 @@
             color: var(--white);
         }
 
+        /* ===== Loading Screen ===== */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--darker);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 2rem;
+            animation: rotate 2s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .progress-bar {
+            width: 300px;
+            height: 8px;
+            background-color: var(--light-gray);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            width: 0%;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .loading-text {
+            margin-top: 1rem;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        /* ===== Modal Styles ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background-color: var(--darker);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            animation: slideDown 0.3s;
+        }
+
+        .close {
+            color: var(--gray);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+        }
+
+        .close:hover {
+            color: var(--white);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* ===== Theme Toggle ===== */
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: var(--box-shadow);
+        }
+
+        /* ===== Product Carousel ===== */
+        .products-carousel {
+            background-color: var(--dark);
+            padding: 4rem 0;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+            height: 300px;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        .carousel-item img {
+            max-height: 200px;
+            margin: 0 auto 1rem;
+            border-radius: 8px;
+        }
+
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            margin: 0 0.5rem;
+            cursor: pointer;
+        }
+
+        .carousel-indicator.active {
+            background-color: var(--primary);
+        }
+
+        /* ===== Payment Modal ===== */
+        .payment-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9997;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s;
+        }
+
+        .payment-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .payment-form {
+            background-color: var(--dark-light);
+            padding: 2.5rem;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--box-shadow);
+        }
+
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .payment-option {
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .payment-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(108, 99, 255, 0.1);
+        }
+
+        .payment-option i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
         /* ===== Header & Navigation ===== */
         header {
             position: fixed;
@@ -162,6 +399,14 @@
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
         }
 
         .logo span {
@@ -362,6 +607,7 @@
             overflow: hidden;
             transition: var(--transition);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
         }
 
         .service-card:hover {
@@ -399,12 +645,19 @@
             margin-bottom: 1.5rem;
         }
 
+        .service-pricing {
+            margin: 1rem 0;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
         .service-link {
             display: inline-flex;
             align-items: center;
             color: var(--primary);
             font-weight: 500;
             transition: var(--transition);
+            cursor: pointer;
         }
 
         .service-link i {
@@ -461,6 +714,7 @@
         .social-btn i {
             margin-right: 0.8rem;
             font-size: 1.2rem;
+            color: white;
         }
 
         .whatsapp {
@@ -822,6 +1076,10 @@
             .about-image {
                 order: -1;
             }
+
+            .payment-options {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 576px) {
@@ -849,11 +1107,168 @@
     </style>
 </head>
 <body>
+    <!-- ===== Loading Screen ===== -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#6c63ff" stroke-width="3"/>
+                <path d="M50 15 A35 35 0 0 1 78.5 35" fill="none" stroke="#ff4d94" stroke-width="3"/>
+                <circle cx="50" cy="50" r="10" fill="#4cc9f0"/>
+                <text x="50" y="52" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">DST</text>
+            </svg>
+        </div>
+        <div class="progress-bar">
+            <div class="progress" id="progressBar"></div>
+        </div>
+        <div class="loading-text">Loading Dian Sybex Tech...</div>
+    </div>
+
+    <!-- ===== Login Modal ===== -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login to Your Account</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" class="form-control" required>
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#" id="showSignup">Sign up here</a></p>
+        </div>
+    </div>
+
+    <!-- ===== Signup Modal ===== -->
+    <div class="modal" id="signupModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create an Account</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirmPassword">Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" class="form-control" required>
+                </div>
+                <button type="submit" class="submit-btn">Create Account</button>
+            </form>
+            <p>Already have an account? <a href="#" id="showLogin">Login here</a></p>
+        </div>
+    </div>
+
+    <!-- ===== User Profile Modal ===== -->
+    <div class="modal" id="profileModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Your Profile</h2>
+            <div id="profileInfo">
+                <p><strong>Name:</strong> <span id="profileName"></span></p>
+                <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+                <p><strong>Member since:</strong> <span id="profileCreated"></span></p>
+            </div>
+            <button id="logoutBtn" class="btn btn-outline">Logout</button>
+        </div>
+    </div>
+
+    <!-- ===== Payment Modal ===== -->
+    <div class="payment-modal" id="paymentModal">
+        <div class="payment-form">
+            <h2>Purchase Service</h2>
+            <div id="paymentServiceDetails"></div>
+            
+            <div class="form-group">
+                <label for="package">Select Package</label>
+                <select id="package" class="form-control">
+                    <option value="basic">Basic - $199</option>
+                    <option value="standard">Standard - $399</option>
+                    <option value="premium">Premium - $799</option>
+                    <option value="enterprise">Enterprise - Custom Quote</option>
+                </select>
+            </div>
+            
+            <h3>Payment Method</h3>
+            <div class="payment-options">
+                <div class="payment-option" data-method="credit">
+                    <i class="fas fa-credit-card"></i>
+                    <div>Credit Card</div>
+                </div>
+                <div class="payment-option" data-method="paypal">
+                    <i class="fab fa-paypal"></i>
+                    <div>PayPal</div>
+                </div>
+                <div class="payment-option" data-method="crypto">
+                    <i class="fab fa-bitcoin"></i>
+                    <div>Cryptocurrency</div>
+                </div>
+                <div class="payment-option" data-method="mobile">
+                    <i class="fas fa-mobile-alt"></i>
+                    <div>Mobile Money</div>
+                </div>
+            </div>
+            
+            <div id="paymentDetails">
+                <div class="form-group">
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" id="cardNumber" class="form-control" placeholder="1234 5678 9012 3456">
+                </div>
+                
+                <div class="form-group" style="display: flex; gap: 1rem;">
+                    <div style="flex: 1;">
+                        <label for="expiry">Expiry Date</label>
+                        <input type="text" id="expiry" class="form-control" placeholder="MM/YY">
+                    </div>
+                    <div style="flex: 1;">
+                        <label for="cvv">CVV</label>
+                        <input type="text" id="cvv" class="form-control" placeholder="123">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cardName">Name on Card</label>
+                    <input type="text" id="cardName" class="form-control" placeholder="John Doe">
+                </div>
+            </div>
+            
+            <button type="button" class="submit-btn" id="completePayment">Complete Payment</button>
+            <button type="button" class="btn btn-outline" style="width: 100%; margin-top: 1rem;" id="closePaymentModal">Cancel</button>
+        </div>
+    </div>
+
+    <!-- ===== Theme Toggle ===== -->
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
     <!-- ===== Header ===== -->
     <header id="header">
         <div class="container">
             <nav class="navbar">
-                <a href="#" class="logo">Dian™ <span>Sybex Tech</span></a>
+                <a href="#" class="logo">
+                    <div class="logo-img">
+                        <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="20" r="18" fill="none" stroke="#6c63ff" stroke-width="2"/>
+                            <path d="M20 8 A12 12 0 0 1 30 18" fill="none" stroke="#ff4d94" stroke-width="2"/>
+                            <circle cx="20" cy="20" r="5" fill="#4cc9f0"/>
+                            <text x="20" y="22" text-anchor="middle" fill="#fff" font-size="6" font-weight="bold">DST</text>
+                        </svg>
+                    </div>
+                    Dian™ <span>Sybex Tech</span>
+                </a>
                 
                 <div class="menu-toggle">
                     <i class="fas fa-bars"></i>
@@ -866,8 +1281,13 @@
                     <li><a href="#services">Services</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li><a href="#projects">Projects</a></li>
-                    <li><a href="#games">Games</a></li>
-                    <li><a href="#get-started" class="btn btn-outline">Get Started</a></li>
+                    <div id="authButtons">
+                        <a href="#" class="btn btn-outline" id="loginBtn">Login</a>
+                        <a href="#" class="btn btn-primary" id="signupBtn" style="margin-left: 10px;">Sign Up</a>
+                    </div>
+                    <div id="userMenu" style="display: none;">
+                        <a href="#" class="btn btn-outline" id="profileBtn">My Account</a>
+                    </div>
                 </ul>
             </nav>
         </div>
@@ -884,6 +1304,43 @@
                     <a href="#services" class="btn btn-outline">Our Services</a>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- ===== Products Carousel ===== -->
+    <section class="products-carousel">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Products</h2>
+                <p>Explore our innovative technology solutions designed to boost your digital presence</p>
+            </div>
+            
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Web Development">
+                        <h3>Custom Web Solutions</h3>
+                        <p>Responsive websites and web applications tailored to your business needs</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="AI Chatbots">
+                        <h3>AI-Powered Chatbots</h3>
+                        <p>Intelligent conversational agents for customer service and engagement</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Social Media Boosting">
+                        <h3>Social Media Enhancement</h3>
+                        <p>Boost your TikTok, Instagram and other social media presence</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="E-commerce Solutions">
+                        <h3>E-commerce Automation</h3>
+                        <p>Streamline your online store with automated processes and bots</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-nav" id="carouselNav"></div>
         </div>
     </section>
 
@@ -978,30 +1435,20 @@
                     <div class="service-content">
                         <h3>Web Development</h3>
                         <p>Custom websites and web applications designed for performance, security, and optimal user experience. We create responsive designs that work seamlessly across all devices.</p>
-                        <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                        <div class="service-pricing">Starting from $299</div>
+                        <div class="service-link" data-service="Web Development" data-price="299">Get This Service <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </div>
 
                  <div class="service-card">
                     <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Hosting Services">
+                        <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="WhatsApp Automation">
                     </div>
                     <div class="service-content">
-                        <h3>Whatsapp Automation bots</h3>
-<h3>Hello, these are some features that our WhatsApp bot can do:</h3>
-                        <p>- Auto-view status: automatically view statuses without using MB, and everyone will see your viewed status instantly, even if your phone has no bundle or is turned off.
-- Anti-link: helps you set up a group so that no one can send links inside.
-- Downloader: download music, audio, or video.
-- Lyrics: shows song lyrics.
-- Virtual: appear online, typing, or recording, choose one.
-- Anti-call: block someone from making WhatsApp voice/video calls to you, can be turned on or off.
-- Translator: translates various languages like English, Spanish, Portuguese, French.
-- Tagall: tags everyone in a group so they all see your message.
-- Sticker maker: converts video or images into stickers.
-- Wallpaper: provides wallpaper pictures.
-- Photo editor: edits photos.
-- Logo maker: creates logos.</p>
-                        <a href="https://t.me/Killnetxmdbot" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                        <h3>WhatsApp Automation Bots</h3>
+                        <p>Advanced WhatsApp bots with features including auto-view status, anti-link protection, content downloader, lyrics finder, virtual presence, anti-call, translator, tagall, sticker maker, wallpaper provider, photo editor, and logo maker.</p>
+                        <div class="service-pricing">Starting from $199</div>
+                        <div class="service-link" data-service="WhatsApp Automation Bots" data-price="199">Get This Service <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </div>
             
@@ -1013,7 +1460,8 @@
                     <div class="service-content">
                         <h3>TikTok Boosting</h3>
                         <p>Increase your TikTok visibility with our boosting services. We help grow your followers, increase views and likes, and enhance your overall social media presence.</p>
-                        <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                        <div class="service-pricing">Starting from $99</div>
+                        <div class="service-link" data-service="TikTok Boosting" data-price="99">Get This Service <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </div>
 
@@ -1024,7 +1472,8 @@
                     <div class="service-content">
                         <h3>AI Chatbots</h3>
                         <p>Implement next-generation conversational AI for your business. Our chatbots provide 24/7 customer support, lead generation, and automated responses.</p>
-                        <a href="Dian AI V2.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                        <div class="service-pricing">Starting from $349</div>
+                        <div class="service-link" data-service="AI Chatbots" data-price="349">Get This Service <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </div>
                 
@@ -1035,7 +1484,8 @@
                     <div class="service-content">
                         <h3>E-commerce Bots</h3>
                         <p>Automated transaction processors and management systems for your online store. Enhance customer experience and streamline your e-commerce operations.</p>
-                        <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                        <div class="service-pricing">Starting from $249</div>
+                        <div class="service-link" data-service="E-commerce Bots" data-price="249">Get This Service <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </div>
 
@@ -1046,7 +1496,8 @@
                     <div class="service-content">
                         <h3>Downloading Services</h3>
                         <p>Automated downloads from various platforms. We provide solutions for content aggregation, media downloading, and data collection.</p>
-                        <a href="Downloading site.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                        <div class="service-pricing">Starting from $149</div>
+                        <div class="service-link" data-service="Downloading Services" data-price="149">Get This Service <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </div>
    
@@ -1057,7 +1508,8 @@
                     <div class="service-content">
                         <h3>Panel/Server Reselling</h3>
                         <p>Host your web projects with no limits. We offer reliable hosting solutions, server management, and reseller packages with excellent support.</p>
-                        <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                        <div class="service-pricing">Starting from $79/month</div>
+                        <div class="service-link" data-service="Panel/Server Reselling" data-price="79">Get This Service <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </div>
             </div>
@@ -1263,43 +1715,332 @@
     </footer>
 
     <script>
-        // Menu toggle functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
+        // Initialize Supabase with your credentials
+        const supabaseUrl = 'https://olwjmxctccfuekudtffy.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9sd2pteGN0Y2NmdWVrdWR0ZmZ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcwNzgyNDksImV4cCI6MjA3MjY1NDI0OX0.j_BtkS4Znf2iHcSYm5_qsKLCtC8yD2ZFlRfW1Fgp_MA';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        // DOM Elements
+        const loadingScreen = document.getElementById('loadingScreen');
+        const progressBar = document.getElementById('progressBar');
+        const loginModal = document.getElementById('loginModal');
+        const signupModal = document.getElementById('signupModal');
+        const profileModal = document.getElementById('profileModal');
+        const paymentModal = document.getElementById('paymentModal');
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        // Simulate loading progress
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += 1;
+            progressBar.style.width = `${progress}%`;
             
-            menuToggle.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
+            if (progress >= 100) {
+                clearInterval(interval);
+                setTimeout(() => {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                    }, 500);
+                }, 500);
+            }
+        }, 150); // 15 seconds total
+
+        // Login form validation
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const showSignup = document.getElementById('showSignup');
+        const showLogin = document.getElementById('showLogin');
+        const closeButtons = document.querySelectorAll('.close');
+        const loginBtn = document.getElementById('loginBtn');
+        const signupBtn = document.getElementById('signupBtn');
+        const profileBtn = document.getElementById('profileBtn');
+        const authButtons = document.getElementById('authButtons');
+        const userMenu = document.getElementById('userMenu');
+
+        // Check if user is logged in on page load
+        document.addEventListener('DOMContentLoaded', async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            updateUI(session ? session.user : null);
+            
+            // Listen for auth changes
+            supabase.auth.onAuthStateChange((_event, session) => {
+                updateUI(session ? session.user : null);
             });
-            
-            // Close menu when clicking on a link
-            const navItems = document.querySelectorAll('.nav-links a');
-            navItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    navLinks.classList.remove('active');
+        });
+
+        // Open modals
+        function openModal(modal) {
+            modal.style.display = 'block';
+        }
+
+        // Close modals
+        function closeModal(modal) {
+            modal.style.display = 'none';
+        }
+
+        // Update UI based on auth state
+        function updateUI(user) {
+            if (user) {
+                // User is logged in
+                if (authButtons) authButtons.style.display = 'none';
+                if (userMenu) userMenu.style.display = 'block';
+                
+                // Update profile info
+                document.getElementById('profileName').textContent = user.user_metadata.full_name || user.email;
+                document.getElementById('profileEmail').textContent = user.email;
+                document.getElementById('profileCreated').textContent = new Date(user.created_at).toLocaleDateString();
+            } else {
+                // User is not logged in
+                if (authButtons) authButtons.style.display = 'block';
+                if (userMenu) userMenu.style.display = 'none';
+            }
+        }
+
+        // Event Listeners
+        if (loginForm) {
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email,
+                    password
                 });
-            });
-            
-            // Header scroll effect
-            const header = document.getElementById('header');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 50) {
-                    header.classList.add('header-scrolled');
+                
+                if (error) {
+                    alert('Login error: ' + error.message);
                 } else {
-                    header.classList.remove('header-scrolled');
+                    closeModal(loginModal);
                 }
             });
-            
-            // Simple form validation
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    alert('Thank you for your message! We will get back to you soon.');
-                    contactForm.reset();
+        }
+
+        if (signupForm) {
+            signupForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const name = document.getElementById('signupName').value;
+                const email = document.getElementById('signupEmail').value;
+                const password = document.getElementById('signupPassword').value;
+                const confirmPassword = document.getElementById('signupConfirmPassword').value;
+                
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match');
+                    return;
+                }
+                
+                const { data, error } = await supabase.auth.signUp({
+                    email,
+                    password,
+                    options: {
+                        data: {
+                            full_name: name
+                        }
+                    }
                 });
+                
+                if (error) {
+                    alert('Signup error: ' + error.message);
+                } else {
+                    alert('Signup successful! Please check your email for verification.');
+                    closeModal(signupModal);
+                }
+            });
+        }
+
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', async () => {
+                const { error } = await supabase.auth.signOut();
+                if (error) {
+                    alert('Logout error: ' + error.message);
+                } else {
+                    closeModal(profileModal);
+                }
+            });
+        }
+
+        if (showSignup) {
+            showSignup.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeModal(loginModal);
+                openModal(signupModal);
+            });
+        }
+
+        if (showLogin) {
+            showLogin.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeModal(signupModal);
+                openModal(loginModal);
+            });
+        }
+
+        if (loginBtn) {
+            loginBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal(loginModal);
+            });
+        }
+
+        if (signupBtn) {
+            signupBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal(signupModal);
+            });
+        }
+
+        if (profileBtn) {
+            profileBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal(profileModal);
+            });
+        }
+
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const modal = button.closest('.modal');
+                closeModal(modal);
+            });
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                closeModal(e.target);
             }
         });
+
+        // Theme toggle functionality
+        themeToggle.addEventListener('click', function() {
+            if (body.getAttribute('data-theme') === 'light') {
+                body.removeAttribute('data-theme');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                body.setAttribute('data-theme', 'light');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
+
+        // Product carousel
+        const carouselTrack = document.getElementById('carouselTrack');
+        const carouselNav = document.getElementById('carouselNav');
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        let currentIndex = 0;
+        
+        // Create navigation indicators
+        carouselItems.forEach((_, index) => {
+            const indicator = document.createElement('div');
+            indicator.classList.add('carousel-indicator');
+            if (index === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => {
+                goToSlide(index);
+            });
+            carouselNav.appendChild(indicator);
+        });
+        
+        function goToSlide(index) {
+            currentIndex = index;
+            carouselTrack.style.transform = `translateX(-${index * 100}%)`;
+            
+            // Update active indicator
+            document.querySelectorAll('.carousel-indicator').forEach((indicator, i) => {
+                if (i === index) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+        
+        // Auto-advance carousel
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % carouselItems.length;
+            goToSlide(currentIndex);
+        }, 5000);
+
+        // Payment system functionality
+        const paymentServiceDetails = document.getElementById('paymentServiceDetails');
+        const paymentOptions = document.querySelectorAll('.payment-option');
+        const closePaymentModal = document.getElementById('closePaymentModal');
+        const completePayment = document.getElementById('completePayment');
+        let selectedService = null;
+        
+        // Service link click handlers
+        document.querySelectorAll('.service-link').forEach(link => {
+            link.addEventListener('click', function() {
+                selectedService = {
+                    name: this.getAttribute('data-service'),
+                    price: this.getAttribute('data-price')
+                };
+                
+                paymentServiceDetails.innerHTML = `
+                    <div class="form-group">
+                        <h3>${selectedService.name}</h3>
+                        <p>Starting from $${selectedService.price}</p>
+                    </div>
+                `;
+                
+                paymentModal.classList.add('active');
+            });
+        });
+        
+        // Payment option selection
+        paymentOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                paymentOptions.forEach(op => op.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+        
+        // Close payment modal
+        closePaymentModal.addEventListener('click', function() {
+            paymentModal.classList.remove('active');
+        });
+        
+        // Complete payment
+        completePayment.addEventListener('click', function() {
+            alert('Payment processed successfully! We will contact you shortly to finalize your service.');
+            paymentModal.classList.remove('active');
+        });
+
+        // Menu toggle functionality
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link
+        const navItems = document.querySelectorAll('.nav-links a');
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+        
+        // Simple form validation
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you soon.');
+                contactForm.reset();
+            });
+        }
     </script>
 </body>
 </html>
