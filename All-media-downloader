@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8VL9P86LQJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8VL9P86LQJ');
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DianSybexTech - All Media Downloader | Download Videos, Music, TikTok, YouTube</title>
-    <!-- Google Tag Manager -->
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8VL9P86LQJ"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-8VL9P86LQJ');
-    </script>
-    <!-- End Google Tag Manager -->
+    <title>DianSybexTech - All Med
     
     <meta name="description" content="Free all-in-one media downloader. Download videos from YouTube, TikTok, Instagram, Facebook, Twitter, Spotify, Pinterest. Convert to MP4, MP3, HD quality.">
     <meta name="keywords" content="media downloader, YouTube downloader, TikTok downloader, MP3 converter, video downloader, free downloader, DianSybexTech">
