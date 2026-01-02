@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
+     <!-- Google Tag Manager -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8VL9P86LQJ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -11,72 +9,33 @@
       gtag('js', new Date());
       gtag('config', 'G-8VL9P86LQJ');
     </script>
-    
-    <!-- Basic Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DianSybexTech - All Media Downloader</title>
-    
-    <!-- SEO Meta Tags -->
+    <title>DianSybexTech - All Media Downloader | Download Videos, Music, TikTok, YouTube</title>
     <meta name="description" content="Free all-in-one media downloader. Download videos from YouTube, TikTok, Instagram, Facebook, Twitter, Spotify, Pinterest. Convert to MP4, MP3, HD quality.">
     <meta name="keywords" content="media downloader, YouTube downloader, TikTok downloader, MP3 converter, video downloader, free downloader, DianSybexTech">
     <meta name="author" content="DianSybexTech">
     
-    <!-- Open Graph Meta Tags (Facebook, WhatsApp, LinkedIn, etc.) -->
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://dian-sybex-tech.vercel.app/">
+    <meta property="og:url" content="https://diansybextech.com/">
     <meta property="og:title" content="DianSybexTech - All Media Downloader">
     <meta property="og:description" content="Free all-in-one media downloader. Download videos from YouTube, TikTok, Instagram, Facebook, Twitter, Spotify, Pinterest.">
-    <meta property="og:image" content="https://dian-sybex-tech.vercel.app/preview.jpg">
-    <meta property="og:image:secure_url" content="https://dian-sybex-tech.vercel.app/preview.jpg">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image" content="https://diansybextech.com/thumbnail.jpg">
     
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://dian-sybex-tech.vercel.app/">
-    <meta name="twitter:title" content="DianSybexTech - All Media Downloader">
-    <meta name="twitter:description" content="Free all-in-one media downloader. Download videos from YouTube, TikTok, Instagram, Facebook, Twitter, Spotify, Pinterest.">
-    <meta name="twitter:image" content="https://dian-sybex-tech.vercel.app/preview.jpg">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://diansybextech.com/">
+    <meta property="twitter:title" content="DianSybexTech - All Media Downloader">
+    <meta property="twitter:description" content="Free all-in-one media downloader. Download videos from YouTube, TikTok, Instagram, Facebook, Twitter, Spotify, Pinterest.">
+    <meta property="twitter:image" content="https://diansybextech.com/thumbnail.jpg">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="https://api.dicebear.com/7.x/avataaars/svg?seed=DianSybexTech">
     
-    <!-- External Resources -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Schema.org Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "DianSybexTech All Media Downloader",
-      "url": "https://dian-sybex-tech.vercel.app/",
-      "description": "Free all-in-one media downloader for YouTube, TikTok, Instagram, Facebook, Twitter, Spotify, and Pinterest",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "Any",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "author": {
-        "@type": "Organization",
-        "name": "DianSybexTech"
-      }
-    }
-    </script>
-    
-    <!-- Additional Meta Tags for Better Compatibility -->
-    <meta property="og:site_name" content="DianSybexTech">
-    <meta property="og:locale" content="en_US">
-    
-    <!-- For iOS devices -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        </head>    
     <style>
         /* ===== LOADING SCREEN STYLES ===== */
         .loading-screen {
@@ -111,11 +70,6 @@
         @keyframes pulse {
             0%, 100% { transform: scale(1); opacity: 1; }
             50% { transform: scale(1.05); opacity: 0.9; }
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
         }
 
         .progress-container {
@@ -174,39 +128,6 @@
             letter-spacing: 0.5px;
             margin-top: 10px;
             opacity: 0.8;
-        }
-
-        .platform-icons {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .platform-icon {
-            width: 40px;
-            height: 40px;
-            background: rgba(108, 99, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 1.2rem;
-            animation: bounce 2s infinite;
-        }
-
-        .platform-icon:nth-child(2) { animation-delay: 0.2s; }
-        .platform-icon:nth-child(3) { animation-delay: 0.4s; }
-        .platform-icon:nth-child(4) { animation-delay: 0.6s; }
-        .platform-icon:nth-child(5) { animation-delay: 0.8s; }
-        .platform-icon:nth-child(6) { animation-delay: 1s; }
-        .platform-icon:nth-child(7) { animation-delay: 1.2s; }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
         }
 
         /* ===== MAIN CONTENT ===== */
@@ -351,17 +272,6 @@
             box-shadow: var(--box-shadow);
         }
 
-        .btn-outline {
-            background-color: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary);
-            color: var(--white);
-        }
-
         /* ===== Header & Navigation ===== */
         header {
             position: fixed;
@@ -447,6 +357,115 @@
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--white);
+        }
+
+        /* ===== Settings Modal ===== */
+        .settings-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s;
+        }
+
+        .settings-content {
+            background-color: var(--darker);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            animation: slideDown 0.3s;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .settings-header h2 {
+            margin: 0;
+            color: var(--primary);
+        }
+
+        .close {
+            color: var(--gray);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close:hover {
+            color: var(--white);
+        }
+
+        .settings-group {
+            margin-bottom: 2rem;
+        }
+
+        .settings-group h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .settings-group h3 i {
+            color: var(--primary);
+        }
+
+        .api-provider {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .api-option {
+            background-color: var(--dark-light);
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .api-option:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .api-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(108, 99, 255, 0.1);
+        }
+
+        .api-icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
         }
 
         /* ===== Media Selector ===== */
@@ -606,11 +625,6 @@
             border-color: var(--primary);
         }
 
-        .refresh-btn {
-            background-color: var(--secondary);
-            margin-left: auto;
-        }
-
         /* ===== Results Section ===== */
         .results-section {
             padding: 2rem 0;
@@ -687,6 +701,7 @@
             height: 180px;
             object-fit: cover;
             background-color: var(--darker);
+            cursor: pointer;
         }
 
         .result-content {
@@ -725,10 +740,8 @@
             flex-wrap: wrap;
         }
 
-        .download-btn {
+        .download-btn, .play-btn, .view-btn {
             padding: 0.6rem 1rem;
-            background-color: var(--primary);
-            color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -741,36 +754,130 @@
             justify-content: center;
         }
 
+        .download-btn {
+            background-color: var(--primary);
+            color: white;
+        }
+
         .download-btn:hover {
             background-color: var(--primary-dark);
             transform: translateY(-2px);
         }
 
+        .play-btn {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .play-btn:hover {
+            background-color: #2d9500;
+            transform: translateY(-2px);
+        }
+
         .view-btn {
-            padding: 0.6rem 1rem;
             background-color: var(--dark);
             color: var(--text);
             border: 1px solid var(--light-gray);
-            border-radius: 5px;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
         .view-btn:hover {
             background-color: var(--light-gray);
         }
 
-        .quality-selector {
-            padding: 0.6rem;
-            background-color: var(--dark);
-            color: var(--text);
-            border: 1px solid var(--light-gray);
-            border-radius: 5px;
+        /* ===== Download Loading Modal ===== */
+        .download-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
             width: 100%;
-            margin-bottom: 0.5rem;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s;
+        }
+
+        .download-content {
+            background-color: var(--darker);
+            margin: 15% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+        }
+
+        .download-progress {
+            width: 100%;
+            height: 10px;
+            background-color: var(--dark-light);
+            border-radius: 5px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+
+        .download-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 5px;
+            transition: width 0.3s ease;
+        }
+
+        /* ===== Video/Audio Player Modal ===== */
+        .player-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s;
+        }
+
+        .player-content {
+            background-color: var(--darker);
+            margin: 2% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            box-shadow: var(--box-shadow);
+        }
+
+        .close-player {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10001;
+        }
+
+        .close-player:hover {
+            color: var(--primary);
+        }
+
+        .player-video {
+            width: 100%;
+            height: 400px;
+            border-radius: 8px;
+            background-color: #000;
+        }
+
+        .player-audio {
+            width: 100%;
+            margin: 1rem 0;
+        }
+
+        .player-info {
+            margin-top: 1rem;
+            color: var(--white);
         }
 
         /* ===== Pagination ===== */
@@ -802,9 +909,10 @@
             background-color: var(--light-gray);
         }
 
-        /* ===== About Section ===== */
-        .about-section {
+        /* ===== About & FAQ Sections ===== */
+        .about-section, .faq-section {
             background-color: var(--dark-light);
+            padding: 4rem 0;
         }
 
         .about-content {
@@ -815,7 +923,6 @@
         }
 
         .about-image {
-            position: relative;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: var(--box-shadow);
@@ -823,44 +930,12 @@
 
         .about-image img {
             width: 100%;
-            height: 400px;
-            object-fit: cover;
+            height: auto;
             transition: var(--transition);
         }
 
         .about-image:hover img {
             transform: scale(1.05);
-        }
-
-        .about-text h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-            color: var(--gray);
-        }
-
-        .about-list {
-            margin-bottom: 2rem;
-        }
-
-        .about-list li {
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: flex-start;
-        }
-
-        .about-list i {
-            color: var(--primary);
-            margin-right: 0.8rem;
-            margin-top: 0.2rem;
-        }
-
-        /* ===== FAQ Section ===== */
-        .faq-section {
-            background-color: var(--dark);
         }
 
         .faq-container {
@@ -869,7 +944,7 @@
         }
 
         .faq-item {
-            background-color: var(--dark-light);
+            background-color: var(--darker);
             border-radius: 10px;
             margin-bottom: 1rem;
             overflow: hidden;
@@ -916,14 +991,9 @@
             max-height: 500px;
         }
 
-        .faq-answer p {
-            color: var(--gray);
-            line-height: 1.6;
-        }
-
         /* ===== Features Section ===== */
         .features-section {
-            background-color: var(--dark-light);
+            background-color: var(--dark);
         }
 
         .features-grid {
@@ -933,13 +1003,12 @@
         }
 
         .feature-card {
-            background-color: var(--darker);
+            background-color: var(--dark-light);
             border-radius: 10px;
             padding: 2rem;
             text-align: center;
             transition: var(--transition);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border: 1px solid var(--light-gray);
         }
 
         .feature-card:hover {
@@ -948,54 +1017,6 @@
         }
 
         .feature-icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: rgba(108, 99, 255, 0.1);
-            border-radius: 50%;
-            color: var(--primary);
-            font-size: 1.5rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card p {
-            color: var(--gray);
-        }
-
-        /* ===== Instructions Section ===== */
-        .instructions-section {
-            background-color: var(--dark-light);
-            padding: 4rem 0;
-        }
-
-        .instructions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .instruction-card {
-            background-color: var(--darker);
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .instruction-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--box-shadow);
-        }
-
-        .instruction-icon {
             width: 70px;
             height: 70px;
             margin: 0 auto 1.5rem;
@@ -1037,12 +1058,6 @@
             width: 50px;
             height: 3px;
             background-color: var(--primary);
-        }
-
-        .footer-col p {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
         }
 
         .footer-links li {
@@ -1149,16 +1164,17 @@
                 gap: 1rem;
             }
 
-            .result-meta {
-                gap: 0.5rem;
-            }
-
-            .about-content {
+            .api-provider {
                 grid-template-columns: 1fr;
             }
 
-            .about-image {
-                order: -1;
+            .player-content {
+                margin: 10% auto;
+                padding: 1rem;
+            }
+
+            .player-video {
+                height: 300px;
             }
         }
 
@@ -1179,10 +1195,6 @@
                 width: 100%;
                 text-align: center;
             }
-
-            .faq-question h3 {
-                font-size: 1rem;
-            }
         }
     </style>
 </head>
@@ -1196,40 +1208,72 @@
                         <stop offset="0%" style="stop-color:#6c63ff;stop-opacity:1" />
                         <stop offset="100%" style="stop-color:#ff4d94;stop-opacity:1" />
                     </linearGradient>
-                    <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" style="stop-color:#4cc9f0;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#6c63ff;stop-opacity:1" />
-                    </linearGradient>
                 </defs>
-                <circle cx="50" cy="50" r="45" fill="none" stroke="url(#grad1)" stroke-width="4" stroke-dasharray="283" stroke-dashoffset="283">
-                    <animate attributeName="stroke-dashoffset" from="283" to="0" dur="2s" fill="freeze" />
+                <circle cx="50" cy="50" r="45" fill="none" stroke="url(#grad1)" stroke-width="4">
+                    <animate attributeName="r" values="45;40;45" dur="2s" repeatCount="indefinite" />
                 </circle>
-                <path d="M50 15 A35 35 0 0 1 78.5 35" fill="none" stroke="url(#grad2)" stroke-width="4" stroke-dasharray="100" stroke-dashoffset="100">
-                    <animate attributeName="stroke-dashoffset" from="100" to="0" dur="1.5s" fill="freeze" />
-                </path>
-                <circle cx="50" cy="50" r="12" fill="url(#grad2)" opacity="0">
-                    <animate attributeName="opacity" from="0" to="1" dur="1s" begin="1s" fill="freeze" />
-                </circle>
-                <text x="50" y="55" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold" opacity="0">
-                    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1.5s" fill="freeze" />
-                    DST
-                </text>
+                <text x="50" y="55" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">DST</text>
             </svg>
         </div>
         <div class="progress-container">
             <div class="progress-bar" id="progressBar"></div>
         </div>
         <div class="loading-status" id="loadingStatus">Launching DianSybexTech...</div>
-        <div class="loading-text">Initializing media downloader</div>
-        
-        <div class="platform-icons">
-            <div class="platform-icon"><i class="fab fa-youtube"></i></div>
-            <div class="platform-icon"><i class="fab fa-tiktok"></i></div>
-            <div class="platform-icon"><i class="fab fa-instagram"></i></div>
-            <div class="platform-icon"><i class="fab fa-facebook"></i></div>
-            <div class="platform-icon"><i class="fab fa-twitter"></i></div>
-            <div class="platform-icon"><i class="fab fa-spotify"></i></div>
-            <div class="platform-icon"><i class="fab fa-pinterest"></i></div>
+        <div class="loading-text">Initializing dual API media downloader</div>
+    </div>
+
+    <!-- ===== SETTINGS MODAL ===== -->
+    <div id="settingsModal" class="settings-modal">
+        <div class="settings-content">
+            <div class="settings-header">
+                <h2><i class="fas fa-cog"></i> Settings</h2>
+                <span class="close">&times;</span>
+            </div>
+            
+            <div class="settings-group">
+                <h3><i class="fas fa-plug"></i> API Provider</h3>
+                <div class="api-provider">
+                    <div class="api-option" data-provider="gifted">
+                        <div class="api-icon"><i class="fas fa-gift"></i></div>
+                        <div class="api-name">Gifted API</div>
+                        <div class="api-desc">Primary provider with API key authentication</div>
+                    </div>
+                    <div class="api-option selected" data-provider="david">
+                        <div class="api-icon"><i class="fas fa-music"></i></div>
+                        <div class="api-name">David Cyril API</div>
+                        <div class="api-desc">No API key required, fast music downloads</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" style="width: 100%; margin-top: 2rem;" id="saveSettings">
+                <i class="fas fa-save"></i> Save Settings
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== DOWNLOAD LOADING MODAL ===== -->
+    <div class="download-modal" id="downloadModal">
+        <div class="download-content">
+            <h2><i class="fas fa-download"></i> Preparing Download</h2>
+            <p id="downloadMessage">Processing your request...</p>
+            <div class="download-progress">
+                <div class="download-progress-bar" id="downloadProgressBar"></div>
+            </div>
+            <p id="downloadStatus">Initializing...</p>
+        </div>
+    </div>
+
+    <!-- ===== VIDEO/AUDIO PLAYER MODAL ===== -->
+    <div class="player-modal" id="playerModal">
+        <div class="player-content">
+            <span class="close-player">&times;</span>
+            <video class="player-video" id="videoPlayer" controls style="display: none;"></video>
+            <audio class="player-audio" id="audioPlayer" controls style="display: none;"></audio>
+            <div class="player-info">
+                <h3 id="playerTitle">Now Playing</h3>
+                <p id="playerArtist">Artist</p>
+            </div>
         </div>
     </div>
 
@@ -1248,11 +1292,12 @@
                     </div>
                     <div class="nav-links">
                         <a href="#home">Home</a>
-                        <a href="#download">Download</a>
                         <a href="#about">About</a>
                         <a href="#features">Features</a>
                         <a href="#faq">FAQ</a>
-                        <a href="#instructions">Guide</a>
+                        <a href="#" id="settingsBtn">
+                            <i class="fas fa-cog"></i> Settings
+                        </a>
                         <button class="btn btn-primary" onclick="toggleTheme()">
                             <i class="fas fa-moon"></i> Theme
                         </button>
@@ -1266,7 +1311,10 @@
             <div class="container">
                 <div class="section-title">
                     <h1>All Media Downloader - DianSybexTech</h1>
-                    <p>Download videos, music, and media from 10+ platforms in HD quality</p>
+                    <p>Download videos, music, and media from 10+ platforms using Gifted API or David Cyril API</p>
+                    <div style="margin-top: 1rem; color: var(--primary); font-weight: 500;">
+                        <i class="fas fa-plug"></i> Current API: <span id="currentApi">David Cyril API</span>
+                    </div>
                 </div>
                 <div class="media-buttons">
                     <div class="media-btn youtube-btn active" data-platform="youtube">
@@ -1281,11 +1329,11 @@
                     <div class="media-btn facebook-btn" data-platform="facebook">
                         <i class="fab fa-facebook"></i> Facebook
                     </div>
-                    <div class="media-btn twitter-btn" data-platform="twitter">
-                        <i class="fab fa-twitter"></i> Twitter
-                    </div>
                     <div class="media-btn spotify-btn" data-platform="spotify">
                         <i class="fab fa-spotify"></i> Spotify
+                    </div>
+                    <div class="media-btn twitter-btn" data-platform="twitter">
+                        <i class="fab fa-twitter"></i> Twitter
                     </div>
                     <div class="media-btn pinterest-btn" data-platform="pinterest">
                         <i class="fab fa-pinterest"></i> Pinterest
@@ -1305,6 +1353,9 @@
                             </button>
                             <button class="mode-btn" data-mode="search">
                                 <i class="fas fa-search"></i> Search Mode
+                            </button>
+                            <button class="mode-btn" data-mode="music">
+                                <i class="fas fa-music"></i> Music Mode
                             </button>
                         </div>
                         
@@ -1330,12 +1381,20 @@
                             </button>
                         </form>
 
+                        <form id="musicForm" class="search-form" style="display: none;">
+                            <input type="text" 
+                                   class="url-input" 
+                                   id="musicQuery" 
+                                   placeholder="Search for songs (e.g., Alan Walker - Faded)..." 
+                                   required>
+                            <button type="submit" class="search-btn" id="musicBtn">
+                                <i class="fas fa-music"></i> Search Music
+                            </button>
+                        </form>
+
                         <div class="format-options" id="formatOptions">
                             <button class="format-btn active" data-format="mp4">MP4 Video</button>
                             <button class="format-btn" data-format="mp3">MP3 Audio</button>
-                            <button class="format-btn refresh-btn" onclick="refreshSearch()" id="refreshBtn" style="display: none;">
-                                <i class="fas fa-redo"></i> Refresh
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -1367,7 +1426,7 @@
                         <p>DianSybexTech All Media Downloader is a powerful, free online tool that allows you to download videos, music, and media content from over 10 popular platforms including YouTube, TikTok, Instagram, Facebook, Twitter, Spotify, and Pinterest.</p>
                         <p>Our mission is to provide a seamless, fast, and secure media downloading experience without compromising on quality. Whether you want to save educational content, music for offline listening, or memorable videos, our tool has you covered.</p>
                         
-                        <ul class="about-list">
+                        <ul class="footer-links">
                             <li><i class="fas fa-check-circle"></i> <strong>100% Free</strong> - No hidden charges or subscriptions</li>
                             <li><i class="fas fa-check-circle"></i> <strong>High Quality</strong> - Download in HD up to 4K resolution</li>
                             <li><i class="fas fa-check-circle"></i> <strong>Multiple Formats</strong> - MP4, MP3, and more</li>
@@ -1387,23 +1446,30 @@
         <section class="features-section" id="features">
             <div class="container">
                 <div class="section-title">
-                    <h2>Why Choose Our Downloader?</h2>
-                    <p>Discover the features that make DianSybexTech the best media downloader</p>
+                    <h2>Dual API System</h2>
+                    <p>Choose between two powerful API providers for maximum flexibility</p>
                 </div>
                 <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h3>Gifted API</h3>
+                        <p>Professional API with authentication, supports all major platforms with high reliability</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h3>David Cyril API</h3>
+                        <p>No API key required, optimized for music downloads with fast response times</p>
+                    </div>
                     <div class="feature-card">
                         <div class="feature-icon">
                             <i class="fas fa-bolt"></i>
                         </div>
                         <h3>Fast Processing</h3>
                         <p>Quick media analysis and download processing with optimized servers</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-hdd"></i>
-                        </div>
-                        <h3>Multiple Formats</h3>
-                        <p>Download in MP4, MP3, WEBM, and various quality options</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
@@ -1414,24 +1480,17 @@
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <h3>Mobile Friendly</h3>
-                        <p>Works perfectly on all devices - desktop, tablet, and mobile</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-cloud-download-alt"></i>
-                        </div>
-                        <h3>No Limits</h3>
-                        <p>Unlimited downloads with no daily restrictions</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
                             <i class="fas fa-headphones"></i>
                         </div>
-                        <h3>Audio Extraction</h3>
-                        <p>Convert videos to high-quality MP3 audio files</p>
+                        <h3>Music Player</h3>
+                        <p>Play audio directly in browser with our built-in music player</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <h3>Customizable</h3>
+                        <p>Adjust quality, format, and other settings to your preference</p>
                     </div>
                 </div>
             </div>
@@ -1528,57 +1587,17 @@
             </div>
         </section>
 
-        <!-- Instructions Section -->
-        <section class="instructions-section" id="instructions">
-            <div class="container">
-                <div class="section-title">
-                    <h2>How to Use - Step by Step Guide</h2>
-                    <p>Follow these simple steps to download any media</p>
-                </div>
-                <div class="instructions-grid">
-                    <div class="instruction-card">
-                        <div class="instruction-icon">
-                            <i class="fas fa-mouse-pointer"></i>
-                        </div>
-                        <h3>Select Platform</h3>
-                        <p>Click on the platform icon (YouTube, TikTok, etc.) you want to download from</p>
-                    </div>
-                    <div class="instruction-card">
-                        <div class="instruction-icon">
-                            <i class="fas fa-link"></i>
-                        </div>
-                        <h3>Paste URL or Search</h3>
-                        <p>Use URL mode for direct links or Search mode to find content by keywords</p>
-                    </div>
-                    <div class="instruction-card">
-                        <div class="instruction-icon">
-                            <i class="fas fa-download"></i>
-                        </div>
-                        <h3>Choose Format</h3>
-                        <p>Select your preferred format (MP4 for video, MP3 for audio)</p>
-                    </div>
-                    <div class="instruction-card">
-                        <div class="instruction-icon">
-                            <i class="fas fa-file-download"></i>
-                        </div>
-                        <h3>Download</h3>
-                        <p>Click the download button and save your media to your device</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Footer -->
         <footer id="contact">
             <div class="container">
                 <div class="footer-content">
                     <div class="footer-col">
                         <h3>DianSybexTech</h3>
-                        <p>The ultimate all-in-one media downloader. Download videos, music, and media from 10+ platforms in HD quality. 100% free and secure.</p>
+                        <p>The ultimate all-in-one media downloader. Download videos, music, and media from 10+ platforms using dual API system.</p>
                         <div class="social-links">
-                            <a href="https://wa.me/254XXXXXXXXX" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                            <a href="https://youtube.com/@diansybextech" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-                            <a href="https://tiktok.com/@diansybextech" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                            <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
                             <a href="mailto:contact@diansybextech.com" title="Email"><i class="fas fa-envelope"></i></a>
                         </div>
                     </div>
@@ -1586,41 +1605,33 @@
                         <h3>Quick Links</h3>
                         <ul class="footer-links">
                             <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
-                            <li><a href="#download"><i class="fas fa-chevron-right"></i> Download</a></li>
                             <li><a href="#about"><i class="fas fa-chevron-right"></i> About</a></li>
                             <li><a href="#features"><i class="fas fa-chevron-right"></i> Features</a></li>
                             <li><a href="#faq"><i class="fas fa-chevron-right"></i> FAQ</a></li>
-                            <li><a href="#instructions"><i class="fas fa-chevron-right"></i> Guide</a></li>
+                            <li><a href="#" id="feedbackLink"><i class="fas fa-chevron-right"></i> Feedback</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
-                        <h3>Supported Platforms</h3>
+                        <h3>API Providers</h3>
                         <ul class="footer-links">
-                            <li><a href="#"><i class="fab fa-youtube"></i> YouTube Downloader</a></li>
-                            <li><a href="#"><i class="fab fa-tiktok"></i> TikTok Downloader</a></li>
-                            <li><a href="#"><i class="fab fa-instagram"></i> Instagram Downloader</a></li>
-                            <li><a href="#"><i class="fab fa-facebook"></i> Facebook Downloader</a></li>
-                            <li><a href="#"><i class="fab fa-spotify"></i> Spotify Downloader</a></li>
-                            <li><a href="#"><i class="fab fa-pinterest"></i> Pinterest Downloader</a></li>
+                            <li><a href="#"><i class="fas fa-gift"></i> Gifted API</a></li>
+                            <li><a href="#"><i class="fas fa-music"></i> David Cyril API</a></li>
+                            <li><a href="#"><i class="fas fa-code"></i> Web Downloader</a></li>
+                            <li><a href="#"><i class="fas fa-search"></i> Lyrics Search</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
                         <h3>Legal Information</h3>
                         <ul class="footer-links">
-                            <li><a href="#"><i class="fas fa-gavel"></i> Terms of Service</a></li>
-                            <li><a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                            <li><a href="#" onclick="showDisclaimer()"><i class="fas fa-gavel"></i> Terms of Service</a></li>
+                            <li><a href="#" onclick="showPrivacy()"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
                             <li><a href="#"><i class="fas fa-copyright"></i> DMCA Policy</a></li>
-                            <li><a href="#"><i class="fas fa-exclamation-circle"></i> Disclaimer</a></li>
                             <li><a href="#"><i class="fas fa-book"></i> Fair Use Policy</a></li>
-                            <li><a href="#"><i class="fas fa-question-circle"></i> Help Center</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="footer-bottom">
-                    <p>&copy; 2024 DianSybexTech. All rights reserved. | For Educational Purposes Only | 
-                       <a href="#disclaimer" onclick="showDisclaimer()">Disclaimer</a> | 
-                       <a href="#privacy" onclick="showPrivacy()">Privacy Policy</a>
-                    </p>
+                    <p>&copy; 2024 DianSybexTech. All rights reserved. | For Educational Purposes Only</p>
                     <p>This tool is intended for personal, educational, and fair use only. Please respect copyright laws and platform terms of service.</p>
                 </div>
             </div>
@@ -1630,7 +1641,7 @@
     <script>
         // ===== LOADING SYSTEM =====
         function startLoading() {
-            console.log("Starting DianSybexTech Media Downloader...");
+            console.log("Starting DianSybexTech Dual API Media Downloader...");
             
             const loadingScreen = document.getElementById('loadingScreen');
             const progressBar = document.getElementById('progressBar');
@@ -1641,12 +1652,12 @@
             let stage = 0;
             
             const stages = [
-                { percent: 10, text: "Initializing media downloader..." },
-                { percent: 25, text: "Loading platform components..." },
-                { percent: 40, text: "Connecting to APIs..." },
+                { percent: 10, text: "Initializing dual API system..." },
+                { percent: 25, text: "Loading Gifted API configuration..." },
+                { percent: 40, text: "Loading David Cyril API configuration..." },
                 { percent: 55, text: "Preparing user interface..." },
-                { percent: 70, text: "Loading content libraries..." },
-                { percent: 85, text: "Finalizing setup..." },
+                { percent: 70, text: "Loading media player..." },
+                { percent: 85, text: "Finalizing settings..." },
                 { percent: 95, text: "Almost ready..." },
                 { percent: 100, text: "Welcome to DianSybexTech!" }
             ];
@@ -1672,13 +1683,12 @@
                             
                             setTimeout(() => {
                                 mainContent.style.opacity = '1';
-                                initializeMediaDownloader();
+                                initializeApp();
                                 
-                                // Track page load in analytics
                                 if (typeof gtag !== 'undefined') {
                                     gtag('event', 'page_load_complete', {
                                         'event_category': 'Loading',
-                                        'event_label': 'Media Downloader',
+                                        'event_label': 'Dual API Media Downloader',
                                         'value': Date.now()
                                     });
                                 }
@@ -1687,98 +1697,147 @@
                         }, 500);
                     }, 500);
                 }
-            }, 30); // Faster loading for better UX
+            }, 30);
         }
         
-        // ===== INITIALIZE MEDIA DOWNLOADER =====
-        function initializeMediaDownloader() {
-            console.log("Initializing DianSybexTech Media Downloader...");
+        // ===== MAIN APPLICATION INITIALIZATION =====
+        function initializeApp() {
+            console.log("Initializing DianSybexTech Dual API Media Downloader...");
             
-            // API configuration with your provided endpoints
-            const API_KEY = "gifted";
-            const API_ENDPOINTS = {
-                youtube: {
-                    mp4: "https://api.giftedtech.co.ke/api/download/ytmp4",
-                    mp3: "https://api.giftedtech.co.ke/api/download/ytmp3",
-                    music: "https://api.giftedtech.co.ke/api/download/ytmusic",
-                    search: "https://api.giftedtech.co.ke/api/search/yts"
+            // API Configuration
+            const API_CONFIG = {
+                gifted: {
+                    name: "Gifted API",
+                    key: "gifted",
+                    endpoints: {
+                        youtube: {
+                            mp4: "https://api.giftedtech.co.ke/api/download/ytmp4",
+                            mp3: "https://api.giftedtech.co.ke/api/download/ytmp3"
+                        },
+                        tiktok: {
+                            download: "https://api.giftedtech.co.ke/api/download/tiktok"
+                        },
+                        instagram: "https://api.giftedtech.co.ke/api/download/instadl",
+                        facebook: "https://api.giftedtech.co.ke/api/download/facebook",
+                        twitter: "https://api.giftedtech.co.ke/api/download/twitter",
+                        spotify: {
+                            download: "https://api.giftedtech.co.ke/api/download/spotifydl"
+                        },
+                        pinterest: "https://api.giftedtech.co.ke/api/download/pinterestdl"
+                    }
                 },
-                tiktok: {
-                    download: "https://api.giftedtech.co.ke/api/download/tiktok",
-                    search: "https://api.giftedtech.co.ke/api/search/tiktoksearch"
-                },
-                instagram: "https://api.giftedtech.co.ke/api/download/instadl",
-                facebook: "https://api.giftedtech.co.ke/api/download/facebook",
-                twitter: "https://api.giftedtech.co.ke/api/download/twitter",
-                spotify: {
-                    download: "https://api.giftedtech.co.ke/api/download/spotifydl",
-                    search: "https://api.giftedtech.co.ke/api/search/spotifysearch"
-                },
-                pinterest: "https://api.giftedtech.co.ke/api/download/pinterestdl"
+                david: {
+                    name: "David Cyril API",
+                    key: "",
+                    endpoints: {
+                        youtube: {
+                            mp4: "https://apis.davidcyriltech.my.id/download/ytmp4",
+                            music: "https://apis.davidcyriltech.my.id/play",
+                            search: "https://apis.davidcyriltech.my.id/youtube/search"
+                        },
+                        tiktok: {
+                            download: "https://apis.davidcyriltech.my.id/download/tiktok"
+                        },
+                        instagram: "https://apis.davidcyriltech.my.id/instagram",
+                        facebook: "https://apis.davidcyriltech.my.id/facebook",
+                        spotify: {
+                            download: "https://apis.davidcyriltech.my.id/spotifydl",
+                            search: "https://apis.davidcyriltech.my.id/search/spotify"
+                        },
+                        lyrics: "https://apis.davidcyriltech.my.id/lyrics3",
+                        web: "https://apis.davidcyriltech.my.id/tools/downloadweb"
+                    }
+                }
             };
 
-            // Current state
-            let currentPlatform = "youtube";
-            let currentFormat = "mp4";
-            let currentMode = "url"; // url or search
-            let currentSearchResults = [];
-            let currentSearchQuery = "";
-            let currentPage = 1;
-            const RESULTS_PER_PAGE = 15;
+            // App State
+            let currentState = {
+                platform: "youtube",
+                format: "mp4",
+                mode: "url",
+                apiProvider: "david",
+                searchResults: [],
+                searchQuery: "",
+                page: 1,
+                currentPlaying: null
+            };
 
             // DOM Elements
             const mediaButtons = document.querySelectorAll('.media-btn');
             const formatButtons = document.querySelectorAll('.format-btn');
             const modeButtons = document.querySelectorAll('.mode-btn');
+            const apiOptions = document.querySelectorAll('.api-option');
             const urlInput = document.getElementById('urlInput');
             const searchQuery = document.getElementById('searchQuery');
+            const musicQuery = document.getElementById('musicQuery');
             const downloadForm = document.getElementById('downloadForm');
             const searchForm = document.getElementById('searchForm');
-            const searchBtn = document.getElementById('searchBtn');
-            const searchBtn2 = document.getElementById('searchBtn2');
+            const musicForm = document.getElementById('musicForm');
             const resultsContainer = document.getElementById('resultsContainer');
             const resultsHeader = document.getElementById('resultsHeader');
             const resultsCount = document.getElementById('resultsCount');
             const pagination = document.getElementById('pagination');
-            const refreshBtn = document.getElementById('refreshBtn');
             const menuToggle = document.querySelector('.menu-toggle');
             const navLinks = document.querySelector('.nav-links');
             const formatOptions = document.getElementById('formatOptions');
-            const faqItems = document.querySelectorAll('.faq-item');
+            const settingsModal = document.getElementById('settingsModal');
+            const settingsBtn = document.getElementById('settingsBtn');
+            const closeSettings = document.querySelector('.settings-modal .close');
+            const saveSettingsBtn = document.getElementById('saveSettings');
+            const currentApiSpan = document.getElementById('currentApi');
+            const downloadModal = document.getElementById('downloadModal');
+            const downloadMessage = document.getElementById('downloadMessage');
+            const downloadProgressBar = document.getElementById('downloadProgressBar');
+            const downloadStatus = document.getElementById('downloadStatus');
+            const playerModal = document.getElementById('playerModal');
+            const videoPlayer = document.getElementById('videoPlayer');
+            const audioPlayer = document.getElementById('audioPlayer');
+            const closePlayer = document.querySelector('.close-player');
+            const playerTitle = document.getElementById('playerTitle');
+            const playerArtist = document.getElementById('playerArtist');
+            const feedbackLink = document.getElementById('feedbackLink');
 
-            // Initialize platform-specific settings
+            // Initialize settings
+            function loadSettings() {
+                const savedProvider = localStorage.getItem('api_provider');
+                if (savedProvider) {
+                    currentState.apiProvider = savedProvider;
+                    updateApiSelection();
+                }
+                currentApiSpan.textContent = API_CONFIG[currentState.apiProvider].name;
+            }
+
+            function updateApiSelection() {
+                apiOptions.forEach(option => {
+                    if (option.dataset.provider === currentState.apiProvider) {
+                        option.classList.add('selected');
+                    } else {
+                        option.classList.remove('selected');
+                    }
+                });
+                currentApiSpan.textContent = API_CONFIG[currentState.apiProvider].name;
+            }
+
+            // Update platform settings
             function updatePlatformSettings() {
                 const youtubePlatforms = ['youtube'];
-                const showFormatOptions = youtubePlatforms.includes(currentPlatform);
-                const showSearchMode = ['youtube', 'spotify', 'tiktok'].includes(currentPlatform);
-                
+                const showFormatOptions = youtubePlatforms.includes(currentState.platform);
                 formatOptions.style.display = showFormatOptions ? 'flex' : 'none';
                 
                 // Update placeholders
-                const urlPlaceholders = {
+                const placeholders = {
                     youtube: "Paste YouTube video URL here...",
                     tiktok: "Paste TikTok video URL here...",
                     instagram: "Paste Instagram Reel/Video URL...",
-                    facebook: "Paste Facebook/Reel video URL...",
-                    twitter: "Paste Twitter/X video URL...",
+                    facebook: "Paste Facebook video URL...",
+                    twitter: "Paste Twitter video URL...",
                     spotify: "Paste Spotify track URL...",
                     pinterest: "Paste Pinterest video URL..."
                 };
                 
-                const searchPlaceholders = {
-                    youtube: "Search YouTube videos...",
-                    tiktok: "Search TikTok videos...",
-                    spotify: "Search Spotify songs..."
-                };
-                
-                urlInput.placeholder = urlPlaceholders[currentPlatform] || "Paste media URL...";
-                searchQuery.placeholder = searchPlaceholders[currentPlatform] || "Search for content...";
-                
-                // Show/hide search mode for supported platforms
-                document.querySelector('.mode-switcher').style.display = showSearchMode ? 'flex' : 'none';
-                if (!showSearchMode && currentMode === 'search') {
-                    switchMode('url');
-                }
+                urlInput.placeholder = placeholders[currentState.platform] || "Paste media URL...";
+                searchQuery.placeholder = "Search " + currentState.platform + " videos...";
+                musicQuery.placeholder = "Search for songs (e.g., Alan Walker - Faded)...";
             }
 
             // Event Listeners
@@ -1786,7 +1845,7 @@
                 btn.addEventListener('click', () => {
                     mediaButtons.forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
-                    currentPlatform = btn.dataset.platform;
+                    currentState.platform = btn.dataset.platform;
                     updatePlatformSettings();
                     clearResults();
                 });
@@ -1797,7 +1856,7 @@
                     btn.addEventListener('click', () => {
                         formatButtons.forEach(b => b.classList.remove('active'));
                         btn.classList.add('active');
-                        currentFormat = btn.dataset.format;
+                        currentState.format = btn.dataset.format;
                     });
                 }
             });
@@ -1808,156 +1867,257 @@
                 });
             });
 
+            apiOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    currentState.apiProvider = option.dataset.provider;
+                    updateApiSelection();
+                    showNotification(`Switched to ${API_CONFIG[currentState.apiProvider].name}`);
+                });
+            });
+
             downloadForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const url = urlInput.value.trim();
-                
                 if (!url) {
                     showError("Please enter a valid URL");
                     return;
                 }
-                
-                await processDownload(url);
+                await processDownloadFromUrl(url);
             });
 
             searchForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const query = searchQuery.value.trim();
-                
                 if (!query) {
                     showError("Please enter a search query");
                     return;
                 }
-                
-                currentSearchQuery = query;
-                currentPage = 1;
+                currentState.searchQuery = query;
+                currentState.page = 1;
                 await performSearch(query);
             });
 
+            musicForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const query = musicQuery.value.trim();
+                if (!query) {
+                    showError("Please enter a song name");
+                    return;
+                }
+                currentState.searchQuery = query;
+                currentState.page = 1;
+                await searchMusic(query);
+            });
+
+            // Settings modal
+            settingsBtn.addEventListener('click', () => {
+                settingsModal.style.display = 'block';
+            });
+
+            closeSettings.addEventListener('click', () => {
+                settingsModal.style.display = 'none';
+            });
+
+            saveSettingsBtn.addEventListener('click', () => {
+                localStorage.setItem('api_provider', currentState.apiProvider);
+                settingsModal.style.display = 'none';
+                showNotification('Settings saved successfully!');
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === settingsModal) settingsModal.style.display = 'none';
+                if (e.target === playerModal) closePlayerModal();
+            });
+
+            // Player modal
+            closePlayer.addEventListener('click', closePlayerModal);
+
+            // Mobile menu
             menuToggle.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
             });
 
-            // FAQ accordion
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                question.addEventListener('click', () => {
-                    item.classList.toggle('active');
-                });
-            });
-
-            // Close mobile menu when clicking a link
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.addEventListener('click', () => {
                     navLinks.classList.remove('active');
                 });
             });
 
-            // Theme Toggle
-            function toggleTheme() {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                const newTheme = currentTheme === 'light' ? null : 'light';
-                document.documentElement.setAttribute('data-theme', newTheme);
-                
-                // Save preference
-                localStorage.setItem('theme', newTheme);
-                
-                // Update button icon
-                const themeBtn = document.querySelector('.btn-primary');
-                themeBtn.innerHTML = newTheme === 'light' 
-                    ? '<i class="fas fa-sun"></i> Theme' 
-                    : '<i class="fas fa-moon"></i> Theme';
-            }
+            // Feedback link
+            feedbackLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.open('https://your-feedback-page-url.com', '_blank');
+            });
 
-            // Load saved theme
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                document.documentElement.setAttribute('data-theme', savedTheme);
-                const themeBtn = document.querySelector('.btn-primary');
-                themeBtn.innerHTML = savedTheme === 'light' 
-                    ? '<i class="fas fa-sun"></i> Theme' 
-                    : '<i class="fas fa-moon"></i> Theme';
-            }
-
-            // Switch between URL and Search modes
+            // Switch modes
             function switchMode(mode) {
-                currentMode = mode;
+                currentState.mode = mode;
                 modeButtons.forEach(btn => {
                     btn.classList.toggle('active', btn.dataset.mode === mode);
                 });
                 
-                if (mode === 'url') {
-                    downloadForm.style.display = 'flex';
-                    searchForm.style.display = 'none';
-                    refreshBtn.style.display = 'none';
-                    clearResults();
-                } else {
-                    downloadForm.style.display = 'none';
-                    searchForm.style.display = 'flex';
-                    refreshBtn.style.display = 'flex';
-                    clearResults();
+                downloadForm.style.display = mode === 'url' ? 'flex' : 'none';
+                searchForm.style.display = mode === 'search' ? 'flex' : 'none';
+                musicForm.style.display = mode === 'music' ? 'flex' : 'none';
+                clearResults();
+                
+                if (mode === 'music') {
+                    currentState.platform = 'youtube';
+                    currentState.format = 'mp3';
+                    updateMediaButtons();
+                    formatButtons.forEach(btn => {
+                        btn.classList.toggle('active', btn.dataset.format === 'mp3');
+                    });
                 }
             }
 
-            // Process download from URL
-            async function processDownload(url) {
-                showLoading();
+            function updateMediaButtons() {
+                mediaButtons.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.platform === currentState.platform);
+                });
+            }
+
+            // Process download from URL (URL Mode)
+            async function processDownloadFromUrl(url) {
+                showDownloadModal("Preparing download...");
                 
                 try {
+                    const api = API_CONFIG[currentState.apiProvider];
                     let apiUrl;
                     
-                    if (currentPlatform === 'youtube') {
-                        // For YouTube, use different endpoints based on format
-                        const endpoint = currentFormat === 'mp3' ? API_ENDPOINTS.youtube.mp3 : API_ENDPOINTS.youtube.mp4;
-                        apiUrl = `${endpoint}?apikey=${API_KEY}&url=${encodeURIComponent(url)}${currentFormat === 'mp4' ? '&quality=720' : '&quality=128'}`;
-                    } else if (currentPlatform === 'spotify') {
-                        apiUrl = `${API_ENDPOINTS.spotify.download}?apikey=${API_KEY}&url=${encodeURIComponent(url)}`;
-                    } else if (currentPlatform === 'tiktok') {
-                        apiUrl = `${API_ENDPOINTS.tiktok.download}?apikey=${API_KEY}&url=${encodeURIComponent(url)}`;
+                    if (currentState.platform === 'youtube') {
+                        if (currentState.apiProvider === 'gifted') {
+                            const endpoint = currentState.format === 'mp3' ? api.endpoints.youtube.mp3 : api.endpoints.youtube.mp4;
+                            apiUrl = `${endpoint}?apikey=${api.key}&url=${encodeURIComponent(url)}`;
+                        } else {
+                            // David API
+                            if (currentState.format === 'mp3') {
+                                const videoId = getYouTubeID(url);
+                                apiUrl = videoId ? `${api.endpoints.youtube.music}?query=${encodeURIComponent(videoId)}&apikey=${api.key}` : null;
+                            } else {
+                                apiUrl = `${api.endpoints.youtube.mp4}?url=${encodeURIComponent(url)}&apikey=${api.key}`;
+                            }
+                        }
                     } else {
-                        apiUrl = `${API_ENDPOINTS[currentPlatform]}?apikey=${API_KEY}&url=${encodeURIComponent(url)}`;
+                        const endpoint = api.endpoints[currentState.platform];
+                        if (typeof endpoint === 'object') {
+                            apiUrl = `${endpoint.download}?apikey=${api.key}&url=${encodeURIComponent(url)}`;
+                        } else {
+                            apiUrl = `${endpoint}?apikey=${api.key}&url=${encodeURIComponent(url)}`;
+                        }
                     }
                     
-                    console.log('Fetching from:', apiUrl);
+                    if (!apiUrl) {
+                        hideDownloadModal();
+                        showError("This platform/format combination is not supported");
+                        return;
+                    }
+                    
+                    updateDownloadProgress(30, "Fetching download link...");
+                    
                     const response = await fetch(apiUrl);
                     const result = await response.json();
                     
-                    console.log('API Response:', result);
+                    updateDownloadProgress(70, "Processing response...");
                     
-                    if (result.status === 'success' || result.url || result.videoUrl || result.downloadUrl) {
-                        displaySingleResult(result);
+                    let downloadUrl;
+                    if (currentState.apiProvider === 'david') {
+                        downloadUrl = result.download_url || result.DownloadLink || (result.result && result.result.download_url);
                     } else {
-                        showError("Failed to fetch media information. Please check the URL and try again.");
+                        downloadUrl = result.url || result.downloadUrl || result.videoUrl;
+                    }
+                    
+                    if (downloadUrl && downloadUrl !== 'N/A') {
+                        updateDownloadProgress(90, "Starting download...");
+                        setTimeout(() => {
+                            triggerDownload(downloadUrl, getFileNameFromUrl(url));
+                            hideDownloadModal();
+                        }, 500);
+                    } else {
+                        hideDownloadModal();
+                        showError("No download link found in the response");
                     }
                 } catch (error) {
                     console.error('Download error:', error);
-                    showError("An error occurred. Please try again.");
+                    hideDownloadModal();
+                    showError("Failed to process download. Please try again.");
                 }
             }
 
-            // Perform search using your provided APIs
+            // Process download from search result (Search/Music Mode)
+            async function processDownloadFromSearch(result, index) {
+                showDownloadModal("Preparing download from search result...");
+                
+                try {
+                    const api = API_CONFIG[currentState.apiProvider];
+                    let downloadUrl = result.download_url || result.DownloadLink;
+                    
+                    // If no direct download URL, try to get it from the video URL
+                    if (!downloadUrl && result.video_url) {
+                        updateDownloadProgress(30, "Fetching download link...");
+                        
+                        if (currentState.platform === 'youtube') {
+                            if (currentState.apiProvider === 'gifted') {
+                                const endpoint = currentState.format === 'mp3' ? api.endpoints.youtube.mp3 : api.endpoints.youtube.mp4;
+                                const apiUrl = `${endpoint}?apikey=${api.key}&url=${encodeURIComponent(result.video_url)}`;
+                                const response = await fetch(apiUrl);
+                                const data = await response.json();
+                                downloadUrl = data.url || data.downloadUrl;
+                            } else {
+                                // David API
+                                if (currentState.format === 'mp3') {
+                                    const videoId = getYouTubeID(result.video_url);
+                                    const apiUrl = `${api.endpoints.youtube.music}?query=${encodeURIComponent(videoId || result.title)}&apikey=${api.key}`;
+                                    const response = await fetch(apiUrl);
+                                    const data = await response.json();
+                                    downloadUrl = data.download_url || (data.result && data.result.download_url);
+                                } else {
+                                    const apiUrl = `${api.endpoints.youtube.mp4}?url=${encodeURIComponent(result.video_url)}&apikey=${api.key}`;
+                                    const response = await fetch(apiUrl);
+                                    const data = await response.json();
+                                    downloadUrl = data.download_url || (data.result && data.result.download_url);
+                                }
+                            }
+                        }
+                    }
+                    
+                    updateDownloadProgress(70, "Processing...");
+                    
+                    if (downloadUrl && downloadUrl !== 'N/A') {
+                        updateDownloadProgress(90, "Starting download...");
+                        setTimeout(() => {
+                            triggerDownload(downloadUrl, getFileNameFromTitle(result.title));
+                            hideDownloadModal();
+                        }, 500);
+                    } else {
+                        hideDownloadModal();
+                        showError("Could not get download link for this item");
+                    }
+                } catch (error) {
+                    console.error('Search download error:', error);
+                    hideDownloadModal();
+                    showError("Failed to download. Please try again.");
+                }
+            }
+
+            // Perform search
             async function performSearch(query) {
                 showLoading();
                 
                 try {
+                    const api = API_CONFIG[currentState.apiProvider];
                     let searchResults = [];
                     
-                    switch(currentPlatform) {
-                        case 'youtube':
-                            searchResults = await searchYouTube(query);
-                            break;
-                        case 'spotify':
-                            searchResults = await searchSpotify(query);
-                            break;
-                        case 'tiktok':
-                            searchResults = await searchTikTok(query);
-                            break;
-                        default:
-                            showError("Search is not supported for this platform yet");
-                            return;
+                    if (currentState.platform === 'youtube') {
+                        searchResults = await searchYouTube(query);
+                    } else if (currentState.platform === 'spotify' && api.endpoints.spotify.search) {
+                        searchResults = await searchSpotify(query);
+                    } else {
+                        showError("Search is not supported for this platform");
+                        return;
                     }
                     
-                    currentSearchResults = searchResults;
+                    currentState.searchResults = searchResults;
                     displaySearchResults();
                 } catch (error) {
                     console.error('Search error:', error);
@@ -1965,191 +2125,168 @@
                 }
             }
 
-            // Search YouTube using provided API
+            // Search music
+            async function searchMusic(query) {
+                showLoading();
+                
+                try {
+                    const api = API_CONFIG[currentState.apiProvider];
+                    let searchResults = [];
+                    
+                    if (api.name === "David Cyril API") {
+                        // Use David API for music search
+                        const url = `${api.endpoints.youtube.music}?query=${encodeURIComponent(query)}&apikey=${api.key}`;
+                        const response = await fetch(url);
+                        const data = await response.json();
+                        
+                        if (data.status === true && data.result) {
+                            // Single result
+                            searchResults = [{
+                                type: 'music',
+                                title: data.result.title,
+                                artist: extractArtist(data.result.title),
+                                thumbnail: data.result.thumbnail,
+                                duration: data.result.duration,
+                                views: formatNumber(data.result.views),
+                                published: data.result.published,
+                                download_url: data.result.download_url,
+                                video_url: data.result.video_url
+                            }];
+                        } else if (data.results && Array.isArray(data.results)) {
+                            // Multiple results
+                            searchResults = data.results.map(item => ({
+                                type: 'music',
+                                title: item.title,
+                                artist: extractArtist(item.title),
+                                thumbnail: item.thumbnail,
+                                duration: item.duration,
+                                views: formatNumber(item.views),
+                                published: item.published,
+                                video_url: item.url,
+                                videoId: item.videoId
+                            }));
+                        }
+                    } else {
+                        // Use YouTube search for Gifted API
+                        searchResults = await searchYouTube(query);
+                    }
+                    
+                    currentState.searchResults = searchResults;
+                    displaySearchResults();
+                } catch (error) {
+                    console.error('Music search error:', error);
+                    showError("Failed to search for music. Please try again.");
+                }
+            }
+
+            // Search YouTube
             async function searchYouTube(query) {
                 try {
-                    const url = `${API_ENDPOINTS.youtube.search}?apikey=${API_KEY}&query=${encodeURIComponent(query)}`;
-                    console.log('YouTube Search URL:', url);
+                    const api = API_CONFIG[currentState.apiProvider];
+                    let url;
+                    
+                    if (api.name === "David Cyril API") {
+                        url = `${api.endpoints.youtube.search}?query=${encodeURIComponent(query)}`;
+                    } else {
+                        // Gifted API search not implemented in provided endpoints
+                        return getMockResults(query, 'youtube');
+                    }
                     
                     const response = await fetch(url);
                     const data = await response.json();
                     
-                    console.log('YouTube Search Response:', data);
-                    
-                    if (data.status === 'success' && data.results) {
-                        return data.results.slice(0, RESULTS_PER_PAGE).map(item => ({
-                            id: item.id || item.videoId || Math.random().toString(36).substr(2, 9),
-                            title: item.title || 'Untitled',
-                            thumbnail: item.thumbnail || `https://img.youtube.com/vi/${item.id || item.videoId}/hqdefault.jpg`,
-                            channel: item.channel || 'Unknown',
-                            duration: item.duration || 'N/A',
-                            views: formatViews(item.views) || '0',
-                            likes: formatLikes(item.likes) || '0'
+                    if ((data.status === true || data.status === 'success') && data.results) {
+                        return data.results.map(item => ({
+                            id: item.videoId || Math.random().toString(36).substr(2, 9),
+                            title: item.title,
+                            thumbnail: item.thumbnail,
+                            duration: item.duration,
+                            views: formatNumber(item.views),
+                            published: item.published,
+                            video_url: item.url,
+                            channel: 'YouTube'
                         }));
-                    } else {
-                        // Return mock data if API fails
-                        return getMockYouTubeResults(query);
                     }
+                    return getMockResults(query, 'youtube');
                 } catch (error) {
                     console.error('YouTube search error:', error);
-                    return getMockYouTubeResults(query);
+                    return getMockResults(query, 'youtube');
                 }
             }
 
-            // Search Spotify using provided API
+            // Search Spotify
             async function searchSpotify(query) {
                 try {
-                    const url = `${API_ENDPOINTS.spotify.search}?apikey=${API_KEY}&query=${encodeURIComponent(query)}`;
-                    console.log('Spotify Search URL:', url);
+                    const api = API_CONFIG[currentState.apiProvider];
+                    const url = `${api.endpoints.spotify.search}?text=${encodeURIComponent(query)}`;
                     
                     const response = await fetch(url);
                     const data = await response.json();
                     
-                    console.log('Spotify Search Response:', data);
-                    
-                    if (data.status === 'success' && data.results) {
-                        return data.results.slice(0, RESULTS_PER_PAGE).map(item => ({
-                            id: item.id || item.trackId || Math.random().toString(36).substr(2, 9),
-                            title: item.title || 'Untitled',
-                            artist: item.artist || 'Unknown',
-                            album: item.album || 'Unknown',
-                            thumbnail: item.thumbnail || item.cover || 'https://via.placeholder.com/300x300/1DB954/FFFFFF?text=Spotify',
-                            duration: formatDuration(item.duration) || 'N/A',
-                            popularity: item.popularity || 0
+                    if (data.success === true && data.result) {
+                        return data.result.map(item => ({
+                            id: item.trackId || Math.random().toString(36).substr(2, 9),
+                            title: item.trackName,
+                            artist: item.artistName,
+                            album: item.albumName,
+                            duration: item.duration,
+                            thumbnail: item.thumbnail,
+                            externalUrl: item.externalUrl,
+                            type: 'spotify'
                         }));
-                    } else {
-                        // Return mock data if API fails
-                        return getMockSpotifyResults(query);
                     }
+                    return getMockResults(query, 'spotify');
                 } catch (error) {
                     console.error('Spotify search error:', error);
-                    return getMockSpotifyResults(query);
+                    return getMockResults(query, 'spotify');
                 }
             }
 
-            // Search TikTok using provided API
-            async function searchTikTok(query) {
-                try {
-                    const url = `${API_ENDPOINTS.tiktok.search}?apikey=${API_KEY}&query=${encodeURIComponent(query)}`;
-                    console.log('TikTok Search URL:', url);
-                    
-                    const response = await fetch(url);
-                    const data = await response.json();
-                    
-                    console.log('TikTok Search Response:', data);
-                    
-                    if (data.status === 'success' && data.results) {
-                        return data.results.slice(0, RESULTS_PER_PAGE).map(item => ({
-                            id: item.id || item.videoId || Math.random().toString(36).substr(2, 9),
-                            title: item.title || 'TikTok Video',
-                            author: item.author || '@user',
-                            thumbnail: item.thumbnail || item.cover || 'https://via.placeholder.com/300x400/000000/FFFFFF?text=TikTok',
-                            plays: formatNumber(item.plays) || '0',
-                            likes: formatNumber(item.likes) || '0',
-                            duration: formatDuration(item.duration) || '0:15'
-                        }));
-                    } else {
-                        // Return mock data if API fails
-                        return getMockTikTokResults(query);
-                    }
-                } catch (error) {
-                    console.error('TikTok search error:', error);
-                    return getMockTikTokResults(query);
+            // Mock data for fallback
+            function getMockResults(query, type) {
+                if (type === 'youtube') {
+                    return [
+                        {
+                            id: "dQw4w9WgXcQ",
+                            title: "Never Gonna Give You Up - " + query,
+                            thumbnail: "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
+                            duration: "3:32",
+                            views: "1.2B",
+                            published: "10 years ago",
+                            video_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                            channel: "Rick Astley"
+                        }
+                    ];
+                } else if (type === 'spotify') {
+                    return [
+                        {
+                            id: "7xWn3HqJz3",
+                            title: "Blinding Lights - " + query,
+                            artist: "The Weeknd",
+                            album: "After Hours",
+                            duration: "3:20",
+                            thumbnail: "https://i.scdn.co/image/ab67616d0000b2738863bc11d2aa12b54f5aeb36",
+                            externalUrl: "https://open.spotify.com/track/7xWn3HqJz3",
+                            type: 'spotify'
+                        }
+                    ];
                 }
+                return [];
             }
 
-            // Mock data functions (used as fallback)
-            function getMockYouTubeResults(query) {
-                const mockResults = [
-                    {
-                        id: "dQw4w9WgXcQ",
-                        title: "Never Gonna Give You Up - " + query,
-                        thumbnail: "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-                        channel: "Rick Astley",
-                        duration: "3:32",
-                        views: "1.2B",
-                        likes: "12M"
-                    },
-                    {
-                        id: "9bZkp7q19f0",
-                        title: "GANGNAM STYLE - " + query,
-                        thumbnail: "https://i.ytimg.com/vi/9bZkp7q19f0/maxresdefault.jpg",
-                        channel: "PSY",
-                        duration: "4:13",
-                        views: "4.5B",
-                        likes: "31M"
-                    },
-                    {
-                        id: "kJQP7kiw5Fk",
-                        title: "Despacito - " + query,
-                        thumbnail: "https://i.ytimg.com/vi/kJQP7kiw5Fk/maxresdefault.jpg",
-                        channel: "Luis Fonsi",
-                        duration: "4:41",
-                        views: "8.1B",
-                        likes: "50M"
-                    }
-                ];
-                return mockResults.slice(0, 10);
-            }
-
-            function getMockSpotifyResults(query) {
-                return [
-                    {
-                        id: "7xWn3HqJz3",
-                        title: "Blinding Lights - " + query,
-                        artist: "The Weeknd",
-                        album: "After Hours",
-                        thumbnail: "https://i.scdn.co/image/ab67616d0000b2738863bc11d2aa12b54f5aeb36",
-                        duration: "3:20",
-                        popularity: 95
-                    },
-                    {
-                        id: "5j0Kp9iGT",
-                        title: "Bad Guy - " + query,
-                        artist: "Billie Eilish",
-                        album: "When We All Fall Asleep, Where Do We Go?",
-                        thumbnail: "https://i.scdn.co/image/ab67616d0000b27350ca1a4c783c8b7c1b2b9e2a",
-                        duration: "3:14",
-                        popularity: 92
-                    }
-                ];
-            }
-
-            function getMockTikTokResults(query) {
-                return [
-                    {
-                        id: "1234567890",
-                        title: "Funny TikTok - " + query,
-                        author: "@funnyvideos",
-                        thumbnail: "https://placehold.co/300x400/000000/FFFFFF?text=TikTok+" + encodeURIComponent(query),
-                        plays: "2.5M",
-                        likes: "350K",
-                        duration: "0:45"
-                    }
-                ];
-            }
-
-            // Refresh search
-            function refreshSearch() {
-                if (currentSearchQuery) {
-                    performSearch(currentSearchQuery);
-                }
-            }
-
-            // Display loading state
+            // Display functions
             function showLoading() {
                 resultsHeader.style.display = 'none';
                 pagination.style.display = 'none';
                 resultsContainer.innerHTML = `
                     <div class="loading">
                         <div class="loading-spinner"></div>
-                        <p>Processing your request...</p>
-                        <p style="font-size: 0.9rem; margin-top: 1rem; color: var(--gray);">This may take a few moments...</p>
+                        <p>Searching...</p>
+                        <p style="font-size: 0.9rem; margin-top: 1rem; color: var(--gray);">Using ${API_CONFIG[currentState.apiProvider].name}</p>
                     </div>
                 `;
             }
 
-            // Display error message
             function showError(message) {
                 resultsHeader.style.display = 'none';
                 pagination.style.display = 'none';
@@ -2163,105 +2300,21 @@
                 `;
             }
 
-            // Clear results
             function clearResults() {
                 resultsHeader.style.display = 'none';
                 pagination.style.display = 'none';
                 resultsContainer.innerHTML = '';
             }
 
-            // Display single result (URL mode)
-            function displaySingleResult(data) {
-                resultsHeader.style.display = 'none';
-                
-                let downloadUrl, title, thumbnail, metaInfo = {};
-                
-                // Parse response based on platform
-                switch(currentPlatform) {
-                    case 'youtube':
-                        downloadUrl = data.url || data.videoUrl || data.downloadUrl;
-                        title = data.title || "YouTube Video";
-                        thumbnail = data.thumbnail || `https://img.youtube.com/vi/${getYouTubeID(urlInput.value)}/maxresdefault.jpg`;
-                        metaInfo = {
-                            duration: data.duration,
-                            quality: data.quality || 'HD',
-                            size: data.filesize || 'N/A',
-                            channel: data.channel
-                        };
-                        break;
-                        
-                    case 'tiktok':
-                        downloadUrl = data.url || data.videoUrl || data.downloadUrl;
-                        title = data.title || "TikTok Video";
-                        thumbnail = data.thumbnail || data.cover;
-                        metaInfo = {
-                            author: data.author,
-                            views: formatNumber(data.playCount),
-                            likes: formatNumber(data.diggCount)
-                        };
-                        break;
-                        
-                    default:
-                        downloadUrl = data.url || data.downloadUrl || data.videoUrl;
-                        title = data.title || "Media File";
-                        thumbnail = data.thumbnail;
-                }
-                
-                // Generate HTML for result
-                const resultHTML = `
-                    <div class="result-card">
-                        ${thumbnail ? `<img src="${thumbnail}" alt="${title}" class="result-thumbnail" onerror="this.src='https://via.placeholder.com/300x200/333333/666666?text=Thumbnail'">` : 
-                        `<div class="result-thumbnail" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
-                            <i class="fas fa-file-video"></i>
-                        </div>`}
-                        <div class="result-content">
-                            <h2 class="result-title">${title}</h2>
-                            
-                            ${Object.keys(metaInfo).length > 0 ? `
-                                <div class="result-meta">
-                                    ${metaInfo.duration ? `<div class="meta-item"><i class="far fa-clock"></i> ${metaInfo.duration}</div>` : ''}
-                                    ${metaInfo.quality ? `<div class="meta-item"><i class="fas fa-hd"></i> ${metaInfo.quality}</div>` : ''}
-                                    ${metaInfo.size ? `<div class="meta-item"><i class="far fa-hdd"></i> ${metaInfo.size}</div>` : ''}
-                                    ${metaInfo.author ? `<div class="meta-item"><i class="far fa-user"></i> ${metaInfo.author}</div>` : ''}
-                                    ${metaInfo.channel ? `<div class="meta-item"><i class="fas fa-user-circle"></i> ${metaInfo.channel}</div>` : ''}
-                                    ${metaInfo.views ? `<div class="meta-item"><i class="far fa-eye"></i> ${metaInfo.views}</div>` : ''}
-                                    ${metaInfo.likes ? `<div class="meta-item"><i class="far fa-thumbs-up"></i> ${metaInfo.likes}</div>` : ''}
-                                </div>
-                            ` : ''}
-                            
-                            <div class="result-actions">
-                                ${currentPlatform === 'youtube' && currentFormat === 'mp4' ? `
-                                    <select class="quality-selector" id="qualitySelect">
-                                        <option value="360">360p</option>
-                                        <option value="480">480p</option>
-                                        <option value="720" selected>720p (HD)</option>
-                                        <option value="1080">1080p (Full HD)</option>
-                                    </select>
-                                ` : ''}
-                                
-                                <button class="download-btn" onclick="downloadMedia('${downloadUrl}', '${cleanTitle(title)}')">
-                                    <i class="fas fa-download"></i> Download ${currentFormat.toUpperCase()}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                resultsContainer.innerHTML = resultHTML;
-            }
-
-            // Display search results
             function displaySearchResults() {
-                const startIndex = (currentPage - 1) * RESULTS_PER_PAGE;
-                const endIndex = startIndex + RESULTS_PER_PAGE;
-                const paginatedResults = currentSearchResults.slice(startIndex, endIndex);
-                const totalResults = currentSearchResults.length;
+                const startIndex = (currentState.page - 1) * 12;
+                const endIndex = startIndex + 12;
+                const paginatedResults = currentState.searchResults.slice(startIndex, endIndex);
+                const totalResults = currentState.searchResults.length;
                 
-                // Update header
                 resultsHeader.style.display = 'flex';
-                resultsCount.textContent = `Showing ${Math.min(totalResults, RESULTS_PER_PAGE)} of ${totalResults} results`;
+                resultsCount.textContent = `Showing ${Math.min(totalResults, 12)} of ${totalResults} results`;
                 
-                // Generate results HTML
                 let resultsHTML = '';
                 
                 if (paginatedResults.length === 0) {
@@ -2269,7 +2322,7 @@
                         <div class="error-message">
                             <i class="fas fa-search"></i>
                             <h4>No Results Found</h4>
-                            <p>No results found for "${currentSearchQuery}". Try a different search term.</p>
+                            <p>No results found for "${currentState.searchQuery}". Try a different search term.</p>
                         </div>
                     `;
                 } else {
@@ -2284,74 +2337,53 @@
                 }
                 
                 resultsContainer.innerHTML = resultsHTML;
-                
-                // Generate pagination
                 generatePagination();
             }
 
-            // Create result card for search results
             function createResultCard(result, index) {
-                let thumbnail, title, metaHTML = '', url, platformUrl = '';
+                const thumbnail = result.thumbnail || 'https://via.placeholder.com/300x200/333333/666666?text=Thumbnail';
+                const title = result.title || 'Untitled';
                 
-                switch(currentPlatform) {
-                    case 'youtube':
-                        thumbnail = result.thumbnail || `https://img.youtube.com/vi/${result.id}/hqdefault.jpg`;
-                        title = result.title;
-                        url = `https://www.youtube.com/watch?v=${result.id}`;
-                        platformUrl = url;
-                        metaHTML = `
-                            <div class="result-meta">
-                                ${result.channel ? `<div class="meta-item"><i class="fas fa-user-circle"></i> ${result.channel}</div>` : ''}
-                                ${result.duration ? `<div class="meta-item"><i class="far fa-clock"></i> ${result.duration}</div>` : ''}
-                                ${result.views ? `<div class="meta-item"><i class="far fa-eye"></i> ${result.views}</div>` : ''}
-                                ${result.likes ? `<div class="meta-item"><i class="far fa-thumbs-up"></i> ${result.likes}</div>` : ''}
-                            </div>
-                        `;
-                        break;
-                        
-                    case 'spotify':
-                        thumbnail = result.thumbnail || 'https://via.placeholder.com/300x300/1DB954/FFFFFF?text=Spotify';
-                        title = result.title;
-                        url = `https://open.spotify.com/track/${result.id}`;
-                        platformUrl = url;
-                        metaHTML = `
-                            <div class="result-meta">
-                                ${result.artist ? `<div class="meta-item"><i class="fas fa-microphone"></i> ${result.artist}</div>` : ''}
-                                ${result.album ? `<div class="meta-item"><i class="fas fa-compact-disc"></i> ${result.album}</div>` : ''}
-                                ${result.duration ? `<div class="meta-item"><i class="far fa-clock"></i> ${result.duration}</div>` : ''}
-                                ${result.popularity ? `<div class="meta-item"><i class="fas fa-chart-line"></i> ${result.popularity}%</div>` : ''}
-                            </div>
-                        `;
-                        break;
-                        
-                    case 'tiktok':
-                        thumbnail = result.thumbnail || 'https://via.placeholder.com/300x400/000000/FFFFFF?text=TikTok';
-                        title = result.title;
-                        url = `https://www.tiktok.com/@${result.author.replace('@', '')}/video/${result.id}`;
-                        platformUrl = url;
-                        metaHTML = `
-                            <div class="result-meta">
-                                ${result.author ? `<div class="meta-item"><i class="far fa-user"></i> ${result.author}</div>` : ''}
-                                ${result.plays ? `<div class="meta-item"><i class="far fa-eye"></i> ${result.plays}</div>` : ''}
-                                ${result.likes ? `<div class="meta-item"><i class="far fa-thumbs-up"></i> ${result.likes}</div>` : ''}
-                                ${result.duration ? `<div class="meta-item"><i class="far fa-clock"></i> ${result.duration}</div>` : ''}
-                            </div>
-                        `;
-                        break;
+                let metaHTML = '';
+                if (result.type === 'music' || result.type === 'spotify') {
+                    metaHTML = `
+                        <div class="result-meta">
+                            ${result.artist ? `<div class="meta-item"><i class="fas fa-microphone"></i> ${result.artist}</div>` : ''}
+                            ${result.duration ? `<div class="meta-item"><i class="far fa-clock"></i> ${result.duration}</div>` : ''}
+                            ${result.views ? `<div class="meta-item"><i class="far fa-eye"></i> ${result.views}</div>` : ''}
+                            ${result.published ? `<div class="meta-item"><i class="far fa-calendar"></i> ${result.published}</div>` : ''}
+                        </div>
+                    `;
+                } else {
+                    metaHTML = `
+                        <div class="result-meta">
+                            ${result.channel ? `<div class="meta-item"><i class="fas fa-user-circle"></i> ${result.channel}</div>` : ''}
+                            ${result.duration ? `<div class="meta-item"><i class="far fa-clock"></i> ${result.duration}</div>` : ''}
+                            ${result.views ? `<div class="meta-item"><i class="far fa-eye"></i> ${result.views}</div>` : ''}
+                            ${result.published ? `<div class="meta-item"><i class="far fa-calendar"></i> ${result.published}</div>` : ''}
+                        </div>
+                    `;
                 }
+                
+                const hasDownloadUrl = result.download_url && result.download_url !== 'N/A';
+                const hasVideoUrl = result.video_url;
+                const isAudio = currentState.format === 'mp3' || result.type === 'music' || result.type === 'spotify';
                 
                 return `
                     <div class="result-card">
-                        <img src="${thumbnail}" alt="${title}" class="result-thumbnail" onerror="this.src='https://via.placeholder.com/300x200/333333/666666?text=Thumbnail'">
+                        <img src="${thumbnail}" alt="${title}" class="result-thumbnail" onclick="previewMedia(${index})">
                         <div class="result-content">
                             <h3 class="result-title">${title}</h3>
                             ${metaHTML}
                             <div class="result-actions">
-                                <button class="download-btn" onclick="downloadSearchResult('${url}', '${cleanTitle(title)}', ${index})">
+                                ${hasDownloadUrl || hasVideoUrl ? `
+                                    <button class="play-btn" onclick="playMedia(${index})">
+                                        <i class="fas fa-play"></i> Play
+                                    </button>
+                                ` : ''}
+                                
+                                <button class="download-btn" onclick="downloadFromSearch(${index})">
                                     <i class="fas fa-download"></i> Download
-                                </button>
-                                <button class="view-btn" onclick="window.open('${platformUrl}', '_blank')">
-                                    <i class="fas fa-external-link-alt"></i> View
                                 </button>
                             </div>
                         </div>
@@ -2359,90 +2391,99 @@
                 `;
             }
 
-            // Generate pagination buttons
-            function generatePagination() {
-                const totalPages = Math.ceil(currentSearchResults.length / RESULTS_PER_PAGE);
+            // Global functions for buttons
+            window.downloadFromSearch = function(index) {
+                const result = currentState.searchResults[index];
+                if (result) {
+                    processDownloadFromSearch(result, index);
+                }
+            };
+
+            window.playMedia = function(index) {
+                const result = currentState.searchResults[index];
+                if (!result) return;
                 
-                if (totalPages <= 1) {
-                    pagination.style.display = 'none';
+                currentState.currentPlaying = result;
+                
+                // Check if it's audio or video
+                const isAudio = currentState.format === 'mp3' || result.type === 'music' || result.type === 'spotify';
+                const mediaUrl = result.download_url || result.video_url;
+                
+                if (!mediaUrl || mediaUrl === 'N/A') {
+                    showError("No media URL available for playback");
                     return;
                 }
                 
-                pagination.style.display = 'flex';
+                playerTitle.textContent = result.title;
+                playerArtist.textContent = result.artist || result.channel || 'Unknown';
                 
-                let paginationHTML = '';
-                
-                // Previous button
-                if (currentPage > 1) {
-                    paginationHTML += `<button class="page-btn" onclick="changePage(${currentPage - 1})"><i class="fas fa-chevron-left"></i> Previous</button>`;
+                if (isAudio) {
+                    videoPlayer.style.display = 'none';
+                    audioPlayer.style.display = 'block';
+                    audioPlayer.src = mediaUrl;
+                    audioPlayer.play();
+                } else {
+                    audioPlayer.style.display = 'none';
+                    videoPlayer.style.display = 'block';
+                    videoPlayer.src = mediaUrl;
+                    videoPlayer.play();
                 }
                 
-                // Page numbers
-                const maxVisiblePages = 5;
-                let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-                let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-                
-                if (endPage - startPage + 1 < maxVisiblePages) {
-                    startPage = Math.max(1, endPage - maxVisiblePages + 1);
+                playerModal.style.display = 'block';
+            };
+
+            window.previewMedia = function(index) {
+                const result = currentState.searchResults[index];
+                if (result && result.video_url) {
+                    window.open(result.video_url, '_blank');
                 }
-                
-                for (let i = startPage; i <= endPage; i++) {
-                    paginationHTML += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
-                }
-                
-                // Next button
-                if (currentPage < totalPages) {
-                    paginationHTML += `<button class="page-btn" onclick="changePage(${currentPage + 1})">Next <i class="fas fa-chevron-right"></i></button>`;
-                }
-                
-                pagination.innerHTML = paginationHTML;
+            };
+
+            window.closePlayerModal = function() {
+                playerModal.style.display = 'none';
+                videoPlayer.pause();
+                audioPlayer.pause();
+                videoPlayer.src = '';
+                audioPlayer.src = '';
+            };
+
+            // Download modal functions
+            function showDownloadModal(message) {
+                downloadMessage.textContent = message;
+                downloadProgressBar.style.width = '0%';
+                downloadStatus.textContent = 'Initializing...';
+                downloadModal.style.display = 'block';
             }
 
-            // Change page
-            function changePage(page) {
-                currentPage = page;
-                displaySearchResults();
-                window.scrollTo({ top: resultsContainer.offsetTop - 100, behavior: 'smooth' });
+            function updateDownloadProgress(percent, status) {
+                downloadProgressBar.style.width = percent + '%';
+                downloadStatus.textContent = status;
             }
 
-            // Download media from search result
-            async function downloadSearchResult(url, title, index) {
-                showLoading();
-                
-                try {
-                    // Use the URL from search result for download
-                    await processDownload(url);
-                } catch (error) {
-                    console.error('Download error:', error);
-                    showError("Failed to download media. Please try again.");
-                }
+            function hideDownloadModal() {
+                setTimeout(() => {
+                    downloadModal.style.display = 'none';
+                }, 500);
             }
 
-            // Download media
-            function downloadMedia(url, filename) {
-                // For YouTube quality selection
-                if (currentPlatform === 'youtube' && currentFormat === 'mp4') {
-                    const quality = document.getElementById('qualitySelect')?.value || '720';
-                    url = url.replace(/quality=\d+/, `quality=${quality}`);
-                }
-                
-                // Create temporary link
+            function triggerDownload(url, filename) {
                 const link = document.createElement('a');
                 link.href = url;
-                const extension = currentFormat === 'mp3' ? 'mp3' : 'mp4';
+                const extension = currentState.format === 'mp3' ? 'mp3' : 'mp4';
                 link.download = `${filename.replace(/[^\w\s-]/gi, '').replace(/\s+/g, '_')}.${extension}`;
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
                 
-                // Track download in analytics
                 if (typeof gtag !== 'undefined') {
                     gtag('event', 'download', {
-                        'event_category': currentPlatform,
-                        'event_label': currentFormat,
+                        'event_category': currentState.platform,
+                        'event_label': currentState.format,
                         'value': 1
                     });
                 }
+                
+                showNotification('Download started!');
             }
 
             // Helper functions
@@ -2455,7 +2496,6 @@
             function formatNumber(num) {
                 if (!num) return '0';
                 if (typeof num === 'string') {
-                    // Handle string numbers with commas, K, M, B
                     if (num.includes('B')) return num;
                     if (num.includes('M')) return num;
                     if (num.includes('K')) return num;
@@ -2468,40 +2508,139 @@
                 return num.toString();
             }
 
-            function formatViews(views) {
-                return formatNumber(views);
+            function extractArtist(title) {
+                const parts = title.split(' - ');
+                return parts.length > 1 ? parts[0] : 'Unknown Artist';
             }
 
-            function formatLikes(likes) {
-                return formatNumber(likes);
-            }
-
-            function formatDuration(duration) {
-                if (!duration) return 'N/A';
-                if (typeof duration === 'number') {
-                    const minutes = Math.floor(duration / 60);
-                    const seconds = duration % 60;
-                    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            function getFileNameFromUrl(url) {
+                try {
+                    const urlObj = new URL(url);
+                    const pathname = urlObj.pathname;
+                    return pathname.split('/').pop().split('?')[0] || 'download';
+                } catch {
+                    return 'download';
                 }
-                return duration;
             }
 
-            function cleanTitle(title) {
-                return title.replace(/[^\w\s-]/gi, '').substring(0, 50);
+            function getFileNameFromTitle(title) {
+                return title.replace(/[^\w\s-]/gi, '').substring(0, 50).replace(/\s+/g, '_');
             }
 
-            // Show disclaimer modal
-            function showDisclaimer() {
+            // Pagination
+            function generatePagination() {
+                const totalPages = Math.ceil(currentState.searchResults.length / 12);
+                
+                if (totalPages <= 1) {
+                    pagination.style.display = 'none';
+                    return;
+                }
+                
+                pagination.style.display = 'flex';
+                let paginationHTML = '';
+                
+                if (currentState.page > 1) {
+                    paginationHTML += `<button class="page-btn" onclick="changePage(${currentState.page - 1})"><i class="fas fa-chevron-left"></i> Previous</button>`;
+                }
+                
+                const maxVisiblePages = 5;
+                let startPage = Math.max(1, currentState.page - Math.floor(maxVisiblePages / 2));
+                let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+                
+                if (endPage - startPage + 1 < maxVisiblePages) {
+                    startPage = Math.max(1, endPage - maxVisiblePages + 1);
+                }
+                
+                for (let i = startPage; i <= endPage; i++) {
+                    paginationHTML += `<button class="page-btn ${i === currentState.page ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
+                }
+                
+                if (currentState.page < totalPages) {
+                    paginationHTML += `<button class="page-btn" onclick="changePage(${currentState.page + 1})">Next <i class="fas fa-chevron-right"></i></button>`;
+                }
+                
+                pagination.innerHTML = paginationHTML;
+            }
+
+            window.changePage = function(page) {
+                currentState.page = page;
+                displaySearchResults();
+                window.scrollTo({ top: resultsContainer.offsetTop - 100, behavior: 'smooth' });
+            };
+
+            // FAQ functionality
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', () => {
+                    const item = question.parentElement;
+                    item.classList.toggle('active');
+                });
+            });
+
+            // Theme toggle
+            window.toggleTheme = function() {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? null : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            };
+
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            }
+
+            // Notification system
+            function showNotification(message) {
+                const notification = document.createElement('div');
+                notification.className = 'notification';
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 100px;
+                    right: 20px;
+                    background-color: var(--primary);
+                    color: white;
+                    padding: 1rem 1.5rem;
+                    border-radius: 5px;
+                    box-shadow: var(--box-shadow);
+                    z-index: 10000;
+                    animation: slideIn 0.3s ease;
+                `;
+                notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 300);
+                }, 3000);
+                
+                // Add animation styles if not present
+                if (!document.querySelector('#notification-styles')) {
+                    const style = document.createElement('style');
+                    style.id = 'notification-styles';
+                    style.textContent = `
+                        @keyframes slideIn {
+                            from { transform: translateX(100%); opacity: 0; }
+                            to { transform: translateX(0); opacity: 1; }
+                        }
+                        @keyframes slideOut {
+                            from { transform: translateX(0); opacity: 1; }
+                            to { transform: translateX(100%); opacity: 0; }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+            }
+
+            window.showDisclaimer = function() {
                 alert(`DISCLAIMER\n\nDianSybexTech Media Downloader is intended for personal, educational, and fair use only.\n\n- Download only content you have permission to use\n- Respect copyright laws and platform terms of service\n- This tool is for educational purposes\n- We are not responsible for misuse of this service\n\nBy using this service, you agree to these terms.`);
-            }
+            };
 
-            // Show privacy policy
-            function showPrivacy() {
+            window.showPrivacy = function() {
                 alert(`PRIVACY POLICY\n\n- We do not store any downloaded content on our servers\n- We do not collect personal information\n- URLs are processed in real-time and not stored\n- We use cookies only for theme preferences\n- No tracking of your download history\n- Your privacy is important to us`);
-            }
-
-            // Initialize
-            updatePlatformSettings();
+            };
 
             // Header scroll effect
             window.addEventListener('scroll', () => {
@@ -2530,15 +2669,11 @@
                 });
             });
 
-            // Track page views
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'page_view', {
-                    page_title: document.title,
-                    page_location: window.location.href
-                });
-            }
+            // Initialize
+            loadSettings();
+            updatePlatformSettings();
             
-            console.log("DianSybexTech Media Downloader fully loaded!");
+            console.log("DianSybexTech Dual API Media Downloader fully loaded!");
         }
         
         // ===== START EVERYTHING =====
