@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DianSybexTech - Media Downloader</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #ff0080, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        .platforms {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .platform-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .platform-btn.active {
+            background: linear-gradient(90deg, #ff0080, #00ccff);
+            transform: scale(1.05);
+        }
+        
+        .search-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .url-input {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn.download {
+            background: linear-gradient(90deg, #ff0080, #ff8c00);
+            color: white;
+            flex: 1;
+        }
+        
+        .btn.play {
+            background: linear-gradient(90deg, #00ccff, #0099cc);
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .result-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .thumbnail {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        .video-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        
+        .video-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 1rem;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+        }
+        
+        .error {
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid #ff4444;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 1rem 0;
+        }
+        
+        .api-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1rem;
+            justify-content: center;
+        }
+        
+        .api-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+        }
+        
+        .api-btn.active {
+            background: linear-gradient(90deg, #00ccff, #ff0080);
+        }
+        
+        .player-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 500px;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            display: none;
+            z-index: 1000;
+        }
+        
+        .player-container.active {
+            display: block;
+        }
+        
+        .player-title {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .player-controls button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        .progress-bar {
+            flex: 1;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: #00ccff;
+            width: 0%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">DianSybexTech</div>
+            <p>Download media from multiple platforms</p>
+        </header>
+        
+        <div class="api-selector">
+            <button class="api-btn active" onclick="selectApi('david')">David API</button>
+            <button class="api-btn" onclick="selectApi('gifted')">Gifted API</button>
+        </div>
+        
+        <div class="platforms">
+            <button class="platform-btn active" onclick="selectPlatform('youtube')">
+                <i class="fab fa-youtube"></i> YouTube
+            </button>
+            <button class="platform-btn" onclick="selectPlatform('tiktok')">
+                <i class="fab fa-tiktok"></i> TikTok
+            </button>
+            <button class="platform-btn" onclick="selectPlatform('instagram')">
+                <i class="fab fa-instagram"></i> Instagram
+            </button>
+        </div>
+        
+        <div class="search-box">
+            <input type="text" 
+                   class="url-input" 
+                   id="urlInput" 
+                   placeholder="Paste YouTube URL here...">
+            <div class="action-buttons">
+                <button class="btn download" onclick="processMedia()">
+                    <i class="fas fa-download"></i> Download
+                </button>
+                <button class="btn play" onclick="searchMusic()">
+                    <i class="fas fa-music"></i> Search Music
+                </button>
+            </div>
+        </div>
+        
+        <div id="resultsContainer"></div>
+        
+        <div class="player-container" id="playerContainer">
+            <div class="player-title" id="playerTitle">Now Playing</div>
+            <div class="player-controls">
+                <button onclick="togglePlayPause()" id="playPauseBtn">
+                    <i class="fas fa-play"></i>
+                </button>
+                <div class="progress-bar" onclick="seekAudio(event)">
+                    <div class="progress" id="progress"></div>
+                </div>
+                <button onclick="closePlayer()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <audio id="audioPlayer" style="display: none;"></audio>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const config = {
+            currentApi: 'david',
+            currentPlatform: 'youtube',
+            apiEndpoints: {
+                david: {
+                    youtube: {
+                        mp4: 'https://apis.davidcyriltech.my.id/download/ytmp4?url=',
+                        mp3: 'https://apis.davidcyriltech.my.id/play?query=',
+                        search: 'https://apis.davidcyriltech.my.id/youtube/search?query='
+                    },
+                    music: 'https://apis.davidcyriltech.my.id/play?query='
+                },
+                gifted: {
+                    youtube: {
+                        mp4: 'https://api.giftedtech.co.ke/api/download/ytmp4?apikey=gifted&url=',
+                        mp3: 'https://api.giftedtech.co.ke/api/download/ytmp3?apikey=gifted&url='
+                    }
+                }
+            }
+        };
+        
+        // DOM Elements
+        const urlInput = document.getElementById('urlInput');
+        const resultsContainer = document.getElementById('resultsContainer');
+        const playerContainer = document.getElementById('playerContainer');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const progress = document.getElementById('progress');
+        const playerTitle = document.getElementById('playerTitle');
+        
+        // Platform selection
+        function selectPlatform(platform) {
+            config.currentPlatform = platform;
+            document.querySelectorAll('.platform-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const placeholders = {
+                youtube: 'Paste YouTube URL here...',
+                tiktok: 'Paste TikTok URL here...',
+                instagram: 'Paste Instagram URL here...'
+            };
+            
+            urlInput.placeholder = placeholders[platform] || 'Paste URL here...';
+        }
+        
+        // API selection
+        function selectApi(api) {
+            config.currentApi = api;
+            document.querySelectorAll('.api-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+        
+        // Process media URL
+        async function processMedia() {
+            const url = urlInput.value.trim();
+            if (!url) {
+                showError('Please enter a URL');
+                return;
+            }
+            
+            showLoading();
+            
+            try {
+                let apiUrl;
+                
+                if (config.currentApi === 'david') {
+                    if (config.currentPlatform === 'youtube') {
+                        apiUrl = `${config.apiEndpoints.david.youtube.mp4}${encodeURIComponent(url)}&apikey=`;
+                    } else {
+                        showError('David API only supports YouTube for now');
+                        return;
+                    }
+                } else {
+                    // Gifted API
+                    apiUrl = `${config.apiEndpoints.gifted.youtube.mp4}${encodeURIComponent(url)}&quality=720`;
+                }
+                
+                console.log('Fetching from:', apiUrl);
+                const response = await fetch(apiUrl);
+                const result = await response.json();
+                
+                console.log('Result:', result);
+                
+                if (result.status === 200 || result.status === true || result.success === true) {
+                    displayResult(result);
+                } else {
+                    showError('Failed to fetch media');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showError('An error occurred. Please try again.');
+            }
+        }
+        
+        // Search music
+        async function searchMusic() {
+            const query = urlInput.value.trim();
+            if (!query) {
+                showError('Please enter a song name');
+                return;
+            }
+            
+            showLoading();
+            
+            try {
+                const apiUrl = `${config.apiEndpoints.david.music}${encodeURIComponent(query)}&apikey=`;
+                console.log('Searching music:', apiUrl);
+                
+                const response = await fetch(apiUrl);
+                const result = await response.json();
+                
+                console.log('Music result:', result);
+                
+                if (result.status === true && result.result) {
+                    displayMusicResult(result.result);
+                } else if (result.results) {
+                    displayMusicResults(result.results);
+                } else {
+                    showError('No results found');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showError('Failed to search music');
+            }
+        }
+        
+        // Display single result
+        function displayResult(data) {
+            let downloadUrl, title, thumbnail;
+            
+            if (config.currentApi === 'david') {
+                downloadUrl = data.result?.download_url || data.download_url;
+                title = data.result?.title || data.title || 'Media File';
+                thumbnail = data.result?.thumbnail || data.thumbnail;
+            } else {
+                downloadUrl = data.url || data.downloadUrl;
+                title = data.title || 'Media File';
+                thumbnail = data.thumbnail;
+            }
+            
+            const html = `
+                <div class="result-card">
+                    ${thumbnail ? `<img src="${thumbnail}" class="thumbnail" alt="${title}">` : ''}
+                    <div class="video-title">${title}</div>
+                    <div class="video-meta">
+                        ${data.result?.duration ? `<span><i class="far fa-clock"></i> ${data.result.duration}</span>` : ''}
+                        ${data.result?.views ? `<span><i class="far fa-eye"></i> ${formatNumber(data.result.views)} views</span>` : ''}
+                    </div>
+                    <div class="action-buttons">
+                        ${downloadUrl ? `
+                            <button class="btn download" onclick="downloadFile('${downloadUrl}', '${escapeString(title)}')">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                            ${downloadUrl.includes('.mp3') ? `
+                                <button class="btn play" onclick="playAudio('${downloadUrl}', '${escapeString(title)}')">
+                                    <i class="fas fa-play"></i> Play
+                                </button>
+                            ` : ''}
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+            
+            resultsContainer.innerHTML = html;
+        }
+        
+        // Display music results
+        function displayMusicResults(results) {
+            let html = '';
+            
+            results.forEach(result => {
+                html += `
+                    <div class="result-card">
+                        ${result.thumbnail ? `<img src="${result.thumbnail}" class="thumbnail" alt="${result.title}">` : ''}
+                        <div class="video-title">${result.title}</div>
+                        <div class="video-meta">
+                            ${result.duration ? `<span><i class="far fa-clock"></i> ${result.duration}</span>` : ''}
+                            ${result.views ? `<span><i class="far fa-eye"></i> ${formatNumber(result.views)} views</span>` : ''}
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn download" onclick="downloadMusic('${result.url || result.video_url}', '${escapeString(result.title)}')">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                            <button class="btn play" onclick="getMusicDownloadUrl('${result.url || result.video_url}', '${escapeString(result.title)}')">
+                                <i class="fas fa-play"></i> Play
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            resultsContainer.innerHTML = html;
+        }
+        
+        // Display single music result
+        function displayMusicResult(result) {
+            const html = `
+                <div class="result-card">
+                    ${result.thumbnail ? `<img src="${result.thumbnail}" class="thumbnail" alt="${result.title}">` : ''}
+                    <div class="video-title">${result.title}</div>
+                    <div class="video-meta">
+                        ${result.duration ? `<span><i class="far fa-clock"></i> ${result.duration}</span>` : ''}
+                        ${result.views ? `<span><i class="far fa-eye"></i> ${formatNumber(result.views)} views</span>` : ''}
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn download" onclick="downloadFile('${result.download_url}', '${escapeString(result.title)}')">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <button class="btn play" onclick="playAudio('${result.download_url}', '${escapeString(result.title)}')">
+                            <i class="fas fa-play"></i> Play
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            resultsContainer.innerHTML = html;
+        }
+        
+        // Get music download URL first, then play
+        async function getMusicDownloadUrl(videoUrl, title) {
+            showLoading();
+            
+            try {
+                // Extract video ID from YouTube URL
+                const videoId = getYouTubeId(videoUrl);
+                if (!videoId) {
+                    showError('Invalid YouTube URL');
+                    return;
+                }
+                
+                // Get download URL from David API
+                const apiUrl = `${config.apiEndpoints.david.music}${videoId}&apikey=`;
+                const response = await fetch(apiUrl);
+                const result = await response.json();
+                
+                if (result.status === true && result.result?.download_url) {
+                    playAudio(result.result.download_url, title);
+                } else {
+                    showError('Could not get audio URL');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showError('Failed to get audio URL');
+            }
+        }
+        
+        // Download music
+        async function downloadMusic(videoUrl, title) {
+            showLoading();
+            
+            try {
+                const videoId = getYouTubeId(videoUrl);
+                if (!videoId) {
+                    showError('Invalid YouTube URL');
+                    return;
+                }
+                
+                const apiUrl = `${config.apiEndpoints.david.music}${videoId}&apikey=`;
+                const response = await fetch(apiUrl);
+                const result = await response.json();
+                
+                if (result.status === true && result.result?.download_url) {
+                    downloadFile(result.result.download_url, title);
+                } else {
+                    showError('Could not get download URL');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showError('Failed to download');
+            }
+        }
+        
+        // Download file
+        function downloadFile(url, filename) {
+            if (!url || url === 'undefined') {
+                showError('No download URL available');
+                return;
+            }
+            
+            // Create temporary link and trigger download
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${filename.replace(/[^\w\s]/gi, '').replace(/\s+/g, '_')}.mp3`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            showNotification('Download started!');
+        }
+        
+        // Play audio
+        function playAudio(url, title) {
+            if (!url || url === 'undefined') {
+                showError('No audio URL available');
+                return;
+            }
+            
+            audioPlayer.src = url;
+            playerTitle.textContent = title;
+            playerContainer.classList.add('active');
+            audioPlayer.play();
+            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            
+            // Update progress bar
+            audioPlayer.addEventListener('timeupdate', updateProgress);
+        }
+        
+        // Toggle play/pause
+        function togglePlayPause() {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                audioPlayer.pause();
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        }
+        
+        // Update progress bar
+        function updateProgress() {
+            const percent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+            progress.style.width = percent + '%';
+        }
+        
+        // Seek audio
+        function seekAudio(event) {
+            const progressBar = event.currentTarget;
+            const clickPosition = event.offsetX;
+            const progressBarWidth = progressBar.clientWidth;
+            const percent = (clickPosition / progressBarWidth);
+            
+            audioPlayer.currentTime = percent * audioPlayer.duration;
+            updateProgress();
+        }
+        
+        // Close player
+        function closePlayer() {
+            playerContainer.classList.remove('active');
+            audioPlayer.pause();
+            audioPlayer.currentTime = 0;
+        }
+        
+        // Helper functions
+        function showLoading() {
+            resultsContainer.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Processing...</div>';
+        }
+        
+        function showError(message) {
+            resultsContainer.innerHTML = `<div class="error"><i class="fas fa-exclamation-triangle"></i> ${message}</div>`;
+        }
+        
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'result-card';
+            notification.innerHTML = `<div style="color: #4CAF50;"><i class="fas fa-check-circle"></i> ${message}</div>`;
+            resultsContainer.prepend(notification);
+            
+            setTimeout(() => notification.remove(), 3000);
+        }
+        
+        function formatNumber(num) {
+            if (!num) return '0';
+            if (typeof num === 'string') num = parseInt(num.replace(/\D/g, ''));
+            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+            return num.toString();
+        }
+        
+        function escapeString(str) {
+            return str.replace(/'/g, "\\'").replace(/"/g, '\\"');
+        }
+        
+        function getYouTubeId(url) {
+            const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[7].length === 11) ? match[7] : null;
+        }
+        
+        // Initialize Font Awesome
+        const faScript = document.createElement('script');
+        faScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js';
+        document.head.appendChild(faScript);
+    </script>
+</body>
+</html>
