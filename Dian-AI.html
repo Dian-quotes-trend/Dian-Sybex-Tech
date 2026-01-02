@@ -1,1034 +1,2683 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8VL9P86LQJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-8VL9P86LQJ');
-</script>
+     <!-- Google Tag Manager -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8VL9P86LQJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-8VL9P86LQJ');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dian AI - Intelligent Assistant </title>
+    <title>DianSybexTech - All Media Downloader | Download Videos, Music, TikTok, YouTube</title> 
+    <meta name="description" content="Free all-in-one media downloader. Download videos from YouTube, TikTok, Instagram, Facebook, Twitter, Spotify, Pinterest. Convert to MP4, MP3, HD quality.">
+    <meta name="keywords" content="media downloader, YouTube downloader, TikTok downloader, MP3 converter, video downloader, free downloader, DianSybexTech">
+    <meta name="author" content="DianSybexTech">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://diansybextech.com/">
+    <meta property="og:title" content="DianSybexTech - All Media Downloader">
+    <meta property="og:description" content="Free all-in-one media downloader. Download videos from YouTube, TikTok, Instagram, Facebook, Twitter, Spotify, Pinterest.">
+    <meta property="og:image" content="https://diansybextech.com/thumbnail.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://diansybextech.com/">
+    <meta property="twitter:title" content="DianSybexTech - All Media Downloader">
+    <meta property="twitter:description" content="Free all-in-one media downloader. Download videos from YouTube, TikTok, Instagram, Facebook, Twitter, Spotify, Pinterest.">
+    <meta property="twitter:image" content="https://diansybextech.com/thumbnail.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://api.dicebear.com/7.x/avataaars/svg?seed=DianSybexTech">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
-        }
-
-        :root {
-            --telegram-bg: #0e1621;
-            --telegram-header: #17212b;
-            --telegram-input: #17212b;
-            --telegram-bubble-user: #2b5278;
-            --telegram-bubble-bot: #182533;
-            --telegram-text: #e1e1e1;
-            --telegram-text-muted: #6b7b8d;
-            --telegram-accent: #3e8ed0;
-            --telegram-green: #3e8ed0;
-            --telegram-hover: #1f2a32;
-            --telegram-border: #1d2c3a;
-            --telegram-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-        }
-
-        body {
-            background: linear-gradient(135deg, #0a0a0a, #0e1621, #17212b);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--telegram-text);
-            padding: 20px;
-            overflow: hidden;
-        }
-
-        .chat-container {
-            width: 100%;
-            max-width: 420px;
-            height: 90vh;
-            max-height: 800px;
-            background: var(--telegram-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            z-index: 10;
-            border: 1px solid var(--telegram-border);
-        }
-
-        /* Social Media Modal */
-        .social-modal {
+        /* ===== LOADING SCREEN STYLES ===== */
+        .loading-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .social-modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .social-content {
-            background: var(--telegram-header);
-            width: 90%;
-            max-width: 350px;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transform: translateY(20px);
-            transition: transform 0.4s ease;
-            border: 1px solid var(--telegram-border);
-        }
-
-        .social-modal.active .social-content {
-            transform: translateY(0);
-        }
-
-        .social-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--telegram-border);
-        }
-
-        .social-header h2 {
-            color: var(--telegram-green);
-            font-size: 20px;
-            font-weight: 500;
-        }
-
-        .close-modal {
-            background: transparent;
-            border: none;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            color: var(--telegram-text-muted);
-        }
-
-        .close-modal:hover {
-            background: var(--telegram-hover);
-            color: var(--telegram-text);
-        }
-
-        .social-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        .social-card {
-            background: var(--telegram-bubble-bot);
-            border-radius: 12px;
-            padding: 18px;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 1px solid var(--telegram-border);
-        }
-
-        .social-card:hover {
-            transform: translateY(-3px);
-            background: var(--telegram-hover);
-            box-shadow: var(--telegram-shadow);
-        }
-
-        .social-card.whatsapp { border-top: 3px solid #25D366; }
-        .social-card.tiktok { border-top: 3px solid #000000; }
-        .social-card.website { border-top: 3px solid var(--telegram-green); }
-
-        .social-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            color: white;
-            margin: 0 auto 12px;
-        }
-
-        .social-icon.whatsapp { background: #25D366; }
-        .social-icon.tiktok { background: #000; }
-        .social-icon.website { background: var(--telegram-green); }
-
-        .social-card h3 {
-            font-size: 15px;
-            margin-bottom: 4px;
-            color: var(--telegram-text);
-            font-weight: 500;
-        }
-
-        .social-card p {
-            font-size: 12px;
-            color: var(--telegram-text-muted);
-        }
-
-        /* Command shortcuts menu */
-        .command-menu {
-            position: absolute;
-            bottom: 75px;
-            left: 20px;
-            width: 280px;
-            background: var(--telegram-header);
-            border-radius: 12px;
-            padding: 15px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-            z-index: 20;
-            display: none;
-            flex-wrap: wrap;
-            gap: 8px;
-            transform-origin: bottom left;
-            animation: scaleIn 0.2s ease forwards;
-            border: 1px solid var(--telegram-border);
-        }
-
-        @keyframes scaleIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .command-menu.active {
-            display: flex;
-        }
-
-        .command-btn {
-            background: var(--telegram-bubble-bot);
-            border: none;
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 14px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
-            color: var(--telegram-text);
-            border: 1px solid var(--telegram-border);
-        }
-
-        .command-btn:hover {
-            background: var(--telegram-hover);
-            transform: translateY(-2px);
-        }
-
-        .command-btn i {
-            font-size: 16px;
-            color: var(--telegram-green);
-        }
-
-        /* Header styling */
-        .chat-header {
-            background: var(--telegram-header);
-            color: var(--telegram-text);
-            padding: 15px 18px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            z-index: 10;
-            border-bottom: 1px solid var(--telegram-border);
-        }
-
-        .avatar {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--telegram-green), #2b5278);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
-            color: white;
-            font-weight: bold;
-        }
-
-        .header-info {
-            flex: 1;
-        }
-
-        .header-info h1 {
-            font-size: 18px;
-            font-weight: 500;
-            letter-spacing: 0.2px;
-        }
-
-        .header-info p {
-            font-size: 13px;
-            margin-top: 3px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            color: var(--telegram-text-muted);
-        }
-
-        .online-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--telegram-green);
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        .header-icons {
-            display: flex;
-            gap: 18px;
-            font-size: 18px;
-            color: var(--telegram-text-muted);
-        }
-
-        .header-icons i {
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .header-icons i:hover {
-            color: var(--telegram-text);
-            transform: scale(1.1);
-        }
-
-        /* Messages area */
-        .messages {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%2317212b" opacity="0.03"/></svg>');
-            background-size: 180px;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
         }
 
-        .message {
-            max-width: 85%;
-            padding: 12px 16px;
-            border-radius: 8px;
+        .loading-logo {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite ease-in-out;
             position: relative;
-            animation: fadeIn 0.3s ease;
-            line-height: 1.5;
-            font-size: 15px;
-            box-shadow: var(--telegram-shadow);
+        }
+
+        .loading-logo svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 20px rgba(108, 99, 255, 0.5));
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+
+        .progress-container {
+            width: 400px;
+            max-width: 80%;
+            height: 6px;
+            background-color: rgba(108, 99, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #6c63ff, #ff4d94, #4cc9f0);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.3) 50%, 
+                transparent 100%);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .loading-status {
+            color: var(--primary);
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-align: center;
+            min-height: 1.5em;
+            margin: 10px 0;
+            text-shadow: 0 2px 10px rgba(108, 99, 255, 0.3);
+        }
+
+        .loading-text {
+            color: var(--gray);
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        #mainContent {
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            to { opacity: 1; }
         }
 
-        .bot-message {
-            background: var(--telegram-bubble-bot);
-            align-self: flex-start;
-            border-radius: 0 8px 8px 8px;
-            color: var(--telegram-text);
+        /* ===== Global Styles - Dark Theme ===== */
+        :root {
+            --primary: #6c63ff;
+            --primary-dark: #564fd8;
+            --secondary: #ff4d94;
+            --accent: #4cc9f0;
+            --dark: #121212;
+            --dark-light: #1e1e1e;
+            --darker: #0a0a0a;
+            --gray: #a0a0a0;
+            --light-gray: #2a2a2a;
+            --white: #ffffff;
+            --text: #e0e0e0;
+            --success: #38b000;
+            --warning: #ffaa00;
+            --danger: #ff4d4d;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
         }
 
-        .user-message {
-            background: var(--telegram-bubble-user);
-            align-self: flex-end;
-            border-radius: 8px 0 8px 8px;
-            color: var(--telegram-text);
+        [data-theme="light"] {
+            --dark: #f5f5f5;
+            --dark-light: #e0e0e0;
+            --darker: #d0d0d0;
+            --gray: #666;
+            --light-gray: #ccc;
+            --white: #333;
+            --text: #444;
         }
 
-        .typing-indicator {
-            background: var(--telegram-bubble-bot);
-            padding: 12px 16px;
-            border-radius: 8px;
-            align-self: flex-start;
-            display: inline-flex;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--dark);
+            overflow-x: hidden;
+            padding-top: 80px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 1rem auto 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--box-shadow);
+        }
+
+        /* ===== Header & Navigation ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--darker);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+
+        .header-scrolled {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 6px;
-            box-shadow: var(--telegram-shadow);
+            padding: 1.5rem 0;
         }
 
-        .typing-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--telegram-text-muted);
-            border-radius: 50%;
-            animation: typing 1.4s infinite ease-in-out;
-        }
-
-        .typing-dot:nth-child(1) { animation-delay: 0s; }
-        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes typing {
-            0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
-            30% { transform: translateY(-5px); opacity: 1; }
-        }
-
-        /* Input area */
-        .input-area {
-            background: var(--telegram-input);
-            padding: 12px 15px;
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
             display: flex;
             align-items: center;
-            gap: 12px;
-            border-top: 1px solid var(--telegram-border);
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
             position: relative;
+            padding: 0.5rem 0;
         }
 
-        .input-area i {
-            color: var(--telegram-text-muted);
-            font-size: 22px;
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links .btn {
+            margin-left: 1rem;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
             cursor: pointer;
-            transition: all 0.2s;
+            color: var(--white);
         }
 
-        .input-area i:hover {
-            transform: scale(1.05);
-            color: var(--telegram-text);
+        /* ===== Settings Modal ===== */
+        .settings-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s;
         }
 
-        .input-area input {
+        .settings-content {
+            background-color: var(--darker);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            animation: slideDown 0.3s;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .settings-header h2 {
+            margin: 0;
+            color: var(--primary);
+        }
+
+        .close {
+            color: var(--gray);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close:hover {
+            color: var(--white);
+        }
+
+        .settings-group {
+            margin-bottom: 2rem;
+        }
+
+        .settings-group h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .settings-group h3 i {
+            color: var(--primary);
+        }
+
+        .api-provider {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .api-option {
+            background-color: var(--dark-light);
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .api-option:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .api-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(108, 99, 255, 0.1);
+        }
+
+        .api-icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+        }
+
+        /* ===== Media Selector ===== */
+        .media-selector {
+            background-color: var(--dark-light);
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .media-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .media-btn {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--darker);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .media-btn i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .media-btn.active {
+            border-color: var(--primary);
+            background-color: rgba(108, 99, 255, 0.1);
+        }
+
+        .media-btn:hover:not(.active) {
+            transform: translateY(-3px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .youtube-btn { color: #FF0000; }
+        .tiktok-btn { color: #000000; }
+        .instagram-btn { color: #E4405F; }
+        .facebook-btn { color: #1877F2; }
+        .twitter-btn { color: #1DA1F2; }
+        .spotify-btn { color: #1DB954; }
+        .pinterest-btn { color: #E60023; }
+
+        /* ===== Search Section ===== */
+        .search-section {
+            padding: 3rem 0;
+        }
+
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .search-box {
+            background-color: var(--darker);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .search-form {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .url-input {
             flex: 1;
-            padding: 12px 18px;
-            border: none;
-            border-radius: 20px;
-            font-size: 15px;
-            background: var(--telegram-bubble-bot);
+            padding: 1rem;
+            border: 2px solid var(--light-gray);
+            border-radius: 5px;
+            background-color: var(--dark);
+            color: var(--text);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .url-input:focus {
             outline: none;
-            color: var(--telegram-text);
-            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
         }
 
-        .input-area input::placeholder {
-            color: var(--telegram-text-muted);
-        }
-
-        .input-area input:focus {
-            box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(62, 142, 208, 0.3);
-            background: var(--telegram-hover);
-        }
-
-        .send-btn {
-            background: var(--telegram-green);
+        .search-btn {
+            padding: 1rem 2rem;
+            background-color: var(--primary);
             color: white;
             border: none;
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            border-radius: 5px;
             cursor: pointer;
-            transition: all 0.2s;
-            font-size: 18px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .send-btn:hover {
-            background: #2b7fc1;
-            transform: scale(1.05);
+        .search-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
         }
 
-        /* Footer styling */
-        .chat-footer {
-            background: var(--telegram-input);
-            padding: 12px 0;
-            text-align: center;
-            font-size: 12px;
-            color: var(--telegram-text-muted);
-            border-top: 1px solid var(--telegram-border);
+        .mode-switcher {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            justify-content: center;
+        }
+
+        .mode-btn {
+            padding: 0.8rem 1.5rem;
+            background-color: var(--dark);
+            border: 2px solid var(--light-gray);
+            border-radius: 5px;
+            color: var(--text);
+            cursor: pointer;
+            transition: var(--transition);
             font-weight: 500;
         }
 
-        .chat-footer a {
-            color: var(--telegram-green);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.2s;
+        .mode-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
         }
 
-        .chat-footer a:hover {
+        .format-options {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .format-btn {
+            padding: 0.5rem 1.5rem;
+            background-color: var(--dark-light);
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            color: var(--text);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .format-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* ===== Results Section ===== */
+        .results-section {
+            padding: 2rem 0;
+            min-height: 400px;
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .results-count {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--gray);
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--light-gray);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            text-align: center;
+            padding: 2rem;
+            background-color: rgba(255, 77, 77, 0.1);
+            border-radius: 10px;
+            color: var(--danger);
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .result-card {
+            background-color: var(--dark-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border: 1px solid var(--light-gray);
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .result-thumbnail {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background-color: var(--darker);
+            cursor: pointer;
+        }
+
+        .result-content {
+            padding: 1.5rem;
+        }
+
+        .result-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: var(--white);
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .result-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--gray);
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .download-btn, .play-btn, .view-btn {
+            padding: 0.6rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .download-btn {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .download-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .play-btn {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .play-btn:hover {
+            background-color: #2d9500;
+            transform: translateY(-2px);
+        }
+
+        .view-btn {
+            background-color: var(--dark);
+            color: var(--text);
+            border: 1px solid var(--light-gray);
+        }
+
+        .view-btn:hover {
+            background-color: var(--light-gray);
+        }
+
+        /* ===== Download Loading Modal ===== */
+        .download-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s;
+        }
+
+        .download-content {
+            background-color: var(--darker);
+            margin: 15% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+        }
+
+        .download-progress {
+            width: 100%;
+            height: 10px;
+            background-color: var(--dark-light);
+            border-radius: 5px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+
+        .download-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 5px;
+            transition: width 0.3s ease;
+        }
+
+        /* ===== Video/Audio Player Modal ===== */
+        .player-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s;
+        }
+
+        .player-content {
+            background-color: var(--darker);
+            margin: 2% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            box-shadow: var(--box-shadow);
+        }
+
+        .close-player {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10001;
+        }
+
+        .close-player:hover {
+            color: var(--primary);
+        }
+
+        .player-video {
+            width: 100%;
+            height: 400px;
+            border-radius: 8px;
+            background-color: #000;
+        }
+
+        .player-audio {
+            width: 100%;
+            margin: 1rem 0;
+        }
+
+        .player-info {
+            margin-top: 1rem;
+            color: var(--white);
+        }
+
+        /* ===== Pagination ===== */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            padding: 0.5rem 1rem;
+            background-color: var(--dark);
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            color: var(--text);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .page-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .page-btn:hover:not(.active) {
+            background-color: var(--light-gray);
+        }
+
+        /* ===== About & FAQ Sections ===== */
+        .about-section, .faq-section {
+            background-color: var(--dark-light);
+            padding: 4rem 0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: var(--darker);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            border: 1px solid var(--light-gray);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background-color: rgba(108, 99, 255, 0.05);
+        }
+
+        .faq-question h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: var(--white);
+        }
+
+        .faq-icon {
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+
+        /* ===== Features Section ===== */
+        .features-section {
+            background-color: var(--dark);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--dark-light);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(108, 99, 255, 0.1);
+            border-radius: 50%;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background-color: var(--darker);
+            color: var(--white);
+            padding: 5rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        .footer-links i {
+            margin-right: 0.5rem;
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--light-gray);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom a {
+            color: var(--primary);
             text-decoration: underline;
         }
 
-        /* Scrollbar styling */
-        .messages::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .messages::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 4px;
-        }
-
-        .messages::-webkit-scrollbar-thumb {
-            background: var(--telegram-green);
-            border-radius: 4px;
-        }
-
-        .messages::-webkit-scrollbar-thumb:hover {
-            background: #2b7fc1;
-        }
-
-        /* Message timestamp */
-        .message-time {
-            display: block;
-            text-align: right;
-            font-size: 11px;
-            color: var(--telegram-text-muted);
-            margin-top: 5px;
-            margin-left: 30px;
-        }
-
-        /* Status indicators */
-        .status-indicator {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 12px;
-            padding: 4px 8px;
-            border-radius: 10px;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 100;
-            transition: all 0.3s;
-        }
-        
-        .status-connected {
-            color: #4caf50;
-        }
-        
-        .status-error {
-            color: #f44336;
-        }
-        
-        .status-loading {
-            color: #ffc107;
-        }
-
-        /* Responsive design */
-        @media (max-width: 480px) {
-            .chat-container {
-                height: 100vh;
-                max-height: none;
-                border-radius: 0;
+        /* ===== Responsive Styles ===== */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
             }
-            
-            .message {
-                max-width: 90%;
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--darker);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: var(--transition);
+                z-index: 999;
             }
-            
-            .input-area {
-                padding: 10px 12px;
+
+            .nav-links.active {
+                left: 0;
             }
-            
-            .input-area input {
-                padding: 10px 15px;
-                font-size: 14px;
+
+            .media-buttons {
+                gap: 0.5rem;
             }
-            
-            .social-grid {
+
+            .media-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .search-form {
+                flex-direction: column;
+            }
+
+            .search-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+
+            .api-provider {
                 grid-template-columns: 1fr;
             }
-            
-            .social-content {
-                width: 95%;
+
+            .player-content {
+                margin: 10% auto;
+                padding: 1rem;
+            }
+
+            .player-video {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mode-switcher {
+                flex-direction: column;
+            }
+
+            .mode-btn {
+                width: 100%;
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Status Indicator -->
-    <div class="status-indicator" id="status-indicator">Status: Ready</div>
+    <!-- ===== LOADING SCREEN ===== -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#6c63ff;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#ff4d94;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <circle cx="50" cy="50" r="45" fill="none" stroke="url(#grad1)" stroke-width="4">
+                    <animate attributeName="r" values="45;40;45" dur="2s" repeatCount="indefinite" />
+                </circle>
+                <text x="50" y="55" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">DST</text>
+            </svg>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="loading-status" id="loadingStatus">Launching DianSybexTech...</div>
+        <div class="loading-text">Initializing dual API media downloader</div>
+    </div>
 
-    <!-- Social Media Modal -->
-    <div class="social-modal" id="social-modal">
-        <div class="social-content">
-            <div class="social-header">
-                <h2>Connect With Me</h2>
-                <button class="close-modal" id="close-modal">
-                    <i class="fas fa-times"></i>
-                </button>
+    <!-- ===== SETTINGS MODAL ===== -->
+    <div id="settingsModal" class="settings-modal">
+        <div class="settings-content">
+            <div class="settings-header">
+                <h2><i class="fas fa-cog"></i> Settings</h2>
+                <span class="close">&times;</span>
             </div>
             
-            <div class="social-grid">
-                <div class="social-card whatsapp" id="whatsapp-btn">
-                    <div class="social-icon whatsapp">
-                        <i class="fab fa-whatsapp"></i>
+            <div class="settings-group">
+                <h3><i class="fas fa-plug"></i> API Provider</h3>
+                <div class="api-provider">
+                    <div class="api-option" data-provider="gifted">
+                        <div class="api-icon"><i class="fas fa-gift"></i></div>
+                        <div class="api-name">Gifted API</div>
+                        <div class="api-desc">Primary provider with API key authentication</div>
                     </div>
-                    <h3>WhatsApp</h3>
-                    <p>Chat with me directly</p>
-                </div>
-                
-                <div class="social-card tiktok" id="tiktok-btn">
-                    <div class="social-icon tiktok">
-                        <i class="fab fa-tiktok"></i>
+                    <div class="api-option selected" data-provider="david">
+                        <div class="api-icon"><i class="fas fa-music"></i></div>
+                        <div class="api-name">David Cyril API</div>
+                        <div class="api-desc">No API key required, fast music downloads</div>
                     </div>
-                    <h3>TikTok</h3>
-                    <p>Watch my latest videos</p>
                 </div>
-                
-                <div class="social-card website" id="website-btn">
-                    <div class="social-icon website">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h3>Website</h3>
-                    <p>Visit my quotes website</p>
-                </div>
+            </div>
+
+            <button class="btn btn-primary" style="width: 100%; margin-top: 2rem;" id="saveSettings">
+                <i class="fas fa-save"></i> Save Settings
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== DOWNLOAD LOADING MODAL ===== -->
+    <div class="download-modal" id="downloadModal">
+        <div class="download-content">
+            <h2><i class="fas fa-download"></i> Preparing Download</h2>
+            <p id="downloadMessage">Processing your request...</p>
+            <div class="download-progress">
+                <div class="download-progress-bar" id="downloadProgressBar"></div>
+            </div>
+            <p id="downloadStatus">Initializing...</p>
+        </div>
+    </div>
+
+    <!-- ===== VIDEO/AUDIO PLAYER MODAL ===== -->
+    <div class="player-modal" id="playerModal">
+        <div class="player-content">
+            <span class="close-player">&times;</span>
+            <video class="player-video" id="videoPlayer" controls style="display: none;"></video>
+            <audio class="player-audio" id="audioPlayer" controls style="display: none;"></audio>
+            <div class="player-info">
+                <h3 id="playerTitle">Now Playing</h3>
+                <p id="playerArtist">Artist</p>
             </div>
         </div>
     </div>
 
-    <!-- Chat Container -->
-    <div class="chat-container">
-        <div class="chat-header">
-            <div class="avatar">D</div>
-            <div class="header-info">
-                <h1>Dian AI</h1>
-                <p><span class="online-dot"></span> Online • Responds instantly</p>
+    <!-- ===== MAIN CONTENT ===== -->
+    <div id="mainContent">
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <nav class="navbar">
+                    <a href="https://dian-sybex-tech.vercel.app" class="logo">
+                        <div class="logo-img">D</div>
+                        Dian<span>Sybex</span>Tech
+                    </a>
+                    <div class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                    <div class="nav-links">
+                        <a href="#home">Home</a>
+                        <a href="#about">About</a>
+                        <a href="#features">Features</a>
+                        <a href="#faq">FAQ</a>
+                        <a href="#" id="settingsBtn">
+                            <i class="fas fa-cog"></i> Settings
+                        </a>
+                        <button class="btn btn-primary" onclick="toggleTheme()">
+                            <i class="fas fa-moon"></i> Theme
+                        </button>
+                    </div>
+                </nav>
             </div>
-            <div class="header-icons">
-                <i class="fas fa-ellipsis-v" id="menu-icon"></i>
+        </header>
+
+        <!-- Media Selector -->
+        <section class="media-selector" id="home">
+            <div class="container">
+                <div class="section-title">
+                    <h1>All Media Downloader - DianSybexTech</h1>
+                    <p>Download videos, music, and media from 10+ platforms using Gifted API or David Cyril API</p>
+                    <div style="margin-top: 1rem; color: var(--primary); font-weight: 500;">
+                        <i class="fas fa-plug"></i> Current API: <span id="currentApi">David Cyril API</span>
+                    </div>
+                </div>
+                <div class="media-buttons">
+                    <div class="media-btn youtube-btn active" data-platform="youtube">
+                        <i class="fab fa-youtube"></i> YouTube
+                    </div>
+                    <div class="media-btn tiktok-btn" data-platform="tiktok">
+                        <i class="fab fa-tiktok"></i> TikTok
+                    </div>
+                    <div class="media-btn instagram-btn" data-platform="instagram">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </div>
+                    <div class="media-btn facebook-btn" data-platform="facebook">
+                        <i class="fab fa-facebook"></i> Facebook
+                    </div>
+                    <div class="media-btn spotify-btn" data-platform="spotify">
+                        <i class="fab fa-spotify"></i> Spotify
+                    </div>
+                    <div class="media-btn twitter-btn" data-platform="twitter">
+                        <i class="fab fa-twitter"></i> Twitter
+                    </div>
+                    <div class="media-btn pinterest-btn" data-platform="pinterest">
+                        <i class="fab fa-pinterest"></i> Pinterest
+                    </div>
+                </div>
             </div>
-        </div>
-        
-        <div class="messages" id="chat-messages">
-            <div class="message bot-message">
-                Hello there! 👋 I'm Dian AI, your intelligent assistant. You can ask me anything naturally or use commands like /help to get started. 😊
-                <span class="message-time">12:45</span>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section" id="download">
+            <div class="container">
+                <div class="search-container">
+                    <div class="search-box">
+                        <div class="mode-switcher">
+                            <button class="mode-btn active" data-mode="url">
+                                <i class="fas fa-link"></i> URL Mode
+                            </button>
+                            <button class="mode-btn" data-mode="search">
+                                <i class="fas fa-search"></i> Search Mode
+                            </button>
+                            <button class="mode-btn" data-mode="music">
+                                <i class="fas fa-music"></i> Music Mode
+                            </button>
+                        </div>
+                        
+                        <form id="downloadForm" class="search-form">
+                            <input type="text" 
+                                   class="url-input" 
+                                   id="urlInput" 
+                                   placeholder="Paste YouTube video URL here..." 
+                                   required>
+                            <button type="submit" class="search-btn" id="searchBtn">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                        </form>
+
+                        <form id="searchForm" class="search-form" style="display: none;">
+                            <input type="text" 
+                                   class="url-input" 
+                                   id="searchQuery" 
+                                   placeholder="Search YouTube videos..." 
+                                   required>
+                            <button type="submit" class="search-btn" id="searchBtn2">
+                                <i class="fas fa-search"></i> Search
+                            </button>
+                        </form>
+
+                        <form id="musicForm" class="search-form" style="display: none;">
+                            <input type="text" 
+                                   class="url-input" 
+                                   id="musicQuery" 
+                                   placeholder="Search for songs (e.g., Alan Walker - Faded)..." 
+                                   required>
+                            <button type="submit" class="search-btn" id="musicBtn">
+                                <i class="fas fa-music"></i> Search Music
+                            </button>
+                        </form>
+
+                        <div class="format-options" id="formatOptions">
+                            <button class="format-btn active" data-format="mp4">MP4 Video</button>
+                            <button class="format-btn" data-format="mp3">MP3 Audio</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="message bot-message">
-                <strong>Tip:</strong> Tap the <i class="fas fa-ellipsis-v"></i> icon to connect with me on social media!
-                <span class="message-time">12:45</span>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section">
+            <div class="container">
+                <div id="resultsHeader" class="results-header" style="display: none;">
+                    <h2>Search Results</h2>
+                    <div class="results-count" id="resultsCount"></div>
+                </div>
+                <div id="resultsContainer">
+                    <!-- Results will be displayed here -->
+                </div>
+                <div id="pagination" class="pagination" style="display: none;">
+                    <!-- Pagination buttons will be added here -->
+                </div>
             </div>
-        </div>
-        
-        <!-- Command Shortcuts Menu -->
-        <div class="command-menu" id="command-menu">
-            <button class="command-btn" data-command="/joke">
-                <i class="fas fa-laugh"></i> Joke
-            </button>
-            <button class="command-btn" data-command="/calculate 2+2">
-                <i class="fas fa-calculator"></i> Calculate
-            </button>
-            <button class="command-btn" data-command="/help">
-                <i class="fas fa-question-circle"></i> Help
-            </button>
-            <button class="command-btn" data-command="/clear">
-                <i class="fas fa-trash"></i> Clear
-            </button>
-            <button class="command-btn" data-command="/about">
-                <i class="fas fa-info-circle"></i> About
-            </button>
-            <button class="command-btn" data-command="/dev">
-                <i class="fas fa-code"></i> Developers
-            </button>
-            <button class="command-btn" data-command="/socials">
-                <i class="fas fa-share-alt"></i> Socials
-            </button>
-        </div>
-        
-        <div class="input-area">
-            <i class="fas fa-plus-circle" id="plus-btn"></i>
-            <input type="text" id="user-input" placeholder="Type a message...">
-            <button class="send-btn" id="send-btn">
-                <i class="fas fa-paper-plane"></i>
-            </button>
-        </div>
-        
-        <div class="chat-footer">
-            Crafted with ❤️ by Dian • AI Assistant v1.3
-        </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section" id="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>About DianSybexTech Media Downloader</h2>
+                        <p>DianSybexTech All Media Downloader is a powerful, free online tool that allows you to download videos, music, and media content from over 10 popular platforms including YouTube, TikTok, Instagram, Facebook, Twitter, Spotify, and Pinterest.</p>
+                        <p>Our mission is to provide a seamless, fast, and secure media downloading experience without compromising on quality. Whether you want to save educational content, music for offline listening, or memorable videos, our tool has you covered.</p>
+                        
+                        <ul class="footer-links">
+                            <li><i class="fas fa-check-circle"></i> <strong>100% Free</strong> - No hidden charges or subscriptions</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>High Quality</strong> - Download in HD up to 4K resolution</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Multiple Formats</strong> - MP4, MP3, and more</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Fast Downloads</strong> - Optimized servers for speedy downloads</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>No Registration</strong> - Use instantly without signing up</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Secure</strong> - Your privacy and security are our priority</li>
+                        </ul>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Media Downloader Interface">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section" id="features">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Dual API System</h2>
+                    <p>Choose between two powerful API providers for maximum flexibility</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h3>Gifted API</h3>
+                        <p>Professional API with authentication, supports all major platforms with high reliability</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h3>David Cyril API</h3>
+                        <p>No API key required, optimized for music downloads with fast response times</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Fast Processing</h3>
+                        <p>Quick media analysis and download processing with optimized servers</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Safe & Secure</h3>
+                        <p>No malware, no viruses, and complete privacy protection</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <h3>Music Player</h3>
+                        <p>Play audio directly in browser with our built-in music player</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <h3>Customizable</h3>
+                        <p>Adjust quality, format, and other settings to your preference</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section" id="faq">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Find answers to common questions about our media downloader</p>
+                </div>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Is DianSybexTech Media Downloader free to use?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, our media downloader is completely free to use. There are no hidden fees, subscriptions, or premium tiers. You can download as much content as you want without any charges.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What platforms are supported?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We support YouTube, TikTok, Instagram, Facebook, Twitter, Spotify, Pinterest, and many more. The list is constantly updated as we add support for new platforms.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What video/audio qualities are available?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Quality options vary by platform but typically include: 360p, 480p, 720p (HD), 1080p (Full HD), and sometimes 4K for video. For audio, we offer 128kbps, 192kbps, and 320kbps MP3 quality.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Is it legal to download content using this tool?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>DianSybexTech is designed for personal, educational, and fair use. Please respect copyright laws and only download content you have permission to use or that is in the public domain. Always check the terms of service of the platform you're downloading from.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Do I need to install any software?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>No installation required! Our downloader works directly in your web browser. It's a web-based tool that works on all modern browsers including Chrome, Firefox, Safari, and Edge.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How do I download videos from TikTok/Instagram?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Simply copy the video link from TikTok or Instagram, paste it into our downloader, select your preferred format and quality, then click download. The process is the same for all supported platforms.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Is there a download limit?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>No, there are no download limits. You can download as many videos and audio files as you want. Our service is designed to handle high-volume downloads without restrictions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Can I download entire playlists?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Currently, we support individual video/audio downloads. Playlist/download all features are planned for future updates. For now, you'll need to download each item separately.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="contact">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-col">
+                        <h3>DianSybexTech</h3>
+                        <p>The ultimate all-in-one media downloader. Download videos, music, and media from 10+ platforms using dual API system.</p>
+                        <div class="social-links">
+                            <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                            <a href="mailto:contact@diansybextech.com" title="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-col">
+                        <h3>Quick Links</h3>
+                        <ul class="footer-links">
+                            <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                            <li><a href="#about"><i class="fas fa-chevron-right"></i> About</a></li>
+                            <li><a href="#features"><i class="fas fa-chevron-right"></i> Features</a></li>
+                            <li><a href="#faq"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                            <li><a href="#" id="feedbackLink"><i class="fas fa-chevron-right"></i> Feedback</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h3>API Providers</h3>
+                        <ul class="footer-links">
+                            <li><a href="#"><i class="fas fa-gift"></i> Gifted API</a></li>
+                            <li><a href="#"><i class="fas fa-music"></i> David Cyril API</a></li>
+                            <li><a href="#"><i class="fas fa-code"></i> Web Downloader</a></li>
+                            <li><a href="#"><i class="fas fa-search"></i> Lyrics Search</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h3>Legal Information</h3>
+                        <ul class="footer-links">
+                            <li><a href="#" onclick="showDisclaimer()"><i class="fas fa-gavel"></i> Terms of Service</a></li>
+                            <li><a href="#" onclick="showPrivacy()"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                            <li><a href="#"><i class="fas fa-copyright"></i> DMCA Policy</a></li>
+                            <li><a href="#"><i class="fas fa-book"></i> Fair Use Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 DianSybexTech. All rights reserved. | For Educational Purposes Only</p>
+                    <p>This tool is intended for personal, educational, and fair use only. Please respect copyright laws and platform terms of service.</p>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const chatMessages = document.getElementById('chat-messages');
-            const userInput = document.getElementById('user-input');
-            const sendBtn = document.getElementById('send-btn');
-            const plusBtn = document.getElementById('plus-btn');
-            const commandMenu = document.getElementById('command-menu');
-            const menuIcon = document.getElementById('menu-icon');
-            const socialModal = document.getElementById('social-modal');
-            const closeModal = document.getElementById('close-modal');
-            const statusIndicator = document.getElementById('status-indicator');
+        // ===== LOADING SYSTEM =====
+        function startLoading() {
+            console.log("Starting DianSybexTech Dual API Media Downloader...");
             
-            // API configuration - FIXED: Correct API endpoint
-            const PRIVATE_API_ENDPOINT = "https://apis.davidcyriltech.my.id/ai/chatbot";
-            const JOKE_API_ENDPOINT = "https://api.giftedtech.web.id/api/fun/flirt";
-            const YOUR_API_KEY = "gifted";
-
-            // Update status indicator
-            function updateStatus(message, type) {
-                statusIndicator.textContent = `Status: ${message}`;
-                statusIndicator.className = "status-indicator";
+            const loadingScreen = document.getElementById('loadingScreen');
+            const progressBar = document.getElementById('progressBar');
+            const loadingStatus = document.getElementById('loadingStatus');
+            const mainContent = document.getElementById('mainContent');
+            
+            let progress = 0;
+            let stage = 0;
+            
+            const stages = [
+                { percent: 10, text: "Initializing dual API system..." },
+                { percent: 25, text: "Loading Gifted API configuration..." },
+                { percent: 40, text: "Loading David Cyril API configuration..." },
+                { percent: 55, text: "Preparing user interface..." },
+                { percent: 70, text: "Loading media player..." },
+                { percent: 85, text: "Finalizing settings..." },
+                { percent: 95, text: "Almost ready..." },
+                { percent: 100, text: "Welcome to DianSybexTech!" }
+            ];
+            
+            const interval = setInterval(() => {
+                progress += 1;
+                progressBar.style.width = progress + '%';
                 
-                if (type === "connected") {
-                    statusIndicator.classList.add("status-connected");
-                } else if (type === "error") {
-                    statusIndicator.classList.add("status-error");
-                } else if (type === "loading") {
-                    statusIndicator.classList.add("status-loading");
+                if (stage < stages.length && progress >= stages[stage].percent) {
+                    loadingStatus.textContent = stages[stage].text;
+                    stage++;
                 }
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    
+                    setTimeout(() => {
+                        loadingScreen.style.opacity = '0';
+                        
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                            mainContent.style.display = 'block';
+                            
+                            setTimeout(() => {
+                                mainContent.style.opacity = '1';
+                                initializeApp();
+                                
+                                if (typeof gtag !== 'undefined') {
+                                    gtag('event', 'page_load_complete', {
+                                        'event_category': 'Loading',
+                                        'event_label': 'Dual API Media Downloader',
+                                        'value': Date.now()
+                                    });
+                                }
+                            }, 50);
+                            
+                        }, 500);
+                    }, 500);
+                }
+            }, 30);
+        }
+        
+        // ===== MAIN APPLICATION INITIALIZATION =====
+        function initializeApp() {
+            console.log("Initializing DianSybexTech Dual API Media Downloader...");
+            
+            // API Configuration
+            const API_CONFIG = {
+                gifted: {
+                    name: "Gifted API",
+                    key: "gifted",
+                    endpoints: {
+                        youtube: {
+                            mp4: "https://api.giftedtech.co.ke/api/download/ytmp4",
+                            mp3: "https://api.giftedtech.co.ke/api/download/ytmp3"
+                        },
+                        tiktok: {
+                            download: "https://api.giftedtech.co.ke/api/download/tiktok"
+                        },
+                        instagram: "https://api.giftedtech.co.ke/api/download/instadl",
+                        facebook: "https://api.giftedtech.co.ke/api/download/facebook",
+                        twitter: "https://api.giftedtech.co.ke/api/download/twitter",
+                        spotify: {
+                            download: "https://api.giftedtech.co.ke/api/download/spotifydl"
+                        },
+                        pinterest: "https://api.giftedtech.co.ke/api/download/pinterestdl"
+                    }
+                },
+                david: {
+                    name: "David Cyril API",
+                    key: "",
+                    endpoints: {
+                        youtube: {
+                            mp4: "https://apis.davidcyriltech.my.id/download/ytmp4",
+                            music: "https://apis.davidcyriltech.my.id/play",
+                            search: "https://apis.davidcyriltech.my.id/youtube/search"
+                        },
+                        tiktok: {
+                            download: "https://apis.davidcyriltech.my.id/download/tiktok"
+                        },
+                        instagram: "https://apis.davidcyriltech.my.id/instagram",
+                        facebook: "https://apis.davidcyriltech.my.id/facebook",
+                        spotify: {
+                            download: "https://apis.davidcyriltech.my.id/spotifydl",
+                            search: "https://apis.davidcyriltech.my.id/search/spotify"
+                        },
+                        lyrics: "https://apis.davidcyriltech.my.id/lyrics3",
+                        web: "https://apis.davidcyriltech.my.id/tools/downloadweb"
+                    }
+                }
+            };
+
+            // App State
+            let currentState = {
+                platform: "youtube",
+                format: "mp4",
+                mode: "url",
+                apiProvider: "david",
+                searchResults: [],
+                searchQuery: "",
+                page: 1,
+                currentPlaying: null
+            };
+
+            // DOM Elements
+            const mediaButtons = document.querySelectorAll('.media-btn');
+            const formatButtons = document.querySelectorAll('.format-btn');
+            const modeButtons = document.querySelectorAll('.mode-btn');
+            const apiOptions = document.querySelectorAll('.api-option');
+            const urlInput = document.getElementById('urlInput');
+            const searchQuery = document.getElementById('searchQuery');
+            const musicQuery = document.getElementById('musicQuery');
+            const downloadForm = document.getElementById('downloadForm');
+            const searchForm = document.getElementById('searchForm');
+            const musicForm = document.getElementById('musicForm');
+            const resultsContainer = document.getElementById('resultsContainer');
+            const resultsHeader = document.getElementById('resultsHeader');
+            const resultsCount = document.getElementById('resultsCount');
+            const pagination = document.getElementById('pagination');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const formatOptions = document.getElementById('formatOptions');
+            const settingsModal = document.getElementById('settingsModal');
+            const settingsBtn = document.getElementById('settingsBtn');
+            const closeSettings = document.querySelector('.settings-modal .close');
+            const saveSettingsBtn = document.getElementById('saveSettings');
+            const currentApiSpan = document.getElementById('currentApi');
+            const downloadModal = document.getElementById('downloadModal');
+            const downloadMessage = document.getElementById('downloadMessage');
+            const downloadProgressBar = document.getElementById('downloadProgressBar');
+            const downloadStatus = document.getElementById('downloadStatus');
+            const playerModal = document.getElementById('playerModal');
+            const videoPlayer = document.getElementById('videoPlayer');
+            const audioPlayer = document.getElementById('audioPlayer');
+            const closePlayer = document.querySelector('.close-player');
+            const playerTitle = document.getElementById('playerTitle');
+            const playerArtist = document.getElementById('playerArtist');
+            const feedbackLink = document.getElementById('feedbackLink');
+
+            // Initialize settings
+            function loadSettings() {
+                const savedProvider = localStorage.getItem('api_provider');
+                if (savedProvider) {
+                    currentState.apiProvider = savedProvider;
+                    updateApiSelection();
+                }
+                currentApiSpan.textContent = API_CONFIG[currentState.apiProvider].name;
             }
 
-            // Get current time for messages
-            function getCurrentTime() {
-                const now = new Date();
-                return now.getHours().toString().padStart(2, '0') + ':' + 
-                       now.getMinutes().toString().padStart(2, '0');
+            function updateApiSelection() {
+                apiOptions.forEach(option => {
+                    if (option.dataset.provider === currentState.apiProvider) {
+                        option.classList.add('selected');
+                    } else {
+                        option.classList.remove('selected');
+                    }
+                });
+                currentApiSpan.textContent = API_CONFIG[currentState.apiProvider].name;
             }
 
-            // Toggle command menu
-            plusBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                commandMenu.classList.toggle('active');
-            });
+            // Update platform settings
+            function updatePlatformSettings() {
+                const youtubePlatforms = ['youtube'];
+                const showFormatOptions = youtubePlatforms.includes(currentState.platform);
+                formatOptions.style.display = showFormatOptions ? 'flex' : 'none';
+                
+                // Update placeholders
+                const placeholders = {
+                    youtube: "Paste YouTube video URL here...",
+                    tiktok: "Paste TikTok video URL here...",
+                    instagram: "Paste Instagram Reel/Video URL...",
+                    facebook: "Paste Facebook video URL...",
+                    twitter: "Paste Twitter video URL...",
+                    spotify: "Paste Spotify track URL...",
+                    pinterest: "Paste Pinterest video URL..."
+                };
+                
+                urlInput.placeholder = placeholders[currentState.platform] || "Paste media URL...";
+                searchQuery.placeholder = "Search " + currentState.platform + " videos...";
+                musicQuery.placeholder = "Search for songs (e.g., Alan Walker - Faded)...";
+            }
 
-            // Close command menu when clicking elsewhere
-            document.addEventListener('click', (e) => {
-                if (!commandMenu.contains(e.target) && e.target !== plusBtn) {
-                    commandMenu.classList.remove('active');
-                }
-            });
-
-            // Toggle social modal
-            menuIcon.addEventListener('click', () => {
-                socialModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-
-            closeModal.addEventListener('click', () => {
-                socialModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
-
-            // Close modal when clicking outside the content
-            socialModal.addEventListener('click', (e) => {
-                if (e.target === socialModal) {
-                    socialModal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            });
-
-            // Handle social button clicks
-            document.getElementById('whatsapp-btn').addEventListener('click', () => {
-                window.open('https://wa.me/256779008997', '_blank');
-                socialModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
-
-            document.getElementById('tiktok-btn').addEventListener('click', () => {
-                window.open('https://www.tiktok.com/@dian_quotes_trend', '_blank');
-                socialModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
-
-            document.getElementById('website-btn').addEventListener('click', () => {
-                window.open('https://dian-quotes-trend.github.io/Motivation-quotes-/', '_blank');
-                socialModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
-
-            // Handle command button clicks
-            document.querySelectorAll('.command-btn').forEach(button => {
-                button.addEventListener('click', () => {
-                    const command = button.getAttribute('data-command');
-                    userInput.value = command;
-                    handleSendMessage();
-                    commandMenu.classList.remove('active');
+            // Event Listeners
+            mediaButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    mediaButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentState.platform = btn.dataset.platform;
+                    updatePlatformSettings();
+                    clearResults();
                 });
             });
 
-            // Display bot messages with proper styling
-            function displayBotMessage(message, isHTML = false) {
-                const messageDiv = document.createElement('div');
-                messageDiv.classList.add('message', 'bot-message');
-                
-                if (isHTML) {
-                    messageDiv.innerHTML = message;
-                } else {
-                    messageDiv.textContent = message;
+            formatButtons.forEach(btn => {
+                if (btn.dataset.format) {
+                    btn.addEventListener('click', () => {
+                        formatButtons.forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        currentState.format = btn.dataset.format;
+                    });
                 }
-                
-                // Add timestamp
-                const timeSpan = document.createElement('span');
-                timeSpan.classList.add('message-time');
-                timeSpan.textContent = getCurrentTime();
-                messageDiv.appendChild(timeSpan);
-                
-                chatMessages.appendChild(messageDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
-
-            // Display user messages
-            function displayUserMessage(message) {
-                const messageDiv = document.createElement('div');
-                messageDiv.classList.add('message', 'user-message');
-                messageDiv.textContent = message;
-                
-                // Add timestamp
-                const timeSpan = document.createElement('span');
-                timeSpan.classList.add('message-time');
-                timeSpan.textContent = getCurrentTime();
-                messageDiv.appendChild(timeSpan);
-                
-                chatMessages.appendChild(messageDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
-
-            // Show typing indicator
-            function showTypingIndicator() {
-                const typingDiv = document.createElement('div');
-                typingDiv.classList.add('typing-indicator');
-                typingDiv.id = 'typing-indicator';
-                typingDiv.innerHTML = `
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                `;
-                chatMessages.appendChild(typingDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
-
-            // Hide typing indicator
-            function hideTypingIndicator() {
-                const typingIndicator = document.getElementById('typing-indicator');
-                if (typingIndicator) {
-                    typingIndicator.remove();
-                }
-            }
-
-            // Safe calculation function
-            function safeCalculate(expression) {
-                if (!/^[0-9+\-*/.\s()]+$/.test(expression)) {
-                    throw new Error('Invalid characters. Only numbers and basic operators allowed.');
-                }
-
-                try {
-                    return new Function('return ' + expression)();
-                } catch (e) {
-                    throw new Error('Could not evaluate expression. Please check syntax.');
-                }
-            }
-
-            // Fetch joke from API
-            async function fetchJoke() {
-                showTypingIndicator();
-                updateStatus("Fetching joke...", "loading");
-                
-                try {
-                    // Fixed URL construction
-                    const url = `${JOKE_API_ENDPOINT}?apikey=${YOUR_API_KEY}`;
-                    const response = await fetch(url);
-
-                    if (!response.ok) {
-                        throw new Error(`Error: ${response.status}`);
-                    }
-
-                    const data = await response.json();
-                    hideTypingIndicator();
-                    updateStatus("Joke fetched successfully", "connected");
-
-                    let jokeText;
-                    if (typeof data.result === 'string') {
-                        jokeText = data.result;
-                    } else if (typeof data.result === 'object' && data.result !== null) {
-                        if (data.result.joke) {
-                            jokeText = data.result.joke;
-                        } else if (data.result.setup && data.result.punchline) {
-                            jokeText = `${data.result.setup} — ${data.result.punchline}`;
-                        } else {
-                            jokeText = "Why don't scientists trust atoms? Because they make up everything! 😄";
-                        }
-                    } else {
-                        jokeText = "Why did the scarecrow win an award? Because he was outstanding in his field! 🌾";
-                    }
-
-                    displayBotMessage(jokeText + " 😂");
-                } catch (error) {
-                    hideTypingIndicator();
-                    updateStatus("Error fetching joke", "error");
-                    displayBotMessage("Why don't skeletons fight each other? They don't have the guts! 😅 (I couldn't fetch a joke right now)");
-                    console.error("Error fetching joke:", error);
-                }
-            }
-
-            // Commands with improved English and emojis
-            const commands = [
-                { command: "help", response: "Available commands: /about, /dev, /joke, /calculate, /clear, /socials, /info, /update, /ping, /uptime, /evaluate 📚" },
-                { command: "about", response: "Dian AI 1.0 is a versatile chatbot with built-in commands and integrated APIs, designed to assist you efficiently. 🤖✨" },
-                { command: "hi", response: "Hello there! 😊 How are you doing today?" },
-                { command: "what's up", response: "Just here, ready to assist you! 👌 What can I do for you?" },
-                { command: "dev", response: "Created by Dian 🤝 and the talented H.A.P.E class team 🎓💻. We're passionate about building innovative solutions! 🚀" },
-                { command: "info", response: "I provide information and entertainment through various commands. Feel free to explore! 📺" },
-                { command: "socials", response: "Connect with me on WhatsApp, TikTok, and Website! 📱" },
-                { command: "update", response: "We're constantly improving Dian AI with new features and enhancements! 🚀" },
-                { command: "theme", response: "Our focus is delivering a seamless, user-friendly experience. 🌈" },
-                { command: "reset", response: "Chat reset complete! 🔄 How can I assist you now?" },
-                { command: "ping", response: "Pong! 🏓" },
-                { command: "uptime", response: "I'm available 24/7 to help you! ⏰" },
-                { command: "api", response: "Our API powers various services and functionalities. 📈" },
-                {
-                    command: "evaluate",
-                    response: () => {
-                        const score = Math.floor(Math.random() * 100) + 1;
-                        const encouragingWords = [
-                            "Keep pushing forward!",
-                            "You're making great progress!",
-                            "Excellent effort!",
-                            "Stay focused and keep going!",
-                            "You're on the right track!",
-                        ];
-                        const word = encouragingWords[Math.floor(Math.random() * encouragingWords.length)];
-                        return `Evaluation Score: ${score}/100\n${word} 💪`;
-                    },
-                },
-            ];
-
-            // Send message handler
-            sendBtn.addEventListener('click', handleSendMessage);
-            userInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') handleSendMessage();
             });
 
-            async function handleSendMessage() {
-                const userInputValue = userInput.value.trim();
-                if (!userInputValue) return;
+            modeButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    switchMode(btn.dataset.mode);
+                });
+            });
 
-                // Display user message
-                displayUserMessage(userInputValue);
+            apiOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    currentState.apiProvider = option.dataset.provider;
+                    updateApiSelection();
+                    showNotification(`Switched to ${API_CONFIG[currentState.apiProvider].name}`);
+                });
+            });
 
-                // Clear input
-                userInput.value = '';
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-
-                const lowerCaseInput = userInputValue.toLowerCase();
-
-                // Handle commands
-                if (lowerCaseInput === '/joke') {
-                    await fetchJoke();
+            downloadForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const url = urlInput.value.trim();
+                if (!url) {
+                    showError("Please enter a valid URL");
                     return;
-                } else if (lowerCaseInput.startsWith('/calculate')) {
-                    try {
-                        const calculation = userInputValue.replace('/calculate', '').trim();
-                        const result = safeCalculate(calculation);
-                        displayBotMessage(`Result: ${result} 📊`);
-                    } catch (error) {
-                        displayBotMessage(`Error: ${error.message} 🤔`);
+                }
+                await processDownloadFromUrl(url);
+            });
+
+            searchForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const query = searchQuery.value.trim();
+                if (!query) {
+                    showError("Please enter a search query");
+                    return;
+                }
+                currentState.searchQuery = query;
+                currentState.page = 1;
+                await performSearch(query);
+            });
+
+            musicForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const query = musicQuery.value.trim();
+                if (!query) {
+                    showError("Please enter a song name");
+                    return;
+                }
+                currentState.searchQuery = query;
+                currentState.page = 1;
+                await searchMusic(query);
+            });
+
+            // Settings modal
+            settingsBtn.addEventListener('click', () => {
+                settingsModal.style.display = 'block';
+            });
+
+            closeSettings.addEventListener('click', () => {
+                settingsModal.style.display = 'none';
+            });
+
+            saveSettingsBtn.addEventListener('click', () => {
+                localStorage.setItem('api_provider', currentState.apiProvider);
+                settingsModal.style.display = 'none';
+                showNotification('Settings saved successfully!');
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === settingsModal) settingsModal.style.display = 'none';
+                if (e.target === playerModal) closePlayerModal();
+            });
+
+            // Player modal
+            closePlayer.addEventListener('click', closePlayerModal);
+
+            // Mobile menu
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Feedback link
+            feedbackLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.open('https://your-feedback-page-url.com', '_blank');
+            });
+
+            // Switch modes
+            function switchMode(mode) {
+                currentState.mode = mode;
+                modeButtons.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.mode === mode);
+                });
+                
+                downloadForm.style.display = mode === 'url' ? 'flex' : 'none';
+                searchForm.style.display = mode === 'search' ? 'flex' : 'none';
+                musicForm.style.display = mode === 'music' ? 'flex' : 'none';
+                clearResults();
+                
+                if (mode === 'music') {
+                    currentState.platform = 'youtube';
+                    currentState.format = 'mp3';
+                    updateMediaButtons();
+                    formatButtons.forEach(btn => {
+                        btn.classList.toggle('active', btn.dataset.format === 'mp3');
+                    });
+                }
+            }
+
+            function updateMediaButtons() {
+                mediaButtons.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.platform === currentState.platform);
+                });
+            }
+
+            // Process download from URL (URL Mode)
+            async function processDownloadFromUrl(url) {
+                showDownloadModal("Preparing download...");
+                
+                try {
+                    const api = API_CONFIG[currentState.apiProvider];
+                    let apiUrl;
+                    
+                    if (currentState.platform === 'youtube') {
+                        if (currentState.apiProvider === 'gifted') {
+                            const endpoint = currentState.format === 'mp3' ? api.endpoints.youtube.mp3 : api.endpoints.youtube.mp4;
+                            apiUrl = `${endpoint}?apikey=${api.key}&url=${encodeURIComponent(url)}`;
+                        } else {
+                            // David API
+                            if (currentState.format === 'mp3') {
+                                const videoId = getYouTubeID(url);
+                                apiUrl = videoId ? `${api.endpoints.youtube.music}?query=${encodeURIComponent(videoId)}&apikey=${api.key}` : null;
+                            } else {
+                                apiUrl = `${api.endpoints.youtube.mp4}?url=${encodeURIComponent(url)}&apikey=${api.key}`;
+                            }
+                        }
+                    } else {
+                        const endpoint = api.endpoints[currentState.platform];
+                        if (typeof endpoint === 'object') {
+                            apiUrl = `${endpoint.download}?apikey=${api.key}&url=${encodeURIComponent(url)}`;
+                        } else {
+                            apiUrl = `${endpoint}?apikey=${api.key}&url=${encodeURIComponent(url)}`;
+                        }
                     }
-                } else if (lowerCaseInput === '/clear') {
-                    chatMessages.innerHTML = '';
-                    displayBotMessage('Chat history cleared! 🗑️ How can I assist you now?');
-                } else if (lowerCaseInput.startsWith('/ai')) {
-                    const aiQuery = userInputValue.substring(3).trim();
-                    if (!aiQuery) {
-                        displayBotMessage('Please ask a question after /ai. For example: /ai What is artificial intelligence?');
+                    
+                    if (!apiUrl) {
+                        hideDownloadModal();
+                        showError("This platform/format combination is not supported");
                         return;
                     }
                     
-                    await queryAI(aiQuery);
-                } else {
-                    // Check for matching commands
-                    let commandFound = false;
-                    for (const cmd of commands) {
-                        if (lowerCaseInput === `/${cmd.command}` || lowerCaseInput === cmd.command) {
-                            commandFound = true;
-                            if (typeof cmd.response === 'function') {
-                                displayBotMessage(cmd.response());
-                            } else {
-                                displayBotMessage(cmd.response);
-                            }
-                            break;
-                        }
+                    updateDownloadProgress(30, "Fetching download link...");
+                    
+                    const response = await fetch(apiUrl);
+                    const result = await response.json();
+                    
+                    updateDownloadProgress(70, "Processing response...");
+                    
+                    let downloadUrl;
+                    if (currentState.apiProvider === 'david') {
+                        downloadUrl = result.download_url || result.DownloadLink || (result.result && result.result.download_url);
+                    } else {
+                        downloadUrl = result.url || result.downloadUrl || result.videoUrl;
                     }
                     
-                    if (!commandFound) {
-                        // If not a command, treat as AI question
-                        await queryAI(userInputValue);
+                    if (downloadUrl && downloadUrl !== 'N/A') {
+                        updateDownloadProgress(90, "Starting download...");
+                        setTimeout(() => {
+                            triggerDownload(downloadUrl, getFileNameFromUrl(url));
+                            hideDownloadModal();
+                        }, 500);
+                    } else {
+                        hideDownloadModal();
+                        showError("No download link found in the response");
                     }
+                } catch (error) {
+                    console.error('Download error:', error);
+                    hideDownloadModal();
+                    showError("Failed to process download. Please try again.");
                 }
             }
 
-            // Query AI function - FIXED: Proper URL construction for the API
-            async function queryAI(question) {
-                showTypingIndicator();
-                updateStatus("Processing request...", "loading");
+            // Process download from search result (Search/Music Mode)
+            async function processDownloadFromSearch(result, index) {
+                showDownloadModal("Preparing download from search result...");
                 
                 try {
-                    const encodedQuery = encodeURIComponent(question);
-                    // FIXED: Correct URL construction for the API
-                    const url = `${PRIVATE_API_ENDPOINT}?query=${encodedQuery}`;
-                    console.log("Fetching from URL:", url); // For debugging
+                    const api = API_CONFIG[currentState.apiProvider];
+                    let downloadUrl = result.download_url || result.DownloadLink;
                     
-                    const response = await fetch(url, {
-                        method: 'GET',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
+                    // If no direct download URL, try to get it from the video URL
+                    if (!downloadUrl && result.video_url) {
+                        updateDownloadProgress(30, "Fetching download link...");
+                        
+                        if (currentState.platform === 'youtube') {
+                            if (currentState.apiProvider === 'gifted') {
+                                const endpoint = currentState.format === 'mp3' ? api.endpoints.youtube.mp3 : api.endpoints.youtube.mp4;
+                                const apiUrl = `${endpoint}?apikey=${api.key}&url=${encodeURIComponent(result.video_url)}`;
+                                const response = await fetch(apiUrl);
+                                const data = await response.json();
+                                downloadUrl = data.url || data.downloadUrl;
+                            } else {
+                                // David API
+                                if (currentState.format === 'mp3') {
+                                    const videoId = getYouTubeID(result.video_url);
+                                    const apiUrl = `${api.endpoints.youtube.music}?query=${encodeURIComponent(videoId || result.title)}&apikey=${api.key}`;
+                                    const response = await fetch(apiUrl);
+                                    const data = await response.json();
+                                    downloadUrl = data.download_url || (data.result && data.result.download_url);
+                                } else {
+                                    const apiUrl = `${api.endpoints.youtube.mp4}?url=${encodeURIComponent(result.video_url)}&apikey=${api.key}`;
+                                    const response = await fetch(apiUrl);
+                                    const data = await response.json();
+                                    downloadUrl = data.download_url || (data.result && data.result.download_url);
+                                }
+                            }
                         }
-                    });
-
-                    if (!response.ok) {
-                        throw new Error(`API Error: ${response.status} ${response.statusText}`);
                     }
-
-                    const contentType = response.headers.get('content-type');
-                    if (!contentType || !contentType.includes('application/json')) {
-                        throw new Error('API did not return JSON');
-                    }
-
-                    const data = await response.json();
-                    hideTypingIndicator();
-                    updateStatus("Response received", "connected");
-
-                    let botAnswer;
-                    if (data && data.result) {
-                        botAnswer = data.result;
-                    } else if (data && data.answer) {
-                        botAnswer = data.answer;
-                    } else if (data && data.error) {
-                        botAnswer = `API Error: ${data.error}`;
+                    
+                    updateDownloadProgress(70, "Processing...");
+                    
+                    if (downloadUrl && downloadUrl !== 'N/A') {
+                        updateDownloadProgress(90, "Starting download...");
+                        setTimeout(() => {
+                            triggerDownload(downloadUrl, getFileNameFromTitle(result.title));
+                            hideDownloadModal();
+                        }, 500);
                     } else {
-                        botAnswer = "I couldn't process your request. Please try a different question.";
+                        hideDownloadModal();
+                        showError("Could not get download link for this item");
                     }
-
-                    displayBotMessage(botAnswer);
                 } catch (error) {
-                    hideTypingIndicator();
-                    updateStatus("API request failed", "error");
-                    console.error("AI query error:", error);
-                    displayBotMessage("I'm having trouble connecting right now. Please try again later. 😔");
+                    console.error('Search download error:', error);
+                    hideDownloadModal();
+                    showError("Failed to download. Please try again.");
                 }
             }
 
-            // Initial welcome message after a short delay
-            setTimeout(() => {
-                displayBotMessage("Tap the + button for quick access to commands like /joke and /calculate! 🚀");
-            }, 4000);
+            // Perform search
+            async function performSearch(query) {
+                showLoading();
+                
+                try {
+                    const api = API_CONFIG[currentState.apiProvider];
+                    let searchResults = [];
+                    
+                    if (currentState.platform === 'youtube') {
+                        searchResults = await searchYouTube(query);
+                    } else if (currentState.platform === 'spotify' && api.endpoints.spotify.search) {
+                        searchResults = await searchSpotify(query);
+                    } else {
+                        showError("Search is not supported for this platform");
+                        return;
+                    }
+                    
+                    currentState.searchResults = searchResults;
+                    displaySearchResults();
+                } catch (error) {
+                    console.error('Search error:', error);
+                    showError("Failed to perform search. Please try again.");
+                }
+            }
+
+            // Search music
+            async function searchMusic(query) {
+                showLoading();
+                
+                try {
+                    const api = API_CONFIG[currentState.apiProvider];
+                    let searchResults = [];
+                    
+                    if (api.name === "David Cyril API") {
+                        // Use David API for music search
+                        const url = `${api.endpoints.youtube.music}?query=${encodeURIComponent(query)}&apikey=${api.key}`;
+                        const response = await fetch(url);
+                        const data = await response.json();
+                        
+                        if (data.status === true && data.result) {
+                            // Single result
+                            searchResults = [{
+                                type: 'music',
+                                title: data.result.title,
+                                artist: extractArtist(data.result.title),
+                                thumbnail: data.result.thumbnail,
+                                duration: data.result.duration,
+                                views: formatNumber(data.result.views),
+                                published: data.result.published,
+                                download_url: data.result.download_url,
+                                video_url: data.result.video_url
+                            }];
+                        } else if (data.results && Array.isArray(data.results)) {
+                            // Multiple results
+                            searchResults = data.results.map(item => ({
+                                type: 'music',
+                                title: item.title,
+                                artist: extractArtist(item.title),
+                                thumbnail: item.thumbnail,
+                                duration: item.duration,
+                                views: formatNumber(item.views),
+                                published: item.published,
+                                video_url: item.url,
+                                videoId: item.videoId
+                            }));
+                        }
+                    } else {
+                        // Use YouTube search for Gifted API
+                        searchResults = await searchYouTube(query);
+                    }
+                    
+                    currentState.searchResults = searchResults;
+                    displaySearchResults();
+                } catch (error) {
+                    console.error('Music search error:', error);
+                    showError("Failed to search for music. Please try again.");
+                }
+            }
+
+            // Search YouTube
+            async function searchYouTube(query) {
+                try {
+                    const api = API_CONFIG[currentState.apiProvider];
+                    let url;
+                    
+                    if (api.name === "David Cyril API") {
+                        url = `${api.endpoints.youtube.search}?query=${encodeURIComponent(query)}`;
+                    } else {
+                        // Gifted API search not implemented in provided endpoints
+                        return getMockResults(query, 'youtube');
+                    }
+                    
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    
+                    if ((data.status === true || data.status === 'success') && data.results) {
+                        return data.results.map(item => ({
+                            id: item.videoId || Math.random().toString(36).substr(2, 9),
+                            title: item.title,
+                            thumbnail: item.thumbnail,
+                            duration: item.duration,
+                            views: formatNumber(item.views),
+                            published: item.published,
+                            video_url: item.url,
+                            channel: 'YouTube'
+                        }));
+                    }
+                    return getMockResults(query, 'youtube');
+                } catch (error) {
+                    console.error('YouTube search error:', error);
+                    return getMockResults(query, 'youtube');
+                }
+            }
+
+            // Search Spotify
+            async function searchSpotify(query) {
+                try {
+                    const api = API_CONFIG[currentState.apiProvider];
+                    const url = `${api.endpoints.spotify.search}?text=${encodeURIComponent(query)}`;
+                    
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    
+                    if (data.success === true && data.result) {
+                        return data.result.map(item => ({
+                            id: item.trackId || Math.random().toString(36).substr(2, 9),
+                            title: item.trackName,
+                            artist: item.artistName,
+                            album: item.albumName,
+                            duration: item.duration,
+                            thumbnail: item.thumbnail,
+                            externalUrl: item.externalUrl,
+                            type: 'spotify'
+                        }));
+                    }
+                    return getMockResults(query, 'spotify');
+                } catch (error) {
+                    console.error('Spotify search error:', error);
+                    return getMockResults(query, 'spotify');
+                }
+            }
+
+            // Mock data for fallback
+            function getMockResults(query, type) {
+                if (type === 'youtube') {
+                    return [
+                        {
+                            id: "dQw4w9WgXcQ",
+                            title: "Never Gonna Give You Up - " + query,
+                            thumbnail: "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
+                            duration: "3:32",
+                            views: "1.2B",
+                            published: "10 years ago",
+                            video_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                            channel: "Rick Astley"
+                        }
+                    ];
+                } else if (type === 'spotify') {
+                    return [
+                        {
+                            id: "7xWn3HqJz3",
+                            title: "Blinding Lights - " + query,
+                            artist: "The Weeknd",
+                            album: "After Hours",
+                            duration: "3:20",
+                            thumbnail: "https://i.scdn.co/image/ab67616d0000b2738863bc11d2aa12b54f5aeb36",
+                            externalUrl: "https://open.spotify.com/track/7xWn3HqJz3",
+                            type: 'spotify'
+                        }
+                    ];
+                }
+                return [];
+            }
+
+            // Display functions
+            function showLoading() {
+                resultsHeader.style.display = 'none';
+                pagination.style.display = 'none';
+                resultsContainer.innerHTML = `
+                    <div class="loading">
+                        <div class="loading-spinner"></div>
+                        <p>Searching...</p>
+                        <p style="font-size: 0.9rem; margin-top: 1rem; color: var(--gray);">Using ${API_CONFIG[currentState.apiProvider].name}</p>
+                    </div>
+                `;
+            }
+
+            function showError(message) {
+                resultsHeader.style.display = 'none';
+                pagination.style.display = 'none';
+                resultsContainer.innerHTML = `
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h4>Oops! Something went wrong</h4>
+                        <p>${message}</p>
+                        <button class="btn btn-primary" style="margin-top: 1rem;" onclick="clearResults()">Try Again</button>
+                    </div>
+                `;
+            }
+
+            function clearResults() {
+                resultsHeader.style.display = 'none';
+                pagination.style.display = 'none';
+                resultsContainer.innerHTML = '';
+            }
+
+            function displaySearchResults() {
+                const startIndex = (currentState.page - 1) * 12;
+                const endIndex = startIndex + 12;
+                const paginatedResults = currentState.searchResults.slice(startIndex, endIndex);
+                const totalResults = currentState.searchResults.length;
+                
+                resultsHeader.style.display = 'flex';
+                resultsCount.textContent = `Showing ${Math.min(totalResults, 12)} of ${totalResults} results`;
+                
+                let resultsHTML = '';
+                
+                if (paginatedResults.length === 0) {
+                    resultsHTML = `
+                        <div class="error-message">
+                            <i class="fas fa-search"></i>
+                            <h4>No Results Found</h4>
+                            <p>No results found for "${currentState.searchQuery}". Try a different search term.</p>
+                        </div>
+                    `;
+                } else {
+                    resultsHTML = '<div class="results-grid">';
+                    
+                    paginatedResults.forEach((result, index) => {
+                        const resultIndex = startIndex + index;
+                        resultsHTML += createResultCard(result, resultIndex);
+                    });
+                    
+                    resultsHTML += '</div>';
+                }
+                
+                resultsContainer.innerHTML = resultsHTML;
+                generatePagination();
+            }
+
+            function createResultCard(result, index) {
+                const thumbnail = result.thumbnail || 'https://via.placeholder.com/300x200/333333/666666?text=Thumbnail';
+                const title = result.title || 'Untitled';
+                
+                let metaHTML = '';
+                if (result.type === 'music' || result.type === 'spotify') {
+                    metaHTML = `
+                        <div class="result-meta">
+                            ${result.artist ? `<div class="meta-item"><i class="fas fa-microphone"></i> ${result.artist}</div>` : ''}
+                            ${result.duration ? `<div class="meta-item"><i class="far fa-clock"></i> ${result.duration}</div>` : ''}
+                            ${result.views ? `<div class="meta-item"><i class="far fa-eye"></i> ${result.views}</div>` : ''}
+                            ${result.published ? `<div class="meta-item"><i class="far fa-calendar"></i> ${result.published}</div>` : ''}
+                        </div>
+                    `;
+                } else {
+                    metaHTML = `
+                        <div class="result-meta">
+                            ${result.channel ? `<div class="meta-item"><i class="fas fa-user-circle"></i> ${result.channel}</div>` : ''}
+                            ${result.duration ? `<div class="meta-item"><i class="far fa-clock"></i> ${result.duration}</div>` : ''}
+                            ${result.views ? `<div class="meta-item"><i class="far fa-eye"></i> ${result.views}</div>` : ''}
+                            ${result.published ? `<div class="meta-item"><i class="far fa-calendar"></i> ${result.published}</div>` : ''}
+                        </div>
+                    `;
+                }
+                
+                const hasDownloadUrl = result.download_url && result.download_url !== 'N/A';
+                const hasVideoUrl = result.video_url;
+                const isAudio = currentState.format === 'mp3' || result.type === 'music' || result.type === 'spotify';
+                
+                return `
+                    <div class="result-card">
+                        <img src="${thumbnail}" alt="${title}" class="result-thumbnail" onclick="previewMedia(${index})">
+                        <div class="result-content">
+                            <h3 class="result-title">${title}</h3>
+                            ${metaHTML}
+                            <div class="result-actions">
+                                ${hasDownloadUrl || hasVideoUrl ? `
+                                    <button class="play-btn" onclick="playMedia(${index})">
+                                        <i class="fas fa-play"></i> Play
+                                    </button>
+                                ` : ''}
+                                
+                                <button class="download-btn" onclick="downloadFromSearch(${index})">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Global functions for buttons
+            window.downloadFromSearch = function(index) {
+                const result = currentState.searchResults[index];
+                if (result) {
+                    processDownloadFromSearch(result, index);
+                }
+            };
+
+            window.playMedia = function(index) {
+                const result = currentState.searchResults[index];
+                if (!result) return;
+                
+                currentState.currentPlaying = result;
+                
+                // Check if it's audio or video
+                const isAudio = currentState.format === 'mp3' || result.type === 'music' || result.type === 'spotify';
+                const mediaUrl = result.download_url || result.video_url;
+                
+                if (!mediaUrl || mediaUrl === 'N/A') {
+                    showError("No media URL available for playback");
+                    return;
+                }
+                
+                playerTitle.textContent = result.title;
+                playerArtist.textContent = result.artist || result.channel || 'Unknown';
+                
+                if (isAudio) {
+                    videoPlayer.style.display = 'none';
+                    audioPlayer.style.display = 'block';
+                    audioPlayer.src = mediaUrl;
+                    audioPlayer.play();
+                } else {
+                    audioPlayer.style.display = 'none';
+                    videoPlayer.style.display = 'block';
+                    videoPlayer.src = mediaUrl;
+                    videoPlayer.play();
+                }
+                
+                playerModal.style.display = 'block';
+            };
+
+            window.previewMedia = function(index) {
+                const result = currentState.searchResults[index];
+                if (result && result.video_url) {
+                    window.open(result.video_url, '_blank');
+                }
+            };
+
+            window.closePlayerModal = function() {
+                playerModal.style.display = 'none';
+                videoPlayer.pause();
+                audioPlayer.pause();
+                videoPlayer.src = '';
+                audioPlayer.src = '';
+            };
+
+            // Download modal functions
+            function showDownloadModal(message) {
+                downloadMessage.textContent = message;
+                downloadProgressBar.style.width = '0%';
+                downloadStatus.textContent = 'Initializing...';
+                downloadModal.style.display = 'block';
+            }
+
+            function updateDownloadProgress(percent, status) {
+                downloadProgressBar.style.width = percent + '%';
+                downloadStatus.textContent = status;
+            }
+
+            function hideDownloadModal() {
+                setTimeout(() => {
+                    downloadModal.style.display = 'none';
+                }, 500);
+            }
+
+            function triggerDownload(url, filename) {
+                const link = document.createElement('a');
+                link.href = url;
+                const extension = currentState.format === 'mp3' ? 'mp3' : 'mp4';
+                link.download = `${filename.replace(/[^\w\s-]/gi, '').replace(/\s+/g, '_')}.${extension}`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'download', {
+                        'event_category': currentState.platform,
+                        'event_label': currentState.format,
+                        'value': 1
+                    });
+                }
+                
+                showNotification('Download started!');
+            }
+
+            // Helper functions
+            function getYouTubeID(url) {
+                const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+                const match = url.match(regExp);
+                return (match && match[7].length === 11) ? match[7] : null;
+            }
+
+            function formatNumber(num) {
+                if (!num) return '0';
+                if (typeof num === 'string') {
+                    if (num.includes('B')) return num;
+                    if (num.includes('M')) return num;
+                    if (num.includes('K')) return num;
+                    num = num.replace(/[^0-9]/g, '');
+                    num = parseInt(num);
+                }
+                if (num >= 1000000000) return (num / 1000000000).toFixed(1) + 'B';
+                if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+                if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+                return num.toString();
+            }
+
+            function extractArtist(title) {
+                const parts = title.split(' - ');
+                return parts.length > 1 ? parts[0] : 'Unknown Artist';
+            }
+
+            function getFileNameFromUrl(url) {
+                try {
+                    const urlObj = new URL(url);
+                    const pathname = urlObj.pathname;
+                    return pathname.split('/').pop().split('?')[0] || 'download';
+                } catch {
+                    return 'download';
+                }
+            }
+
+            function getFileNameFromTitle(title) {
+                return title.replace(/[^\w\s-]/gi, '').substring(0, 50).replace(/\s+/g, '_');
+            }
+
+            // Pagination
+            function generatePagination() {
+                const totalPages = Math.ceil(currentState.searchResults.length / 12);
+                
+                if (totalPages <= 1) {
+                    pagination.style.display = 'none';
+                    return;
+                }
+                
+                pagination.style.display = 'flex';
+                let paginationHTML = '';
+                
+                if (currentState.page > 1) {
+                    paginationHTML += `<button class="page-btn" onclick="changePage(${currentState.page - 1})"><i class="fas fa-chevron-left"></i> Previous</button>`;
+                }
+                
+                const maxVisiblePages = 5;
+                let startPage = Math.max(1, currentState.page - Math.floor(maxVisiblePages / 2));
+                let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+                
+                if (endPage - startPage + 1 < maxVisiblePages) {
+                    startPage = Math.max(1, endPage - maxVisiblePages + 1);
+                }
+                
+                for (let i = startPage; i <= endPage; i++) {
+                    paginationHTML += `<button class="page-btn ${i === currentState.page ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
+                }
+                
+                if (currentState.page < totalPages) {
+                    paginationHTML += `<button class="page-btn" onclick="changePage(${currentState.page + 1})">Next <i class="fas fa-chevron-right"></i></button>`;
+                }
+                
+                pagination.innerHTML = paginationHTML;
+            }
+
+            window.changePage = function(page) {
+                currentState.page = page;
+                displaySearchResults();
+                window.scrollTo({ top: resultsContainer.offsetTop - 100, behavior: 'smooth' });
+            };
+
+            // FAQ functionality
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', () => {
+                    const item = question.parentElement;
+                    item.classList.toggle('active');
+                });
+            });
+
+            // Theme toggle
+            window.toggleTheme = function() {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? null : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            };
+
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            }
+
+            // Notification system
+            function showNotification(message) {
+                const notification = document.createElement('div');
+                notification.className = 'notification';
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 100px;
+                    right: 20px;
+                    background-color: var(--primary);
+                    color: white;
+                    padding: 1rem 1.5rem;
+                    border-radius: 5px;
+                    box-shadow: var(--box-shadow);
+                    z-index: 10000;
+                    animation: slideIn 0.3s ease;
+                `;
+                notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 300);
+                }, 3000);
+                
+                // Add animation styles if not present
+                if (!document.querySelector('#notification-styles')) {
+                    const style = document.createElement('style');
+                    style.id = 'notification-styles';
+                    style.textContent = `
+                        @keyframes slideIn {
+                            from { transform: translateX(100%); opacity: 0; }
+                            to { transform: translateX(0); opacity: 1; }
+                        }
+                        @keyframes slideOut {
+                            from { transform: translateX(0); opacity: 1; }
+                            to { transform: translateX(100%); opacity: 0; }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+            }
+
+            window.showDisclaimer = function() {
+                alert(`DISCLAIMER\n\nDianSybexTech Media Downloader is intended for personal, educational, and fair use only.\n\n- Download only content you have permission to use\n- Respect copyright laws and platform terms of service\n- This tool is for educational purposes\n- We are not responsible for misuse of this service\n\nBy using this service, you agree to these terms.`);
+            };
+
+            window.showPrivacy = function() {
+                alert(`PRIVACY POLICY\n\n- We do not store any downloaded content on our servers\n- We do not collect personal information\n- URLs are processed in real-time and not stored\n- We use cookies only for theme preferences\n- No tracking of your download history\n- Your privacy is important to us`);
+            };
+
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('header-scrolled');
+                } else {
+                    header.classList.remove('header-scrolled');
+                }
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Initialize
+            loadSettings();
+            updatePlatformSettings();
             
-            // Initial status update
-            updateStatus("Ready to chat", "connected");
-        });
+            console.log("DianSybexTech Dual API Media Downloader fully loaded!");
+        }
+        
+        // ===== START EVERYTHING =====
+        window.addEventListener('DOMContentLoaded', startLoading);
     </script>
 </body>
 </html>
