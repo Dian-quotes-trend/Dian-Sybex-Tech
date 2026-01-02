@@ -1,0 +1,104 @@
+okay, i want to create a new project called dian sybex tech <all media downloader/> 
+this will be a website that can download any type of media(tiktok, youtube, instagram, facebook, pinterest, spotify, songs and also make searches) in any format(video, audio and document)
+this will all be made posible by use of APIs that i will provide individually for each media type 
+[i will provide the css that we'll use ]
+*styles.css*
+
+                 <STRUCTURE OF THE SITE>
+The site will have a banner with the company name(DianSybexTech) with a home buttton directing to "https://dian-sybex-tech.vercel.app" 
+below the banner will be the site that we are going to download from ie {(yt logo)Youtube}, {(tiktok logo)Tiktok}, 
+below with a search bar, where inputs or searches are inserted .
+then the remaining space below should have the search results if the input was a search
+some inputs will be direct links that need to be downloaded directly but inputs like songs, youtube searches , spotify , can be searches 
+INCLUDE ALL THE CSS AND JS IN ONE HTML FILE, 
+                     STRUCTURE OF THE SITE/>
+
+                <STRUCTURE OF SEARCH RESULTS>
+Search results should have a download button that downloads the returned media, must show the views/streams , likes where applicable plus the thumbnail of the media
+               <STRUCTURE OF SEARCH RESULTS/>
+
+                <API logic>
+we will be using the gifted api for performing all this 
+each media type has a specific api it will be using, ill provide all the necessary apis and their documantation if nessesary
+                 <API logic/>
+
+             <APIs>
+1. Facebook
+GET, JSON
+Download Videos and Reels from Faceook
+apikey, url
+https://api.giftedtech.co.ke/api/download/facebook?apikey=gifted&url=https%3A%2F%2Fwww.facebook.com%2Freel%2F402579285704851%3Fmibextid%3DrS40aB7S9Ucbxw6v
+
+2. Ytmp3
+GET, JSON
+Download Youtube VIDEO(faster server)
+apikey, url, quality(optional)
+https://api.giftedtech.co.ke/api/download/ytmp3?apikey=gifted&url=ENTER+URL&quality=128
+
+3. Ytmp4
+GET, JSON
+Download Youtube Videos(faster server)
+apikey, url, quality(optional)
+https://api.giftedtech.co.ke/api/download/ytmp4?apikey=gifted&url=YOUR+URL&quality=720
+
+4. Yt Music
+GET, JSON
+Download Youtube Videos as Audio(fast server)
+apikey, url, quality(optional)
+https://api.giftedtech.co.ke/api/download/ytmusic?apikey=gifted&quality=128kbps&url=YOUR+URL
+
+5. InstaDl
+GET, JSON
+Download Videos and Reels from Instagram
+apikey, url
+https://api.giftedtech.co.ke/api/download/instadl?apikey=gifted&url=YOUR+URL
+
+6. TwitterDl
+GET, JSON
+Download Media from Twitter(x)
+apikey, url
+https://api.giftedtech.co.ke/api/download/twitter?apikey=gifted&url=YOUR+URL
+
+7. SpotifyDl
+GET, JSON
+Download Music from Spotify
+apikey, url
+https://api.giftedtech.co.ke/api/download/spotifydl?apikey=gifted&url=YOUR+URL
+
+8. Tiktok 
+GET, JSON
+Download Tiktok Media
+apikey, url
+https://api.giftedtech.co.ke/api/download/tiktok?apikey=gifted&url=YOUR+URL
+
+9. Pinterest
+GET, JSON
+Download Pinterest Videos
+apikey, url
+https://api.giftedtech.co.ke/api/download/pinterestdl?apikey=gifted&url=YOUR+URL
+
+
+
+to reduce on complexity of the site, we should create a different page for each media type and then create a home or main page that links to all of them
+but we will create one page at a time (we create one for the API i provide) at first we'll create the main page and then the first downloading site.
+we will lastly create a page with credits and guidelines about how to use the site
+
+also make sure to include my google tag script for analystics on each page: 
+ ( <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8VL9P86LQJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8VL9P86LQJ');
+</script>)
+
+
+
+THE css file i have provided shows what you should majorly include on the main page 
+
+
+*IF IT IS POSSIBLE , WE CAN CREATE ONE SIMPLE DYNAMIC PAGE THAT CAN DOWNLOAD ALL MEDIA BUT WITH BUTTONS FOR SELECTING THE MEDIA TYPE TO BE SEARCHED OR DOWNLOADED BUT WHILE KEEPING THE MAIN PAGE *
+this will be for you to decide on either one dynamic page with a separate main page or a page for every download media
+
+I AGREE WITH ALL TERMS AND CONDITIONS AND ASSURE THAT THIS PROJECT IS FOR EDUCATIONAL PURPOSES AND HOME USE , 

@@ -1,0 +1,185 @@
+okay now we are going to use two api providers, gifted api and david cyril api . we will add an option for sellecting which apis to use ,
+ and that will be in the settings tab (sellect api > gifted API or David APi, plus some more setting features, 
+you have the Gifted apis now i will provide you with the david api (these use no key) 
+this is a music downloading API. we are going to add it as our main service. a user only searches for a song name and we return info about the song in this way
+{
+  "creator": "David Cyril",
+  "status": true,
+  "result": {
+    "title": "Alan Walker - Faded",
+    "video_url": "https://youtube.com/watch?v=60ItHLz5WEA",
+    "thumbnail": "https://i.ytimg.com/vi/60ItHLz5WEA/hq720.jpg",
+    "duration": "3:33",
+    "views": 3906674565,
+    "published": "10 years ago",
+    "download_url": "https://cdn401.savetube.vip/media/60ItHLz5WEA/alan-walker-faded-128-ytshorts.savetube.me.mp3"
+  }
+}
+include all the metadata about the response 
+https://apis.davidcyriltech.my.id/play?query=Songname&apikey=
+the download button should just start a download, not open the file , also add a play button
+ 
+OTHER APIS ARE
+for yt videos from links
+https://apis.davidcyriltech.my.id/download/ytmp4?url=https://youtube.com/watch?v=MwpMEbgC7DA&apikey=
+
+{
+  "creator": "David Cyril",
+  "status": 200,
+  "success": true,
+  "result": {
+    "type": "video",
+    "format": "mp4",
+    "title": "Tom Odell - Another Love (Official Video)",
+    "thumbnail": "https://i.ytimg.com/vi/MwpMEbgC7DA/maxresdefault.jpg",
+    "quality": "480p",
+    "download_url": "https://travis40.savenow.to/pacific/?AipxRaq54FXb5cjcORbYjya"
+  }
+}
+spotify music
+https://apis.davidcyriltech.my.id/spotifydl?url=https://open.spotify.com/track/285pBltuF7vW8TeWk8hdRR?si=HWuMcdM3RJ6Yy0b7Uc7uGQ&apikey=
+{
+  "creator": "David Cyril",
+  "status": 200,
+  "success": true,
+  "channel": "Juice WRLD",
+  "title": "Lucid Dreams",
+  "duration": "N/A",
+  "thumbnail": "https://i.scdn.co/image/ab67616d0000b273f7db43292a6a99b21b51d5b4",
+  "DownloadLink": "url"
+}
+
+tiktok downl
+https://apis.davidcyriltech.my.id/download/tiktok?url=https://vm.tiktok.com/ZMkMuEmmd&apikey=
+{
+  "creator": "David Cyril Tech",
+  "status": 200,
+  "success": true,
+  "result": {
+    "video": url="N/A"
+    "music": "N/A"
+    "author": {
+      "nickname"N/A"
+      "avatar": "N/A"
+    },
+    "desc": "Got to know the meaning of lisp through this😂😂….She’s good✅ #pengamerapbattle #battlerap #ukrap #fyp #rapbattle #ukmusic #ukmemes #freestyle",
+    "statistics": {
+      "likeCount": "N/A",
+      "commentCount": "N/A",
+      "shareCount": "N/A",
+      "playCount": "N/A"
+    }
+  }
+}
+
+web site source code provider
+https://apis.davidcyriltech.my.id/tools/downloadweb?url=Weburl&apikey=
+{
+  "creator": "David Cyril",
+  "success": "true",
+  "response": {
+    "success": true,
+    "downloadUrl": "https://copier.saveweb2zip.com/api/downloadArchive/d6bc2a6aa8c2b799600ed77cd1a41aff_1767176860716",
+    "isFinished": true
+  }
+}
+instagram downloader url
+https://apis.davidcyriltech.my.id/instagram?url=https://www.instagram.com/reel/DD6q97IuzxD/?igsh=YzljYTk1ODg3Zg==&apikey=
+
+facebook
+https://apis.davidcyriltech.my.id/facebook?url=https://www.facebook.com/share/v/15fNp5gHK4/&apikey=
+{
+  "creator": "David Cyril",
+  "status": 200,
+  "success": true,
+  "result": {
+    "type": "video",
+    "title": "Facebook Video\r\n                    7:02",
+    "downloads": {
+      "sd": {
+        "quality": "SD",
+        "url": "N/a",
+        "size": null
+      },
+      "hd": {
+        "quality": "HD",
+        "url": "N/A",
+        "size": null
+      }
+    }
+
+  }
+}
+
+SEARCH APIS
+https://apis.davidcyriltech.my.id/youtube/search?query=Alan+Walker+Faded
+{
+  "creator": "David Cyril",
+  "status": true,
+  "results": [
+    {
+      "title": "Alan Walker - Faded",
+      "videoId": "60ItHLz5WEA",
+      "url": "https://youtube.com/watch?v=60ItHLz5WEA",
+      "thumbnail": "https://i.ytimg.com/vi/60ItHLz5WEA/hq720.jpg",
+      "views": 3906723174,
+      "duration": "3:33",
+      "published": "10 years ago"
+    },
+    {
+      "title": "Alan Walker - Faded (Live Performance)",
+      "videoId": "mIxlvVlOIS0",
+      "url": "https://youtube.com/watch?v=mIxlvVlOIS0",
+      "thumbnail": "https://i.ytimg.com/vi/mIxlvVlOIS0/hqdefault.jpg",
+      "views": 488975737,
+      "duration": "5:40",
+      "published": "8 years ago"
+    },
+  ]
+}
+
+spotify
+https://apis.davidcyriltech.my.id/search/spotify?text=faded
+{
+  "creator": "David Cyril",
+  "success": true,
+  "result": [
+    {
+      "trackNumber": 1,
+      "trackName": "Alan Walker - Faded",
+      "artistName": "Alan Walker",
+      "albumName": "Faded",
+      "duration": "3:33",
+      "previewUrl": "No preview available",
+      "externalUrl": "https://open.spotify.com/track/7gHs73wELdeycvS48JfIos",
+      "thumbnail": "https://i.scdn.co/image/ab67616d0000b273c4d00cac55ae1b4598c9bc90",
+      "releaseDate": "2015-12-04"
+    },
+    {
+      "trackNumber": 2,
+      "trackName": "Tyga - Faded",
+      "artistName": "Tyga",
+      "albumName": "Careless World: Rise Of The Last King",
+      "duration": "3:31",
+      "previewUrl": "No preview available",
+      "externalUrl": "https://open.spotify.com/track/4vULFpGH9sCBdCfCC6p3Xo",
+      "thumbnail": "https://i.scdn.co/image/ab67616d0000b27334c2901e50b3b91ffd8287b5",
+      "releaseDate": "2012-01-01"
+    },
+  ]
+}
+#note:include all search results weather 30 or not 
+lyrics search by song name
+https://apis.davidcyriltech.my.id/lyrics3?song=faded
+{
+  "creator": "David Cyril",
+  "status": 200,
+  "success": true,
+  "result": {
+    "song": "faded",
+    "artist": "Unknown",
+    "lyrics": "N/A"
+  }
+}
+pinterest
+https://apis.davidcyriltech.my.id/search/pinterest?text=cat
